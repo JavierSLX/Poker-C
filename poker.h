@@ -5,5 +5,6 @@
 
 void quitarJokers(carta baraja[], carta nBaraja[]);
 int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max);
+void imprimirMano(carta mano[]);
 
 #endif

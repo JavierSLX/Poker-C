@@ -8,6 +8,7 @@
 
 #define ROJO "rojo"
 #define NEGRO "negro"
+#define SN "sinColor"
 
 typedef struct
 {
@@ -19,6 +20,7 @@ typedef struct
 
 }carta;
 
+void imprimirElementoCarta (carta nombre, int n);
 void imprimirCaractCarta(carta nombre);
 void imprimirCaractBaraja(carta baraja[], int length);
 int definirCarta(int id, int num, int value, char type, char* color, carta *elemento);

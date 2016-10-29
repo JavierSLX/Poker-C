@@ -1,5 +1,48 @@
 #include "baraja.h"
 
+//Valores de n: 1 = id, 2 = numero, 3 = valor, 4 = tipo y 5 = color
+void imprimirElementoCarta (carta nombre, int n)
+{
+    switch(n)
+    {
+        case 1:
+            printf("%d", nombre.id);
+            break;
+        case 2:
+            if (nombre.numero == -1)
+                printf("N");
+            else if (nombre.numero == 1)
+                printf("A");
+            else if (nombre.numero > 1 && nombre.numero <= 10)
+                printf("%d", nombre.numero);
+            else
+            {
+                switch(nombre.numero)
+                {
+                    case 11:
+                        printf("J");
+                        break;
+                    case 12:
+                        printf("Q");
+                        break;
+                    default:
+                        printf("K");
+                }
+            }
+            break;
+        case 3:
+            printf("%d", nombre.valor);
+            break;
+        case 4:
+            printf("%c", nombre.tipo);
+            break;
+        default:
+            printf("%s", nombre.color);
+    }
+
+    return ;
+}
+
 void imprimirCaractCarta(carta nombre)
 {
     char letra;
@@ -132,8 +175,8 @@ int crearBaraja(carta baraja[])
         }
     }
 
-    error = definirCarta(53, -1, 0, 'N', "S/C", &baraja[52]);
-    error = definirCarta(54, -1, 0, 'N', "S/C", &baraja[53]);
+    error = definirCarta(53, -1, 0, 'N', SN, &baraja[52]);
+    error = definirCarta(54, -1, 0, 'N', SN, &baraja[53]);
 
     return 0;
 }
@@ -183,6 +226,5 @@ void barajear (carta baraja[])
         baraja[i] = prov[i];
     }
 
-    //liberarMemoria(prov, 54);
     return ;
 }

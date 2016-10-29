@@ -4,7 +4,7 @@ int main()
 {
     int error;
     carta baraja[54];
-    carta sinComodines[52];
+    //carta sinComodines[52];
     carta mano1[5];
     carta mano2[5];
     int carry = 0;
@@ -14,19 +14,22 @@ int main()
     barajear(baraja);
 
     //Quita los comodines y crea una nueva baraja
-    quitarJokers(baraja, sinComodines);
+    //quitarJokers(baraja, sinComodines);
 
     //Reparte dos manos
     error = repartirMano(baraja, mano1, 5, &carry, 54);
+    //imprimirCaractBaraja(mano1, 5);
+    imprimirMano(mano1);
+    printf("-----------------------------------------------------------\n");
     error = repartirMano(baraja, mano2, 5, &carry, 54);
+    //imprimirCaractBaraja(mano2, 5);
+    imprimirMano(mano2);
 
-    imprimirCaractBaraja(mano1, 5);
-    printf("%d\n", carry);
-    printf("-----------------\n");
-    imprimirCaractBaraja(mano2, 5);
-    liberarMemoria(baraja, 54);
+    //Reemplaza las cartas que desea
+
     liberarMemoria(mano1, 5);
     liberarMemoria(mano2, 5);
+    liberarMemoria(baraja, 54);
 
     return 0;
 }
