@@ -1,6 +1,6 @@
 #include "baraja.h"
 
-//Valores de n: 1 = id, 2 = numero, 3 = valor, 4 = tipo y 5 = color
+//Valores de n: 1 = id, 2 = numero, 3 = valor, 4 = tipo y 5 = color. Imprime el valor sin espacios ni secuencias de escape
 void imprimirElementoCarta (carta nombre, int n)
 {
     switch(n)
@@ -43,6 +43,7 @@ void imprimirElementoCarta (carta nombre, int n)
     return ;
 }
 
+//Imprime las características de un elemento tipo carta
 void imprimirCaractCarta(carta nombre)
 {
     char letra;
@@ -75,6 +76,7 @@ void imprimirCaractCarta(carta nombre)
     return ;
 }
 
+//Imprime las caracteristicas de un arreglo tipo carta (una baraja)
 void imprimirCaractBaraja(carta baraja[], int length)
 {
     int i;
@@ -111,6 +113,7 @@ void imprimirCaractBaraja(carta baraja[], int length)
     return ;
 }
 
+//Se crea una carta con sus distintos tipos de caracteristicas (regresa un 1 solamente si hubo error al asignar memoria)
 int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)
 {
     elemento->id = id;
@@ -133,6 +136,7 @@ int definirCarta(int id, int num, int value, char type, char* color, carta *elem
     return 0;
 }
 
+//Libera la memoria usada en los elementos carta (en este caso libera lo de todo un arreglo)
 void liberarMemoria(carta baraja[], int length)
 {
     int i;
@@ -141,6 +145,8 @@ void liberarMemoria(carta baraja[], int length)
         free(baraja[i].color);
 }
 
+//Crea todas las caracteristicas que contiene una baraja inglesa (54 cartas) y sus distintos elementos
+//(regresa 1 solamente si hay error de asignación de memoria.
 int crearBaraja(carta baraja[])
 {
     int i, a;
@@ -181,6 +187,7 @@ int crearBaraja(carta baraja[])
     return 0;
 }
 
+//Desordena el arreglo para que las cartas puedan salir siempre en un orden distinto
 void barajear (carta baraja[])
 {
     int i;

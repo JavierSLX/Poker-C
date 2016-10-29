@@ -38,7 +38,7 @@ int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)
     return 0;
 }
 
-
+//Imprime la mano del jugador (hecha solamente para que la vea el usuario)
 void imprimirMano(carta mano[])
 {
     int i;
