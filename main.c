@@ -1,6 +1,6 @@
 #include "poker.h"
 
-int main()
+/*int main()
 {
     int error;
     carta baraja[54];
@@ -32,7 +32,7 @@ int main()
     liberarMemoria(baraja, 54);
 
     return 0;
-}
+}*/
 
 /*Asignación de memoria dinamica
 char *memoria;

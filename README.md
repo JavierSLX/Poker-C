@@ -3,26 +3,32 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##General
-**29/Oct/16**. Se creó el documento README.md para describir características y dar soporte al código. Se comentó parte del código con las características generales de lo que realiza cada función en las libreías. El error aún no se ha corregido, por lo que se ha decidido darle prioridad a su solución antes de continuar para evitar mal funcionamiento del programa más adelante.
+**02/Nov/16**. Se realizaron las pruebas de la estructura y la función `void imprimirElementoCarta (carta nombre, int n)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirElementoCarta`.
+
+![GrafoFuncion1](./pruebas/imprimirElementoCarta/images/grafoImpEleCar.png)  
+
+![GrafoFuncion1](./pruebas/imprimirElementoCarta/images/driverIElemCart.png)
+  
+**29/Oct/16**. Se creó el documento README.md para describir características y dar soporte al código. Se comentó parte del código con las características generales de lo que realiza cada función en las librerías. El error aún no se ha corregido, por lo que se ha decidido darle prioridad a su solución antes de continuar para evitar mal funcionamiento del programa más adelante.
 
 **28/Oct/16**. Detectado un error 255 con el compilador Codeblocks al correr n veces el programa, aún no se encuentra la razón de tal debido a que se presenta aparentemente al azar. Se agregan unas imágenes del ya mencionado. 
 
 ![Error255a](./images/error255_281016.png)
 
-![Error255b](./images/error255_281016a.png)
+![Error255b](./images/error255_281016a.png)  
 
 ##Baraja
 Librería que contiene las funciones básicas del manejo de los elementos de una baraja en C.
 
-###baraja.h
-- `typedef struct {...}carta` **(NO PROBADA)**. Estructura creada para contener los elementos de id, número, valor, tipo y color de una carta. *ID*, que sirve para darle un valor único a la carta y pueda ser usado en alguna otra parte. *Numero* que da el valor que tiene "físico". *Valor* que es el valor que se le da dependiendo del juego. *Tipo* que es uno de los cuatro que existen (E: Espadas, T: Treboles, C: Corazones y R: Rombos). Y el elemento *color* es asignado con memoria dinámica que puede tener tres (rojo, negro y sinColor).
-- `void imprimirElementoCarta (carta nombre, int n)` **(NO PROBADA)**. Imprime el elemento específico de una carta. 
-- `void imprimirCaractCarta(carta nombre)` **(NO PROBADA)**. Imprime todas las características de una carta. 
-- `void imprimirCaractBaraja(carta baraja[], int length)` **(NO PROBADA)**. Imprime todas las características de un arreglo de cartas (baraja). 
-- `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)` **(NO PROBADA)**. Crea una carta con todos los elementos que contiene. 
-- `void liberarMemoria(carta baraja[], int length)`**(NO PROBADA)**.  Libera la memoria de los elementos de un arreglo que usan memoria dinámica. 
-- `int crearBaraja(carta baraja[])` **(NO PROBADA)**. Crea un arreglo de tipo carta (baraja) con todos los tipos de cartas, y los elementos de cada una de ellas.
-- `void barajear (carta baraja[])` **(NO PROBADA)**. Desordena la baraja para que los elementos siempre salgan de manera aleatoria.
+###baraja.h (NO PROBADA ✘)
+- `typedef struct {...}carta` **(PROBADA ✔)**. Estructura creada para contener los elementos de id, número, valor, tipo y color de una carta. *ID*, que sirve para darle un valor único a la carta y pueda ser usado en alguna otra parte. *Numero* que da el valor que tiene "físico". *Valor* que es el valor que se le da dependiendo del juego. *Tipo* que es uno de los cuatro que existen (E: Espadas, T: Treboles, C: Corazones y R: Rombos). Y el elemento *color* es asignado con memoria dinámica que puede tener tres (rojo, negro y sinColor).
+- `void imprimirElementoCarta (carta nombre, int n)` **(PROBADA ✔)**. Imprime el elemento específico de una carta. 
+- `void imprimirCaractCarta(carta nombre)` **(NO PROBADA ✘)**. Imprime todas las características de una carta. 
+- `void imprimirCaractBaraja(carta baraja[], int length)` **(NO PROBADA ✘)**. Imprime todas las características de un arreglo de cartas (baraja). 
+- `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)` **(NO PROBADA ✘)**. Crea una carta con todos los elementos que contiene. 
+- `void liberarMemoria(carta baraja[], int length)`**(NO PROBADA ✘)**.  Libera la memoria de los elementos de un arreglo que usan memoria dinámica. 
+- `int crearBaraja(carta baraja[])` **(NO PROBADA ✘)**. Crea un arreglo de tipo carta (baraja) con todos los tipos de cartas, y los elementos de cada una de ellas.
+- `void barajear (carta baraja[])` **(NO PROBADA ✘)**. Desordena la baraja para que los elementos siempre salgan de manera aleatoria.
 
 ###baraja.c
 
@@ -52,10 +58,10 @@ Desordena el arreglo para que usando el azar pueda alterar el orden.
 ##Poker
 Librería de C que contiene todas las reglas y características de este juego. Se apoya en las funciones hechas en `baraja.h`.
 
-###poker.h
-- `void quitarJokers(carta baraja[], carta nBaraja[])` **(NO PROBADA)**. Quita dos elementos carta del arreglo y crea una nueva baraja sin ellos. 
-- `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)` **(NO PROBADA)**. Toma del arreglo baraja cinco cartas para darle a cada jugador.
-- `void imprimirMano(carta mano[])` **(NO PROBADA)**. Imprime la mano que tiene el jugador.  
+###poker.h (NO PROBADA ✘)
+- `void quitarJokers(carta baraja[], carta nBaraja[])` **(NO PROBADA ✘)**. Quita dos elementos carta del arreglo y crea una nueva baraja sin ellos. 
+- `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)` **(NO PROBADA ✘)**. Toma del arreglo baraja cinco cartas para darle a cada jugador.
+- `void imprimirMano(carta mano[])` **(NO PROBADA ✘)**. Imprime la mano que tiene el jugador.  
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -74,5 +80,5 @@ Imprime los elementos que el jugador tiene como visibles para poder jugar.
 - **(CREADO 27/10/16)**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
-
-
+- **02/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirElementoCarta (carta nombre, int n)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirElementoCarta`). 
+- **02/10/16**. Se creó el *driver_baraja.c* para realizar las pruebas de la librería baraja.h.
