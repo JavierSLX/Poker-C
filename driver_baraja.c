@@ -3,16 +3,19 @@
 
 void pruebaIElemCart(void);
 void driverIElemCart(void);
+void pruebaICaractCarta(void);
+void driverICaractCarta(void);
 
 int main()
 {
     //pruebaIElemCart();
-    driverIElemCart();
+    //driverIElemCart();
+    //pruebaICaractCarta();
+    //driverICaractCarta();
     return 0;
 }
 
 //Funcion imprimirElementoCarta
-
 //Prueba la funcion N numero de veces
 void pruebaIElemCart(void)
 {
@@ -146,3 +149,88 @@ void driverIElemCart(void)
     free (elemento.color);
     return ;
 }
+
+//Funcion imprimirCaractCarta
+//Prueba la funcion N numero de veces
+void pruebaICaractCarta(void)
+{
+    int azar;
+    int i;
+    carta elemento;
+    srand(time(NULL));
+
+    for (i = 0; i < N; i++)
+    {
+        azar = 1 + rand() % 54;
+        elemento.id = azar;
+
+        azar = rand() % 14;
+        if (azar == 0)
+            azar = -1;
+        elemento.numero = azar;
+
+        azar = 1 + rand() % 14;
+        elemento.valor = azar;
+
+        azar = rand() % 4;
+        switch(azar)
+        {
+            case 0:
+                elemento.tipo = 'E';
+                break;
+            case 1:
+                elemento.tipo = 'T';
+                break;
+            case 2:
+                elemento.tipo = 'C';
+                break;
+            default:
+                elemento.tipo = 'R';
+        }
+
+        azar = rand() % 3;
+        switch(azar)
+        {
+            case 0:
+                elemento.color = malloc(strlen(ROJO) * sizeof(char));
+                strcpy(elemento.color, ROJO);
+                break;
+            case 1:
+                elemento.color = malloc(strlen(NEGRO) * sizeof(char));
+                strcpy(elemento.color, NEGRO);
+                break;
+            default:
+                elemento.color = malloc(strlen(SN) * sizeof(char));
+                strcpy(elemento.color, SN);
+        }
+
+        azar = 1 + rand() % 5;
+        imprimirCaractCarta (elemento);
+        printf("\n");
+        free(elemento.color);
+    }
+
+    return ;
+}
+
+void driverICaractCarta(void)
+{
+    carta elemento;
+    elemento.id = 10;
+    elemento.numero = 1;
+    elemento.valor = 8;
+    elemento.tipo = 'N';
+    elemento.color = malloc(strlen(SN) * sizeof(char));
+    strcpy(elemento.color, SN);
+
+    //Valores de la carta
+    printf("ID: %d, Numero: %d, Valor: %d, Tipo: %c, Color: %s\n\n",
+           elemento.id, elemento.numero, elemento.valor, elemento.tipo, elemento.color);
+
+    //Valores de la carta en funcion
+    imprimirCaractCarta(elemento);
+
+    free(elemento.color);
+    return;
+}
+

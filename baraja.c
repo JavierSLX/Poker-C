@@ -46,32 +46,21 @@ void imprimirElementoCarta (carta nombre, int n)
 //Imprime las características de un elemento tipo carta
 void imprimirCaractCarta(carta nombre)
 {
-    char letra;
-
-    printf("ID: %d\n", nombre.id);
-
-    if (nombre.numero == -1)
-        printf("Numero: N\n");
-    else if (nombre.numero == 1)
-        printf("Numero: A\n");
-    else if (nombre.numero <= 10)
-        printf("Numero: %d\n", nombre.numero);
-    else
-    {
-        switch(nombre.numero)
-        {
-            case 11:
-                letra = 'J';
-                break;
-            case 12:
-                letra = 'Q';
-                break;
-            default:
-                letra = 'K';
-        }
-        printf("Numero: %c\n", letra);
-    }
-    printf("Valor: %d\nTipo: %c\nColor: %s\n\n", nombre.valor, nombre.tipo, nombre.color);
+    printf("ID: ");
+    imprimirElementoCarta (nombre, 1);
+    printf("\n");
+    printf("Numero: ");
+    imprimirElementoCarta (nombre, 2);
+    printf("\n");
+    printf("Valor: ");
+    imprimirElementoCarta (nombre, 3);
+    printf("\n");
+    printf("Tipo: ");
+    imprimirElementoCarta (nombre, 4);
+    printf("\n");
+    printf("Color: ");
+    imprimirElementoCarta (nombre, 5);
+    printf("\n");
 
     return ;
 }

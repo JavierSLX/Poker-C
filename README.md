@@ -3,6 +3,13 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##General
+**04/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractCarta(carta nombre)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirCaractCarta`.
+
+![GrafoFuncion1](./pruebas/imprimirCaractCarta/images/grafoICaractCarta.png)  
+
+![GrafoFuncion1](./pruebas/imprimirCaractCarta/images/ruta1.png)
+
+
 **02/Nov/16**. Se realizaron las pruebas de la estructura y la función `void imprimirElementoCarta (carta nombre, int n)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirElementoCarta`.
 
 ![GrafoFuncion1](./pruebas/imprimirElementoCarta/images/grafoImpEleCar.png)  
@@ -23,7 +30,7 @@ Librería que contiene las funciones básicas del manejo de los elementos de una
 ###baraja.h (NO PROBADA ✘)
 - `typedef struct {...}carta` **(PROBADA ✔)**. Estructura creada para contener los elementos de id, número, valor, tipo y color de una carta. *ID*, que sirve para darle un valor único a la carta y pueda ser usado en alguna otra parte. *Numero* que da el valor que tiene "físico". *Valor* que es el valor que se le da dependiendo del juego. *Tipo* que es uno de los cuatro que existen (E: Espadas, T: Treboles, C: Corazones y R: Rombos). Y el elemento *color* es asignado con memoria dinámica que puede tener tres (rojo, negro y sinColor).
 - `void imprimirElementoCarta (carta nombre, int n)` **(PROBADA ✔)**. Imprime el elemento específico de una carta. 
-- `void imprimirCaractCarta(carta nombre)` **(NO PROBADA ✘)**. Imprime todas las características de una carta. 
+- `void imprimirCaractCarta(carta nombre)` **(PROBADA ✔)**. Imprime todas las características de una carta. 
 - `void imprimirCaractBaraja(carta baraja[], int length)` **(NO PROBADA ✘)**. Imprime todas las características de un arreglo de cartas (baraja). 
 - `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)` **(NO PROBADA ✘)**. Crea una carta con todos los elementos que contiene. 
 - `void liberarMemoria(carta baraja[], int length)`**(NO PROBADA ✘)**.  Libera la memoria de los elementos de un arreglo que usan memoria dinámica. 
@@ -38,6 +45,7 @@ Imprime uno de los distintos elementos sin espacios y sin secuencias de escape.
 - `void imprimirCaractCarta(carta nombre)`.  
 Imprime TODAS las características de una carta para pruebas del programador. 
 	+ **(CREADA 27/10/16)**. El valor de número es cambiante tomando como -1(comodín) y mostrándolo como N, 1 (As) mostrándolo como A, 11 como J, 12 como Q y 13 como K.
+	+ **(MODIFICADA 04/11/16)**. Se simplificó la función mandando llamar `void imprimirElementoCarta (carta nombre, int n)` para imprimir cada elemento.
 - `void imprimirCaractBaraja(carta baraja[], int length)`.  
 Imprime TODAS las características de cada carta contenida en el arreglo.  
 	+ **(CREADA 27/10/16)**. Se requiere el largo del arreglo para ver el límite dentro de un ciclo *for* que realiza la impresión de las cartas. Desconozco si se puede realizar sin que el programador tenga que ingresarlo como parámetro.

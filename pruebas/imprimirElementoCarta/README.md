@@ -1,6 +1,6 @@
 ##Diseño
 ###baraja.c
-void imprimirElementoCarta (carta nombre, int n)`.  
+`void imprimirElementoCarta (carta nombre, int n)`.  
 
 **02/11/16**. Se diseñó su grafo para poder calcular la complejidad de la función y poder realizar las pruebas unitarias de la función.
 	
@@ -25,8 +25,8 @@ Los elementos que representan los nodos son los siguientes:
 
 ####Complejidad ciclomática del grafo 
 Aplicando la fórmulas se obtiene lo siguiente:  
-	+  *Número de regiones*. Se obtienen 11 regiones distintas incluyendo la exterior.  
-	+  *V(G) = E - N + 2*. Aplicando la fórmula, se obtiene que el número de aristas(E) es de 24 y el de nodos (N) de 15, así que aplicando la fórmula nos da V(G) = 24 - 15 + 2 = 11.  
+- *Número de regiones*. Se obtienen 11 regiones distintas incluyendo la exterior.  
+- *V(G) = E - N + 2*. Aplicando la fórmula, se obtiene que el número de aristas(E) es de 24 y el de nodos (N) de 15, así que aplicando la fórmula nos da V(G) = 24 - 15 + 2 = 11.  
 A lo que se deduce que 11 son las pruebas mínimas para recorrer todo el grafo.  
 
 ####Rutas posibles del grafo
@@ -48,13 +48,13 @@ En este caso sólo 10 rutas son válidas, ya que la ruta 5, aunque en el grafo s
 
 ##Pruebas
 ###driver_baraja.c
-**(CREADO 02/10/16)**. Se usó el archivo driver_baraja.c para realizar las distintas pruebas de las funciones, entre ellas las pruebas unitarias.  
+**CREADO 02/10/16**. Se usó el archivo driver_baraja.c para realizar las distintas pruebas de las funciones, entre ellas las pruebas unitarias.  
 
 - **02/10/16**. Se probó la función con 10,000 número de casos distintos dados al azar, dando un resultado ***EXITOSO ✔***.
 
 ![pruebaIEC](./images/pruebaImpElemCart.png)  
 
-- **02/10/16**. Pruebas unitarias de la función ***EXITOSO ✔***.  
+- **02/10/16**. Pruebas unitarias de la función con resultado ***EXITOSO ✔***.  
 Código con el que se realizaron las pruebas (a menos que se haya hecho un cambio en especifico para entrar a la ruta).  
 
 ~~~  
@@ -67,7 +67,7 @@ elemento.color = malloc(strlen(NEGRO) * sizeof(char));
 strcpy(elemento.color, NEGRO);  
 ~~~  
 
-1. Ruta: 1, 2, 15.  
+####Ruta 1: 1, 2, 15.  
 ~~~  
 printf("%d = ", elemento.id);  
 imprimirElementoCarta(elemento, 1);  
@@ -76,7 +76,7 @@ printf("\n");
 
 ![ruta1](./images/ruta1.png)
 
-2. Ruta: 1, 3, 4, 15.  
+####Ruta 2: 1, 3, 4, 15.  
 ~~~  
 elemento.numero = -1;  
 printf("%d = ", elemento.numero);  
@@ -88,7 +88,7 @@ printf("\n");
 
 *N en el programa representa el número de Comodín, por lo que se ve que es correcto*  
 
-3. Ruta: 1, 3, 4, 5, 15.  
+####Ruta 3: 1, 3, 4, 5, 15.  
 ~~~  
 elemento.numero = 1;  
 printf("%d = ", elemento.numero);  
@@ -100,7 +100,7 @@ printf("\n");
 
 *A en el programa representa el número de 1, por lo que se ve que es correcto*  
   
-4. Ruta: 1, 3, 4, 5, 6, 7, 15.  
+####Ruta 4: 1, 3, 4, 5, 6, 7, 15.  
 ~~~  
 printf("%d = ", elemento.numero);  
 imprimirElementoCarta(elemento, 2);  
@@ -110,9 +110,9 @@ printf("\n");
 ![ruta4](./images/ruta4.png)  
 
 
-5. Ruta: 1, 3, 4, 5, 6, 8, 10, 15. (**NO VALIDA**)  
+####Ruta 5: 1, 3, 4, 5, 6, 8, 10, 15. (**NO VALIDA**)  
  
-6. Ruta: 1, 3, 4, 5, 6, 7, 8, 11, 15.  
+####Ruta 6: 1, 3, 4, 5, 6, 7, 8, 11, 15.  
 ~~~  
 elemento.numero = 13;  
 printf("%d = ", elemento.numero);  
@@ -124,7 +124,7 @@ printf("\n");
 
 *K en el programa representa el número de 13, por lo que se ve que es correcto*
 
-7. Ruta: 1, 3, 4, 5, 6, 7, 8, 10, 15.  
+####Ruta 7: 1, 3, 4, 5, 6, 7, 8, 10, 15.  
 ~~~  
 elemento.numero = 12;  
 printf("%d = ", elemento.numero);  
@@ -136,7 +136,7 @@ printf("\n");
 
 *Q en el programa representa el número de 12, por lo que se ve que es correcto*  
 
-8. Ruta: 1, 3, 4, 5, 6, 7, 8, 9, 15.  
+####Ruta 8: 1, 3, 4, 5, 6, 7, 8, 9, 15.  
 ~~~  
 elemento.numero = 11;  
 printf("%d = ", elemento.numero);  
@@ -148,7 +148,7 @@ printf("\n");
 
 *J en el programa representa el número de 11, por lo que se ve que es correcto*  
 
-9. Ruta: 1, 12, 15.  
+####Ruta 9: 1, 12, 15.  
 ~~~  
 printf("%d = ", elemento.valor);  
 imprimirElementoCarta(elemento, 3);  
@@ -157,7 +157,7 @@ printf("\n");
 
 ![ruta9](./images/ruta9.png)  
 
-10. Ruta: 1, 13, 15.  
+####Ruta 10: 1, 13, 15.  
 ~~~  
 printf("%c = ", elemento.tipo);  
 imprimirElementoCarta(elemento, 4);  
@@ -166,7 +166,7 @@ printf("\n");
 
 ![ruta10](./images/ruta10.png)  
 
-11. Ruta: 1, 14, 15.  
+####Ruta 11: 1, 14, 15.  
 ~~~  
 printf("%s = ", elemento.color);  
 imprimirElementoCarta(elemento, 5);  
