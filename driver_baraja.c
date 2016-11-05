@@ -5,6 +5,8 @@ void pruebaIElemCart(void);
 void driverIElemCart(void);
 void pruebaICaractCarta(void);
 void driverICaractCarta(void);
+void pruebaICaractBaraja(void);
+void driverICaractBaraja(void);
 
 int main()
 {
@@ -12,6 +14,8 @@ int main()
     //driverIElemCart();
     //pruebaICaractCarta();
     //driverICaractCarta();
+    //pruebaICaractBaraja();
+    //driverICaractBaraja();
     return 0;
 }
 
@@ -79,6 +83,7 @@ void pruebaIElemCart(void)
     return ;
 }
 
+//Pruebas Unitarias de la funcion
 void driverIElemCart(void)
 {
     carta elemento;
@@ -204,7 +209,6 @@ void pruebaICaractCarta(void)
                 strcpy(elemento.color, SN);
         }
 
-        azar = 1 + rand() % 5;
         imprimirCaractCarta (elemento);
         printf("\n");
         free(elemento.color);
@@ -213,6 +217,7 @@ void pruebaICaractCarta(void)
     return ;
 }
 
+//Pruebas Unitarias de la funcion
 void driverICaractCarta(void)
 {
     carta elemento;
@@ -232,5 +237,83 @@ void driverICaractCarta(void)
 
     free(elemento.color);
     return;
+}
+
+//Funcion imprimirCaractBaraja
+//Prueba la funcion N numero de veces
+void pruebaICaractBaraja(void)
+{
+    int azar;
+    int i;
+    carta baraja[N];
+    srand(time(NULL));
+
+    for (i = 0; i < N; i++)
+    {
+        azar = 1 + rand() % 54;
+        baraja[i].id = azar;
+        //printf("%d - %d\n", i, 1);
+
+        azar = rand() % 14;
+        if (azar == 0)
+            azar = -1;
+        baraja[i].numero = azar;
+        //printf("%d - %d\n", i, 2);
+
+        azar = 1 + rand() % 14;
+        baraja[i].valor = azar;
+        //printf("%d - %d\n",i, 3);
+
+        azar = rand() % 4;
+        switch(azar)
+        {
+            case 0:
+                baraja[i].tipo = 'E';
+                break;
+            case 1:
+                baraja[i].tipo = 'T';
+                break;
+            case 2:
+                baraja[i].tipo = 'C';
+                break;
+            default:
+                baraja[i].tipo = 'R';
+        }
+        //printf("%d - %d\n",i, 4);
+
+        azar = rand() % 3;
+        switch(azar)
+        {
+            case 0:
+                baraja[i].color = malloc(strlen(ROJO) * sizeof(char));
+                strcpy(baraja[i].color, ROJO);
+                break;
+            case 1:
+                baraja[i].color = malloc(strlen(NEGRO) * sizeof(char));
+                strcpy(baraja[i].color, NEGRO);
+                break;
+            default:
+                baraja[i].color = malloc(strlen(SN) * sizeof(char));
+                strcpy(baraja[i].color, SN);
+        }
+        //printf("%d - %d\n", i, 5);
+        printf("Carta %d creada\n", i + 1);
+    }
+
+    imprimirCaractBaraja(baraja, N);
+    liberarMemoria(baraja, N);
+    return ;
+}
+
+//Pruebas Unitarias de la funcion
+void driverICaractBaraja(void)
+{
+    int error;
+    carta baraja[54];
+
+    error = crearBaraja(baraja);
+    imprimirCaractBaraja(baraja, 54);
+    liberarMemoria(baraja, 54);
+    return ;
 }
 

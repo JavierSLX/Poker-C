@@ -3,16 +3,16 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##General
-**04/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractCarta(carta nombre)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirCaractCarta`.
+**05/10/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractBaraja`).  
 
-![GrafoFuncion1](./pruebas/imprimirCaractCarta/images/grafoICaractCarta.png)  
+![GrafoFuncion1](./pruebas/imprimirCaractBaraja/images/driverICaractBaraja.png)
+
+**04/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractCarta(carta nombre)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirCaractCarta`.
 
 ![GrafoFuncion1](./pruebas/imprimirCaractCarta/images/ruta1.png)
 
 
 **02/Nov/16**. Se realizaron las pruebas de la estructura y la función `void imprimirElementoCarta (carta nombre, int n)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirElementoCarta`.
-
-![GrafoFuncion1](./pruebas/imprimirElementoCarta/images/grafoImpEleCar.png)  
 
 ![GrafoFuncion1](./pruebas/imprimirElementoCarta/images/driverIElemCart.png)
   
@@ -31,7 +31,7 @@ Librería que contiene las funciones básicas del manejo de los elementos de una
 - `typedef struct {...}carta` **(PROBADA ✔)**. Estructura creada para contener los elementos de id, número, valor, tipo y color de una carta. *ID*, que sirve para darle un valor único a la carta y pueda ser usado en alguna otra parte. *Numero* que da el valor que tiene "físico". *Valor* que es el valor que se le da dependiendo del juego. *Tipo* que es uno de los cuatro que existen (E: Espadas, T: Treboles, C: Corazones y R: Rombos). Y el elemento *color* es asignado con memoria dinámica que puede tener tres (rojo, negro y sinColor).
 - `void imprimirElementoCarta (carta nombre, int n)` **(PROBADA ✔)**. Imprime el elemento específico de una carta. 
 - `void imprimirCaractCarta(carta nombre)` **(PROBADA ✔)**. Imprime todas las características de una carta. 
-- `void imprimirCaractBaraja(carta baraja[], int length)` **(NO PROBADA ✘)**. Imprime todas las características de un arreglo de cartas (baraja). 
+- `void imprimirCaractBaraja(carta baraja[], int length)` **(PROBADA ✔)**. Imprime todas las características de un arreglo de cartas (baraja). 
 - `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)` **(NO PROBADA ✘)**. Crea una carta con todos los elementos que contiene. 
 - `void liberarMemoria(carta baraja[], int length)`**(NO PROBADA ✘)**.  Libera la memoria de los elementos de un arreglo que usan memoria dinámica. 
 - `int crearBaraja(carta baraja[])` **(NO PROBADA ✘)**. Crea un arreglo de tipo carta (baraja) con todos los tipos de cartas, y los elementos de cada una de ellas.
@@ -49,6 +49,7 @@ Imprime TODAS las características de una carta para pruebas del programador.
 - `void imprimirCaractBaraja(carta baraja[], int length)`.  
 Imprime TODAS las características de cada carta contenida en el arreglo.  
 	+ **(CREADA 27/10/16)**. Se requiere el largo del arreglo para ver el límite dentro de un ciclo *for* que realiza la impresión de las cartas. Desconozco si se puede realizar sin que el programador tenga que ingresarlo como parámetro.
+	+ **(MODIFICADA 05/11/16)**. Se simplificó la función mandando llamar `void imprimirCaractCarta(carta nombre)` para imprimir cada carta contenida en el arreglo (baraja).
 - `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`.  
 Crea una carta a partir de todos los elementos que contiene.
 	+ **(CREADA 27/10/16)**. Es necesario colocar todos y cada uno de los parámetros que requiere la función. El color se asigna por memoria dinámica, a lo que regresa 1 la función cuando no se pudo asignarle para tal objetivo. Un parámetro es un apuntador a donde se encuentra la carta que se le darán tales valores.  
@@ -88,5 +89,10 @@ Imprime los elementos que el jugador tiene como visibles para poder jugar.
 - **(CREADO 27/10/16)**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
-- **02/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirElementoCarta (carta nombre, int n)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirElementoCarta`). 
+- **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractBaraja`).  
+
+- **04/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractCarta(carta nombre)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractCarta`).  
+
+- **02/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirElementoCarta (carta nombre, int n)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirElementoCarta`).  
+ 
 - **02/10/16**. Se creó el *driver_baraja.c* para realizar las pruebas de la librería baraja.h.

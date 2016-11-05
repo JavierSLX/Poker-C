@@ -69,34 +69,11 @@ void imprimirCaractCarta(carta nombre)
 void imprimirCaractBaraja(carta baraja[], int length)
 {
     int i;
-    char letra;
 
     for (i = 0; i < length; i++)
     {
-        printf("ID: %d\n", baraja[i].id);
-
-        if (baraja[i].numero == -1)
-            printf("Numero: N\n");
-        else if (baraja[i].numero == 1)
-            printf("Numero: A\n");
-        else if (baraja[i].numero <= 10)
-            printf("Numero: %d\n", baraja[i].numero);
-        else
-        {
-            switch(baraja[i].numero)
-            {
-                case 11:
-                    letra = 'J';
-                    break;
-                case 12:
-                    letra = 'Q';
-                    break;
-                default:
-                    letra = 'K';
-            }
-            printf("Numero: %c\n", letra);
-        }
-        printf("Valor: %d\nTipo: %c\nColor: %s\n\n", baraja[i].valor, baraja[i].tipo, baraja[i].color);
+        imprimirCaractCarta(baraja[i]);
+        printf("\n");
     }
 
     return ;
