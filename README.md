@@ -3,34 +3,36 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##General
+**05/Nov/16**. Se realizaron las pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/crearBaraja`).  
+
+![pCB](./pruebas/crearBaraja/images/pruebaCrearBaraja.png)
+
 **05/Nov/16**. Se realizaron las pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/liberarMemoria`).  
 
-![GrafoFuncion1](./pruebas/liberarMemoria/images/pruebaLiberarMemoria.png)
+![pLM](./pruebas/liberarMemoria/images/pruebaLiberarMemoria.png)
 
 **05/Nov/16**. Se realizaron las pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/definirCarta`).  
 
-![GrafoFuncion1](./pruebas/definirCarta/images/driverDefinirCarta.png)  
+![dDC](./pruebas/definirCarta/images/driverDefinirCarta.png)  
 
 **05/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractBaraja`).  
 
-![GrafoFuncion1](./pruebas/imprimirCaractBaraja/images/driverICaractBaraja.png)
+![dICB](./pruebas/imprimirCaractBaraja/images/driverICaractBaraja.png)
 
 **04/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractCarta(carta nombre)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirCaractCarta`.
 
-![GrafoFuncion1](./pruebas/imprimirCaractCarta/images/ruta1.png)
+![dICC](./pruebas/imprimirCaractCarta/images/ruta1.png)
 
 
 **02/Nov/16**. Se realizaron las pruebas de la estructura y la función `void imprimirElementoCarta (carta nombre, int n)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirElementoCarta`.
 
-![GrafoFuncion1](./pruebas/imprimirElementoCarta/images/driverIElemCart.png)
+![dIEC](./pruebas/imprimirElementoCarta/images/driverIElemCart.png)
   
 **29/Oct/16**. Se creó el documento README.md para describir características y dar soporte al código. Se comentó parte del código con las características generales de lo que realiza cada función en las librerías. El error aún no se ha corregido, por lo que se ha decidido darle prioridad a su solución antes de continuar para evitar mal funcionamiento del programa más adelante.
 
 **28/Oct/16**. Detectado un error 255 con el compilador Codeblocks al correr n veces el programa, aún no se encuentra la razón de tal debido a que se presenta aparentemente al azar. Se agregan unas imágenes del ya mencionado. 
 
-![Error255a](./images/error255_281016.png)
-
-![Error255b](./images/error255_281016a.png)  
+![Error255](./images/error255_281016.png) 
 
 ##Baraja
 Librería que contiene las funciones básicas del manejo de los elementos de una baraja en C.
@@ -42,7 +44,7 @@ Librería que contiene las funciones básicas del manejo de los elementos de una
 - `void imprimirCaractBaraja(carta baraja[], int length)` **(PROBADA ✔)**. Imprime todas las características de un arreglo de cartas (baraja). 
 - `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)` **(PROBADA ✔)**. Crea una carta con todos los elementos que contiene. 
 - `void liberarMemoria(carta baraja[], int length)`**(PROBADA ✔)**.  Libera la memoria de los elementos de un arreglo que usan memoria dinámica. 
-- `int crearBaraja(carta baraja[])` **(NO PROBADA ✘)**. Crea un arreglo de tipo carta (baraja) con todos los tipos de cartas, y los elementos de cada una de ellas.
+- `int crearBaraja(carta baraja[])` **(PROBADA ✔)**. Crea un arreglo de tipo carta (baraja) con todos los tipos de cartas, y los elementos de cada una de ellas.
 - `void barajear (carta baraja[])` **(NO PROBADA ✘)**. Desordena la baraja para que los elementos siempre salgan de manera aleatoria.
 
 ###baraja.c
@@ -97,6 +99,8 @@ Imprime los elementos que el jugador tiene como visibles para poder jugar.
 - **(CREADO 27/10/16)**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
+- **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/crearBaraja`).  
+
 - **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/liberarMemoria`). 
 
 - **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/definirCarta`).  

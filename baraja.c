@@ -112,7 +112,7 @@ void liberarMemoria(carta baraja[], int length)
 }
 
 //Crea todas las caracteristicas que contiene una baraja inglesa (54 cartas) y sus distintos elementos
-//(regresa 1 solamente si hay error de asignación de memoria.
+//(regresa 1 solamente si hay error de asignación de memoria).
 int crearBaraja(carta baraja[])
 {
     int i, a;

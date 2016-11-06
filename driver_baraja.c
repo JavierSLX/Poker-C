@@ -13,6 +13,7 @@ void driverICaractBaraja(void);
 void pruebaDefinirCarta(void);
 void driverDefinirCarta(void);
 void pruebaLiberarMemoria(void);
+void pruebaCrearBaraja(void);
 
 int main()
 {
@@ -24,7 +25,8 @@ int main()
     //driverICaractBaraja();
     //pruebaDefinirCarta();
     //driverDefinirCarta();
-    pruebaLiberarMemoria();
+    //pruebaLiberarMemoria();
+    pruebaCrearBaraja();
     return 0;
 }
 
@@ -562,3 +564,27 @@ void pruebaLiberarMemoria(void)
     printf("Liberacion de memoria de %d elementos exitoso!\n", N);
     return;
 }
+
+//Funcion crearBaraja
+//Prueba la funcion creando 100 arreglos barajas
+void pruebaCrearBaraja(void)
+{
+    int i;
+    int error;
+    carta baraja[54];
+
+    for (i = 0; i < 100; i++)
+    {
+        error = crearBaraja(baraja);
+
+        if (error > 0)
+            printf("Error al crear la baraja\n");
+        else
+            imprimirCaractBaraja(baraja, 54);
+
+        liberarMemoria(baraja, 54);
+    }
+
+    return;
+}
+

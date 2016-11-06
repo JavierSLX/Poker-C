@@ -48,13 +48,13 @@ En este caso sólo 10 rutas son válidas, ya que la ruta 5, aunque en el grafo s
 
 ##Pruebas
 ###driver_baraja.c
-**CREADO 02/10/16**. Se usó el archivo driver_baraja.c para realizar las distintas pruebas de las funciones, entre ellas las pruebas unitarias.  
+**CREADO 02/11/16**. Se usó el archivo driver_baraja.c para realizar las distintas pruebas de las funciones, entre ellas las pruebas unitarias.  
 
-- **02/10/16**. Se probó la función con 10,000 número de casos distintos dados al azar, dando un resultado ***EXITOSO ✔***.
+- **02/11/16**. Se probó la función con 10,000 número de casos distintos dados al azar, dando un resultado ***EXITOSO ✔***.
 
 ![pruebaIEC](./images/pruebaImpElemCart.png)  
 
-- **02/10/16**. Pruebas unitarias de la función con resultado ***EXITOSO ✔***.  
+- **02/11/16**. Pruebas unitarias de la función con resultado ***EXITOSO ✔***.  
 Código con el que se realizaron las pruebas (a menos que se haya hecho un cambio en especifico para entrar a la ruta).  
 
 ~~~  
