@@ -1,5 +1,8 @@
 #include "baraja.h"
+#include <assert.h>
 #define N 10000
+
+//assert (algo == 0);
 
 void pruebaIElemCart(void);
 void driverIElemCart(void);
@@ -7,6 +10,8 @@ void pruebaICaractCarta(void);
 void driverICaractCarta(void);
 void pruebaICaractBaraja(void);
 void driverICaractBaraja(void);
+void pruebaDefinirCarta(void);
+void driverDefinirCarta(void);
 
 int main()
 {
@@ -16,6 +21,8 @@ int main()
     //driverICaractCarta();
     //pruebaICaractBaraja();
     //driverICaractBaraja();
+    //pruebaDefinirCarta();
+    driverDefinirCarta();
     return 0;
 }
 
@@ -315,5 +322,166 @@ void driverICaractBaraja(void)
     imprimirCaractBaraja(baraja, 54);
     liberarMemoria(baraja, 54);
     return ;
+}
+
+//Funcion definirCarta
+//Prueba la funcion N numero de veces
+void pruebaDefinirCarta(void)
+{
+    int id, numero, valor, aT, aC;
+    char tipo;
+    char *color;
+    int error;
+    int i;
+    carta elemento;
+    srand(time(NULL));
+
+    for (i = 0; i < N; i++)
+    {
+        id = 1 + rand() % 54;
+
+        numero = rand() % 14;
+        if (numero == 0)
+            numero = -1;
+
+        valor = 1 + rand() % 14;
+
+        aT = rand() % 4;
+        switch(aT)
+        {
+            case 0:
+                tipo = 'E';
+                break;
+            case 1:
+                tipo = 'T';
+                break;
+            case 2:
+                tipo = 'C';
+                break;
+            default:
+                tipo = 'R';
+        }
+
+        aC = rand() % 3;
+        switch(aC)
+        {
+            case 0:
+                color = malloc(strlen(ROJO) * sizeof(char));
+                strcpy(color, ROJO);
+                break;
+            case 1:
+                color = malloc(strlen(NEGRO) * sizeof(char));
+                strcpy(color, NEGRO);
+                break;
+            default:
+                color = malloc(strlen(SN) * sizeof(char));
+                strcpy(color, SN);
+        }
+
+        error = definirCarta(id, numero, valor, tipo, color, &elemento);
+
+        if (error == 1)
+        {
+            printf("Error al asignar memoria\n");
+        }
+        else
+        {
+            imprimirCaractCarta (elemento);
+            printf("\n");
+        }
+        free(elemento.color);
+        free(color);
+    }
+
+    return ;
+}
+
+//Pruebas Unitarias de la funcion
+void driverDefinirCarta(void)
+{
+    int id, numero, valor, aT, aC;
+    int i;
+    char tipo;
+    char *color;
+    int error;
+    carta original;
+    carta copia;
+    srand(time(NULL));
+
+    id = 1 + rand() % 54;
+    copia.id = id;
+    //printf("ID = %d\n", copia.id);
+
+    numero = rand() % 14;
+    if (numero == 0)
+        numero = -1;
+    copia.numero = numero;
+    //printf("Numero = %d\n", copia.numero);
+
+    valor = 1 + rand() % 14;
+    copia.valor = valor;
+    //printf("Valor = %d\n", copia.valor);
+
+    aT = rand() % 4;
+    switch(aT)
+    {
+        case 0:
+            tipo = 'E';
+            break;
+        case 1:
+            tipo = 'T';
+            break;
+        case 2:
+            tipo = 'C';
+            break;
+        default:
+            tipo = 'R';
+    }
+    copia.tipo = tipo;
+    //printf("Tipo = %c\n", copia.tipo);
+
+    aC = rand() % 3;
+    switch(aC)
+    {
+        case 0:
+            color = malloc(strlen(ROJO) * sizeof(char));
+            strcpy(color, ROJO);
+            break;
+        case 1:
+            color = malloc(strlen(NEGRO) * sizeof(char));
+            strcpy(color, NEGRO);
+            break;
+        default:
+            color = malloc(strlen(SN) * sizeof(char));
+            strcpy(color, SN);
+    }
+    copia.color = color;
+    //printf("Color = %s\n", copia.color);
+
+    imprimirCaractCarta(copia);
+    printf("\n");
+    error = definirCarta(id, numero, valor, tipo, color, &original);
+
+    if (error == 1)
+    {
+        printf("Error al asignar memoria\n");
+    }
+    else
+    {
+        assert(original.id == copia.id);
+        assert(original.numero == copia.numero);
+        assert(original.valor == copia.valor);
+        assert(original.tipo == copia.tipo);
+
+        for (i = 0; i < strlen(original.color); i++)
+            assert(*(original.color + i) == *(copia.color + i));
+
+        imprimirCaractCarta(original);
+    }
+
+    free(color);
+    //free(original.color);
+    //free(copia.color);
+    return;
 }
 
