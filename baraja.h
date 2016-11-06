@@ -8,7 +8,7 @@
 
 #define ROJO "rojo"
 #define NEGRO "negro"
-#define SN "sinColor"
+#define SN "blanco"
 
 typedef struct
 {

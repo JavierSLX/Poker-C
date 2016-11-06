@@ -12,6 +12,7 @@ void pruebaICaractBaraja(void);
 void driverICaractBaraja(void);
 void pruebaDefinirCarta(void);
 void driverDefinirCarta(void);
+void pruebaLiberarMemoria(void);
 
 int main()
 {
@@ -22,7 +23,8 @@ int main()
     //pruebaICaractBaraja();
     //driverICaractBaraja();
     //pruebaDefinirCarta();
-    driverDefinirCarta();
+    //driverDefinirCarta();
+    pruebaLiberarMemoria();
     return 0;
 }
 
@@ -485,3 +487,78 @@ void driverDefinirCarta(void)
     return;
 }
 
+//Funcion liberarMemoria
+//Prueba la funcion N numero de veces
+void pruebaLiberarMemoria(void)
+{
+    int id, numero, valor, aT, aC;
+    char tipo;
+    char *color;
+    int error;
+    int i;
+    carta arreglo[N];
+    srand(time(NULL));
+
+    for (i = 0; i < N; i++)
+    {
+        id = 1 + rand() % 54;
+
+        numero = rand() % 14;
+        if (numero == 0)
+            numero = -1;
+
+        valor = 1 + rand() % 14;
+
+        aT = rand() % 4;
+        switch(aT)
+        {
+            case 0:
+                tipo = 'E';
+                break;
+            case 1:
+                tipo = 'T';
+                break;
+            case 2:
+                tipo = 'C';
+                break;
+            default:
+                tipo = 'R';
+        }
+
+        aC = rand() % 3;
+        switch(aC)
+        {
+            case 0:
+                color = malloc(strlen(ROJO) * sizeof(char));
+                strcpy(color, ROJO);
+                break;
+            case 1:
+                color = malloc(strlen(NEGRO) * sizeof(char));
+                strcpy(color, NEGRO);
+                break;
+            default:
+                color = malloc(strlen(SN) * sizeof(char));
+                strcpy(color, SN);
+        }
+
+        error = definirCarta(id, numero, valor, tipo, color, &arreglo[i]);
+
+        if (error == 1)
+        {
+            printf("Error al asignar memoria\n");
+        }
+        else
+        {
+            imprimirCaractCarta (arreglo[i]);
+            printf("\n");
+        }
+
+        //printf("%s\n", arreglo[i].color);
+        free(color);
+
+    }
+
+    liberarMemoria(arreglo, N);
+    printf("Liberacion de memoria de %d elementos exitoso!\n", N);
+    return;
+}
