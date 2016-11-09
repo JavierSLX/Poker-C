@@ -45,7 +45,7 @@ Las siguientes son las rutas posibles que serán analizadas en las pruebas unita
 ###driver_baraja.c
 **CREADO 05/11/16**. Se usó el archivo driver_baraja.c para realizar las distintas pruebas de las funciones, entre ellas las pruebas unitarias.  
 
-- **05/11/16**. Se probó la función creando 100 veces una baraja, tras un tiempo aproximado de 42 segundo se logra un resultado ***EXITOSO ✔***.
+- **05/11/16**. Se probó la función creando 100 veces una baraja, tras un tiempo aproximado de 42 segundos se logra un resultado ***EXITOSO ✔***.
 
 ![pruebaIEC](./images/pruebaCrearBaraja.png)  
 

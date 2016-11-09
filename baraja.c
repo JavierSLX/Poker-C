@@ -181,12 +181,6 @@ void barajear (carta baraja[])
         }
     }
 
-    //Imprimir
-    /*for (i = 0; i < 54; i++)
-    {
-        printf("%d\n", temp[i]);
-    }*/
-
     //Crea la nueva baraja
 
     for (i = 0; i < 54; i++)
@@ -199,5 +193,6 @@ void barajear (carta baraja[])
         baraja[i] = prov[i];
     }
 
+    liberarMemoria(prov, 54);
     return ;
 }

@@ -14,6 +14,7 @@ void pruebaDefinirCarta(void);
 void driverDefinirCarta(void);
 void pruebaLiberarMemoria(void);
 void pruebaCrearBaraja(void);
+void pruebaBarajear(void);
 
 int main()
 {
@@ -26,7 +27,8 @@ int main()
     //pruebaDefinirCarta();
     //driverDefinirCarta();
     //pruebaLiberarMemoria();
-    pruebaCrearBaraja();
+    //pruebaCrearBaraja();
+    pruebaBarajear();
     return 0;
 }
 
@@ -583,6 +585,33 @@ void pruebaCrearBaraja(void)
             imprimirCaractBaraja(baraja, 54);
 
         liberarMemoria(baraja, 54);
+    }
+
+    return;
+}
+
+//Funcion barajear
+//Prueba la funcion barajeando 100 barajas
+void pruebaBarajear(void)
+{
+    int i;
+    int error;
+    carta baraja[54];
+
+    for (i = 0; i < 100; i++)
+    {
+        error = crearBaraja(baraja);
+
+        if (error > 0)
+        {
+            printf("Error al crear la baraja\n");
+            return;
+        }
+        else
+        {
+            barajear(baraja);
+            imprimirCaractBaraja(baraja, 54);
+        }
     }
 
     return;

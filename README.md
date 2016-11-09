@@ -3,6 +3,12 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##General
+**08/Nov/16**. Se realizaron las pruebas de la función `void barajear (carta baraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/barajear`).  
+
+![pBj](./pruebas/barajear/images/pruebaBarajear.png)  
+
+**08/Nov/16**. Se corrigió el error de liberación de memoria de la función `void barajear (carta baraja[])`.
+
 **05/Nov/16**. Se realizaron las pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/crearBaraja`).  
 
 ![pCB](./pruebas/crearBaraja/images/pruebaCrearBaraja.png)
@@ -45,7 +51,7 @@ Librería que contiene las funciones básicas del manejo de los elementos de una
 - `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)` **(PROBADA ✔)**. Crea una carta con todos los elementos que contiene. 
 - `void liberarMemoria(carta baraja[], int length)`**(PROBADA ✔)**.  Libera la memoria de los elementos de un arreglo que usan memoria dinámica. 
 - `int crearBaraja(carta baraja[])` **(PROBADA ✔)**. Crea un arreglo de tipo carta (baraja) con todos los tipos de cartas, y los elementos de cada una de ellas.
-- `void barajear (carta baraja[])` **(NO PROBADA ✘)**. Desordena la baraja para que los elementos siempre salgan de manera aleatoria.
+- `void barajear (carta baraja[])` **(PROBADA ✔)**. Desordena la baraja para que los elementos siempre salgan de manera aleatoria.
 
 ###baraja.c
 
@@ -72,6 +78,7 @@ Crea un arreglo de tipo carta (baraja) con todos los tipos de cartas.
 - `void barajear (carta baraja[])`.  
 Desordena el arreglo para que usando el azar pueda alterar el orden.
 	+ **(CREADA 27/10/16)**. Usa la funcion `rand()` para realizar la tarea indicada además de crear otro arreglo de tipo carta para poder reemplazar el orden sin alterar la baraja original. ***NOTA: No fue posible liberar memoria de un arreglo tipo carta creado para dar soporte para desordenar las cartas. Crea un error al correr el programa. Checar tal error***.
+	+ **(MODIFICADA 08/11/16)**. Se corrigió el error de liberación de memoria de la función.
 	
 
 ##Poker
@@ -99,16 +106,18 @@ Imprime los elementos que el jugador tiene como visibles para poder jugar.
 - **(CREADO 27/10/16)**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
-- **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/crearBaraja`).  
+- **08/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void barajear (carta baraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/barajear`). 
 
-- **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/liberarMemoria`). 
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/crearBaraja`).  
 
-- **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/definirCarta`).  
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/liberarMemoria`). 
 
-- **05/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractBaraja`).  
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/definirCarta`).  
 
-- **04/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractCarta(carta nombre)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractCarta`).  
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractBaraja`).  
 
-- **02/10/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirElementoCarta (carta nombre, int n)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirElementoCarta`).  
+- **04/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractCarta(carta nombre)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractCarta`).  
+
+- **02/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirElementoCarta (carta nombre, int n)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirElementoCarta`).  
  
-- **02/10/16**. Se creó el *driver_baraja.c* para realizar las pruebas de la librería baraja.h.
+- **02/11/16**. Se creó el *driver_baraja.c* para realizar las pruebas de la librería baraja.h.
