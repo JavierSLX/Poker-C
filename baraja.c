@@ -86,7 +86,7 @@ int definirCarta(int id, int num, int value, char type, char* color, carta *elem
     elemento->numero = num;
     elemento->valor = value;
     elemento->tipo = type;
-    elemento->color = malloc(strlen(color) * sizeof(char)); //Se asigna dinamicamente la memoria para guardar una cadena
+    elemento->color = malloc((strlen(color) + 1) * sizeof(char)); //Se asigna dinamicamente la memoria para guardar una cadena
 
     //Se verifica si se hizo, en caso de hacerlo lo guarda en la memoria
     if(elemento->color == NULL)

@@ -28,7 +28,7 @@ Aplicando la fórmulas se obtiene lo siguiente:
 - *V(G) = E - N + 2*. Aplicando la fórmula, se obtiene que el número de aristas(E) es de 18 y el de nodos (N) de 14, así que aplicando la fórmula nos da V(G) = 18 - 14 + 2 = 6.  
 A lo que se deduce que 6 son las pruebas mínimas para recorrer todo el grafo. 
 
-*NOTA: Como el algoritmo está diseñado para que se recorra todas las rutas cada vez que es llamada (sino se hace la función no hace su tarea) las pruebas se reducen a mandarla llamar y observar su comportamiento.*
+*NOTA: El algoritmo está diseñado para que se recorra todas las rutas cada vez que es llamada (sino se hace la función no hace su tarea) las pruebas se reducen a mandarla llamar y observar su comportamiento.*
 
 ##Pruebas
 ###driver_baraja.c

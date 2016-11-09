@@ -16,21 +16,21 @@ void pruebaLiberarMemoria(void);
 void pruebaCrearBaraja(void);
 void pruebaBarajear(void);
 
-int main()
+/*int main()
 {
-    //pruebaIElemCart();
-    //driverIElemCart();
-    //pruebaICaractCarta();
-    //driverICaractCarta();
-    //pruebaICaractBaraja();
-    //driverICaractBaraja();
-    //pruebaDefinirCarta();
-    //driverDefinirCarta();
-    //pruebaLiberarMemoria();
-    //pruebaCrearBaraja();
+    pruebaIElemCart();
+    driverIElemCart();
+    pruebaICaractCarta();
+    driverICaractCarta();
+    pruebaICaractBaraja();
+    driverICaractBaraja();
+    pruebaDefinirCarta();
+    driverDefinirCarta();
+    pruebaLiberarMemoria();
+    pruebaCrearBaraja();
     pruebaBarajear();
     return 0;
-}
+}*/
 
 //Funcion imprimirElementoCarta
 //Prueba la funcion N numero de veces

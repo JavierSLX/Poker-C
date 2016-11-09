@@ -3,36 +3,40 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##General
-**08/Nov/16**. Se realizaron las pruebas de la función `void barajear (carta baraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/barajear`).  
+**09/Nov/16**. Se realizaron las pruebas de la función `void quitarJokers(carta baraja[], carta nBaraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/quitarJokers`).  
 
-![pBj](./pruebas/barajear/images/pruebaBarajear.png)  
+![pQJ](./pruebas/poker/quitarJokers/images/pruebaQuitarJokers.png)  
+
+**08/Nov/16**. Se realizaron las pruebas de la función `void barajear (carta baraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/barajear`).  
+
+![pBj](./pruebas/baraja/barajear/images/pruebaBarajear.png)  
 
 **08/Nov/16**. Se corrigió el error de liberación de memoria de la función `void barajear (carta baraja[])`.
 
-**05/Nov/16**. Se realizaron las pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/crearBaraja`).  
+**05/Nov/16**. Se realizaron las pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/crearBaraja`).  
 
-![pCB](./pruebas/crearBaraja/images/pruebaCrearBaraja.png)
+![pCB](./pruebas/baraja/crearBaraja/images/pruebaCrearBaraja.png)
 
-**05/Nov/16**. Se realizaron las pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/liberarMemoria`).  
+**05/Nov/16**. Se realizaron las pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/liberarMemoria`).  
 
-![pLM](./pruebas/liberarMemoria/images/pruebaLiberarMemoria.png)
+![pLM](./pruebas/baraja/liberarMemoria/images/pruebaLiberarMemoria.png)
 
-**05/Nov/16**. Se realizaron las pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/definirCarta`).  
+**05/Nov/16**. Se realizaron las pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/definirCarta`).  
 
-![dDC](./pruebas/definirCarta/images/driverDefinirCarta.png)  
+![dDC](./pruebas/baraja/definirCarta/images/driverDefinirCarta.png)  
 
-**05/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractBaraja`).  
+**05/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/imprimirCaractBaraja`).  
 
-![dICB](./pruebas/imprimirCaractBaraja/images/driverICaractBaraja.png)
+![dICB](./pruebas/baraja/imprimirCaractBaraja/images/driverICaractBaraja.png)
 
-**04/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractCarta(carta nombre)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirCaractCarta`.
+**04/Nov/16**. Se modificó y se realizaron las pruebas de la función `void imprimirCaractCarta(carta nombre)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/baraja/imprimirCaractCarta`.
 
-![dICC](./pruebas/imprimirCaractCarta/images/ruta1.png)
+![dICC](./pruebas/baraja/imprimirCaractCarta/images/ruta1.png)
 
 
-**02/Nov/16**. Se realizaron las pruebas de la estructura y la función `void imprimirElementoCarta (carta nombre, int n)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/imprimirElementoCarta`.
+**02/Nov/16**. Se realizaron las pruebas de la estructura y la función `void imprimirElementoCarta (carta nombre, int n)` por lo que no se detectaron fallos. Se construyó con anterioridad su respectivo grafo y se calculó su complejidad. Toda esta información puede ser vista en la carpeta `/pruebas/baraja/imprimirElementoCarta`.
 
-![dIEC](./pruebas/imprimirElementoCarta/images/driverIElemCart.png)
+![dIEC](./pruebas/baraja/imprimirElementoCarta/images/driverIElemCart.png)
   
 **29/Oct/16**. Se creó el documento README.md para describir características y dar soporte al código. Se comentó parte del código con las características generales de lo que realiza cada función en las librerías. El error aún no se ha corregido, por lo que se ha decidido darle prioridad a su solución antes de continuar para evitar mal funcionamiento del programa más adelante.
 
@@ -106,18 +110,22 @@ Imprime los elementos que el jugador tiene como visibles para poder jugar.
 - **(CREADO 27/10/16)**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
-- **08/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void barajear (carta baraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/barajear`). 
+- **09/11/16**. Se usó el archivo *driver_poker.c* para realizar las distintas pruebas de la función `void quitarJokers(carta baraja[], carta nBaraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/quitarJokers`).  
 
-- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/crearBaraja`).  
+- **09/11/16**. Se creó el *driver_poker.c* para realizar las pruebas de la librería poker.h.
 
-- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/liberarMemoria`). 
+- **08/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void barajear (carta baraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/barajear`). 
 
-- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/definirCarta`).  
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int crearBaraja(carta cartas[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/crearBaraja`).  
 
-- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractBaraja`).  
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void liberarMemoria(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/liberarMemoria`). 
 
-- **04/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractCarta(carta nombre)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirCaractCarta`).  
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `int definirCarta(int id, int num, int value, char type, char* color, carta *elemento)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/definirCarta`).  
 
-- **02/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirElementoCarta (carta nombre, int n)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/imprimirElementoCarta`).  
+- **05/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractBaraja(carta baraja[], int length)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/imprimirCaractBaraja`).  
+
+- **04/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirCaractCarta(carta nombre)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/imprimirCaractCarta`).  
+
+- **02/11/16**. Se usó el archivo *driver_baraja.c* para realizar las distintas pruebas de la función `void imprimirElementoCarta (carta nombre, int n)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/baraja/imprimirElementoCarta`).  
  
 - **02/11/16**. Se creó el *driver_baraja.c* para realizar las pruebas de la librería baraja.h.
