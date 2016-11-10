@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##General
+**09/Nov/16**. Se realizaron las pruebas de la función `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/repartirMano`).  
+
+![dRM](./pruebas/poker/repartirMano/images/driverRepartirMano.png)  
+
 **09/Nov/16**. Se realizaron las pruebas de la función `void quitarJokers(carta baraja[], carta nBaraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/quitarJokers`).  
 
 ![pQJ](./pruebas/poker/quitarJokers/images/pruebaQuitarJokers.png)  
@@ -89,8 +93,8 @@ Desordena el arreglo para que usando el azar pueda alterar el orden.
 Librería de C que contiene todas las reglas y características de este juego. Se apoya en las funciones hechas en `baraja.h`.
 
 ###poker.h (NO PROBADA ✘)
-- `void quitarJokers(carta baraja[], carta nBaraja[])` **(NO PROBADA ✘)**. Quita dos elementos carta del arreglo y crea una nueva baraja sin ellos. 
-- `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)` **(NO PROBADA ✘)**. Toma del arreglo baraja cinco cartas para darle a cada jugador.
+- `void quitarJokers(carta baraja[], carta nBaraja[])` **(PROBADA ✔)**. Quita dos elementos carta del arreglo y crea una nueva baraja sin ellos. 
+- `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)` **(PROBADA ✔)**. Toma del arreglo baraja cinco cartas para darle a cada jugador.
 - `void imprimirMano(carta mano[])` **(NO PROBADA ✘)**. Imprime la mano que tiene el jugador.  
 
 ###poker.c
@@ -110,6 +114,10 @@ Imprime los elementos que el jugador tiene como visibles para poder jugar.
 - **(CREADO 27/10/16)**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
+***ERRORES CORREGIDOS: 3***  
+
+- **09/11/16**. Se usó el archivo *driver_poker.c* para realizar las distintas pruebas de la función `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/repartirMano`).   
+
 - **09/11/16**. Se usó el archivo *driver_poker.c* para realizar las distintas pruebas de la función `void quitarJokers(carta baraja[], carta nBaraja[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/quitarJokers`).  
 
 - **09/11/16**. Se creó el *driver_poker.c* para realizar las pruebas de la librería poker.h.

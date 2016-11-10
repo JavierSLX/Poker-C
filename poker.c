@@ -22,19 +22,16 @@ int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)
     int i;
     int cont = 0;
 
-    //printf("Carry de entrada %d\n", *carry);
-    if (*carry + n > max - 1)
+    if (*carry + n > max)
         return 1;
 
     for (i = *carry; i < *carry + n; i++)
     {
-        //printf("cont: %d carry: %d\n", cont, i);
         mano[cont] = baraja[i];
         cont++;
     }
 
     *carry += n;
-    //printf("Carry de salida %d\n", *carry);
     return 0;
 }
 
