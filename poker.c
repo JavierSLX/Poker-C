@@ -50,7 +50,7 @@ void imprimirMano(carta mano[])
         printf(" %c %s\t", mano[i].tipo, mano[i].color);
     }
 
-    printf("\n");
+    printf("\n\n");
 
     return;
 }

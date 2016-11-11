@@ -8,10 +8,10 @@
 
 Los elementos que representan los nodos son los siguientes:  
 1. ***i = 0, cont = 0***. Inicializa los contadores a 0.  
-2. ***if (*carry + n > max)***. Analiza la condición, si se cumple, termina la función.  
-3. ***for (i < *carry + n)***. Comienza un ciclo for, repartiendo las cartas solicitadas.  
+2. ***if (carry + n > max)***. Analiza la condición, si se cumple, termina la función.  
+3. ***for (i < carry + n)***. Comienza un ciclo for, repartiendo las cartas solicitadas.  
 4. ***reparte; cont++;***. Da las cartas solicitadas y aumenta el contador.  
-5. ****carry += n;***. Aumenta el carry para llevar control sobre la baraja.
+5. ****carry += n;***. Aumenta el carry para llevar control sobre la baraja.  
 6. ***return***. Termina la función.  
 
 ####Complejidad ciclomática del grafo
