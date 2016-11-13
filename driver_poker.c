@@ -8,14 +8,14 @@ void pruebaRepartirMano(void);
 void driverRepartirMano(void);
 void pruebaImprimirMano(void);
 
-int main()
+/*int main()
 {
-    //pruebaQuitarJokers();
-    //pruebaRepartirMano();
-    //driverRepartirMano();
+    pruebaQuitarJokers();
+    pruebaRepartirMano();
+    driverRepartirMano();
     pruebaImprimirMano();
     return 0;
-}
+}*/
 
 void pruebaQuitarJokers(void)
 {

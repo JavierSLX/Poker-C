@@ -54,3 +54,84 @@ void imprimirMano(carta mano[])
 
     return;
 }
+
+//Asigna el valor a la carta
+void asignarValor(carta baraja[], int length)
+{
+    int i;
+
+    for (i = 0; i < length; i++)
+    {
+        if (baraja[i].numero == 1)
+        {
+            baraja[i].valor = 14;
+        }
+        else
+        {
+            baraja[i].valor = baraja[i].numero;
+        }
+    }
+    return;
+}
+
+//Ordena la mano de forma ascendente y por tipo
+void ordenarCartas(carta monton[], int length)
+{
+    int i, j;
+    carta temp;
+
+    for (i = 1; i < length; i++)
+    {
+        for (j = 0; j < length - 1; j++)
+        {
+            if (prioridadTipo(monton[j].tipo) > prioridadTipo(monton[j+1].tipo))
+            {
+                temp = monton[j];
+                monton[j] = monton[j+1];
+                monton[j+1] = temp;
+            }
+        }
+    }
+
+    for (i = 1; i < length; i++)
+    {
+        for (j = 0; j < length - 1; j++)
+        {
+            if ((monton[j].valor > monton[j+1].valor) && (monton[j].tipo == monton[j+1].tipo))
+            {
+                temp = monton[j];
+                monton[j] = monton[j+1];
+                monton[j+1] = temp;
+            }
+        }
+    }
+
+    return;
+}
+
+//Saca la prioridad de ordenamiento de los tipos de carta
+int prioridadTipo (char tipo)
+{
+    int valor;
+
+    switch (tipo)
+    {
+        case ESPADA:
+            valor = 2;
+            break;
+        case TREBOL:
+            valor = 3;
+            break;
+        case CORAZON:
+            valor = 4;
+            break;
+        case ROMBO:
+            valor = 5;
+            break;
+        default:
+            valor = 1;
+    }
+
+    return valor;
+}
+

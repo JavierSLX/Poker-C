@@ -1,38 +1,48 @@
 #include "poker.h"
 
-/*int main()
+int main()
 {
     int error;
+    int vacio;
     carta baraja[54];
-    //carta sinComodines[52];
     carta mano1[5];
     carta mano2[5];
     int carry = 0;
 
-    //Creacion de baraja y barajear
     error = crearBaraja(baraja);
-    barajear(baraja);
+    if(error > 0)
+    {
+        printf("Error al crear la baraja\n");
+    }
+    else
+    {
+        barajear(baraja);
+        asignarValor(baraja, 54);
 
-    //Quita los comodines y crea una nueva baraja
-    //quitarJokers(baraja, sinComodines);
+        vacio = repartirMano(baraja, mano1, 5, &carry, 54);
+        if (vacio == 0)
+        {
+            vacio = repartirMano(baraja, mano2, 5, &carry, 54);
 
-    //Reparte dos manos
-    error = repartirMano(baraja, mano1, 5, &carry, 54);
-    //imprimirCaractBaraja(mano1, 5);
-    imprimirMano(mano1);
-    printf("-----------------------------------------------------------\n");
-    error = repartirMano(baraja, mano2, 5, &carry, 54);
-    //imprimirCaractBaraja(mano2, 5);
-    imprimirMano(mano2);
+            if (vacio == 0)
+            {
+                ordenarCartas(mano1, 5);
+                ordenarCartas(mano2, 5);
+                imprimirMano(mano1);
+                printf("-------------------\n\n");
+                imprimirMano(mano2);
+            }
+            else
+            {
+                printf("Cartas insuficientes\n");
+            }
+        }
+    }
 
-    //Reemplaza las cartas que desea
-
-    liberarMemoria(mano1, 5);
-    liberarMemoria(mano2, 5);
     liberarMemoria(baraja, 54);
 
     return 0;
-}*/
+}
 
 /*Asignación de memoria dinamica
 char *memoria;

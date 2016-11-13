@@ -6,6 +6,11 @@
 #include <time.h>
 #include <string.h>
 
+#define ESPADA 'E'
+#define TREBOL 'T'
+#define CORAZON 'C'
+#define ROMBO 'R'
+#define COMODIN 'N'
 #define ROJO "rojo"
 #define NEGRO "negro"
 #define SN "blanco"

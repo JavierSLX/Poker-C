@@ -86,7 +86,7 @@ int definirCarta(int id, int num, int value, char type, char* color, carta *elem
     elemento->numero = num;
     elemento->valor = value;
     elemento->tipo = type;
-    elemento->color = malloc((strlen(color) + 1) * sizeof(char)); //Se asigna dinamicamente la memoria para guardar una cadena
+    elemento->color = malloc(strlen(color) * sizeof(char)); //Se asigna dinamicamente la memoria para guardar una cadena
 
     //Se verifica si se hizo, en caso de hacerlo lo guarda en la memoria
     if(elemento->color == NULL)
@@ -127,16 +127,16 @@ int crearBaraja(carta baraja[])
             switch(a)
             {
                 case 0:
-                    error = definirCarta(id+1, i+1, 0, 'E', NEGRO, &baraja[id]);
+                    error = definirCarta(id+1, i+1, 0, ESPADA, NEGRO, &baraja[id]);
                     break;
                 case 1:
-                    error = definirCarta(id+1, i+1, 0, 'T', NEGRO, &baraja[id]);
+                    error = definirCarta(id+1, i+1, 0, TREBOL, NEGRO, &baraja[id]);
                     break;
                 case 2:
-                    error = definirCarta(id+1, i+1, 0, 'C', ROJO, &baraja[id]);
+                    error = definirCarta(id+1, i+1, 0, CORAZON, ROJO, &baraja[id]);
                     break;
                 default:
-                    error = definirCarta(id+1, i+1, 0, 'R', ROJO, &baraja[id]);
+                    error = definirCarta(id+1, i+1, 0, ROMBO, ROJO, &baraja[id]);
 
             }
 
@@ -147,8 +147,8 @@ int crearBaraja(carta baraja[])
         }
     }
 
-    error = definirCarta(53, -1, 0, 'N', SN, &baraja[52]);
-    error = definirCarta(54, -1, 0, 'N', SN, &baraja[53]);
+    error = definirCarta(53, -1, 0, COMODIN, SN, &baraja[52]);
+    error = definirCarta(54, -1, 0, COMODIN, SN, &baraja[53]);
 
     return 0;
 }
@@ -193,6 +193,6 @@ void barajear (carta baraja[])
         baraja[i] = prov[i];
     }
 
-    liberarMemoria(prov, 54);
+    //liberarMemoria(prov, 54);
     return ;
 }
