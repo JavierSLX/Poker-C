@@ -3,6 +3,15 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**16/Nov/16**. Se crearon las funciones (sin probar aún):  
+- `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)`.  
+- `int cambios(carta baraja[], carta mano[], int *carry, int max)`.  
+
+**12/Nov/16**. Se crearon las funciones (sin probar aún):  
+- `void asignarValor(carta baraja[], int length)`.  
+- `void ordenarCartas(carta monton[], int length)`.  
+- `int prioridadTipo(char tipo)`.  
+
 **10/Nov/16**. Se realizaron las pruebas de la función `void imprimirMano(carta mano[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/imprimirMano`).  
 
 ![pIM](./pruebas/poker/imprimirMano/images/pruebaImprimirMano.png)  
@@ -102,6 +111,8 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `void asignarValor(carta baraja[], int length)` **(NO PROBADA ✘)**. Define el valor de las cartas a este juego en específico.  
 - `void ordenarCartas(carta monton[], int length)` **(NO PROBADA ✘)**. Ordena las cartas de acuerdo al tipo y al valor de la carta para hacer un poco más visible la mano.  
 - `int prioridadTipo(char tipo)` **(NO PROBADA ✘)**. Auxilia a la función `void ordenarCartas(carta monton[], int length)`. 
+- `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)` **(NO PROBADA ✘)**. Permite sacar una carta de la baraja y la reemplaza por la carta que se le indique.  
+- `int cambios(carta baraja[], carta mano[], int *carry, int max)` **(NO PROBADA ✘)**. Realiza los cambios de cartas de los jugadores.  
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -122,6 +133,12 @@ Ordena las cartas de acuerdo al tipo y al valor de la carta para hacer un poco m
 - `int prioridadTipo(char tipo)`.  
 Auxilia a la función `void ordenarCartas(carta monton[], int length)`.  
 	+ **CREADA 12/11/16**. Ayuda a la función anterior dándole a cada tipo un valor para poder ordenar de una cierta manera. Esta función puede ser cambiada para que el orden de la mano pueda ser distinta.  
+- `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)`.  
+Permite sacar una carta de la baraja y la reemplaza por la carta que se le indique.  
+	+ **CREADA 16/11/16**. La función trabaja de la siguiente manera: Del arreglo baraja obtiene la carta donde está actualmente el valor de carry y la coloca en el arreglo mano en la posición donde se le indica, reemplazando así una carta por una nueva.  
+- `int cambios(carta baraja[], carta mano[], int *carry, int max)`.  
+Realiza los cambios de cartas de los jugadores.  
+	+ **CREADA 16/11/16**. La función obtiene los elementos básicos, y le pide al jugador cuantas cartas va a cambiar. En este caso, sólo puede cambiar mínimo 1 carta y máximo 3, de las cuales le va pidiendo una a una que le vaya indicando que carta va a cambiar. Regresa un 1 en caso de que no se puedan hacer los cambios pedidos.  
 
 ##Principal
 

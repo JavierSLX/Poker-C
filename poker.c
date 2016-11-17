@@ -135,3 +135,92 @@ int prioridadTipo (char tipo)
     return valor;
 }
 
+//Reemplaza una carta por otra que se saca de la baraja
+int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)
+{
+    if (carry + 1 > max)
+        return 1;
+
+    mano[posicion] = baraja[carry];
+
+    carry++;
+
+    return 0;
+}
+
+//Realiza los cambios de cartas que el jugador necesita
+int cambios(carta baraja[], carta mano[], int *carry, int max)
+{
+    int i, j;
+    int cont = 0;
+    int n;
+    int p;
+    int *memory = NULL;
+    int error;
+
+    do
+    {
+        printf("\n\nCuantas cartas quiere cambiar: ");
+        scanf("%d", &n);
+
+        if (n < 0)
+            printf("Eso es imposible\n");
+
+        if (n > 5)
+            printf("Solo es permitido cambiar como maximo 5 cartas\n");
+
+    }while (n < 0 || n > 5);
+
+    if (n != 0)
+    {
+        memory = malloc (n * sizeof(int));
+
+        for (i = 0; i < n; i++)
+        {
+            do
+            {
+                do
+                {
+                    printf("Que carta quiere cambiar?(1-5): ");
+                    scanf("%d", &p);
+
+                    if (p < 1 || p > 5)
+                    printf("Tal carta no existe, elija una correcta\n");
+
+                }while(p < 1 || p > 5);
+
+                for (j = 0; j < n; j++)
+                {
+                    if (*(memory + j) == p)
+                    {
+                        printf("Esa carta acaba de recibirla\n");
+                        break;
+                    }
+                }
+
+            }while (*(memory + j) == p);
+
+            *(memory + cont) = p;
+            cont++;
+
+            printf("\nCambio carta (%d): ", p);
+            imprimirElementoCarta(mano[p-1], 2);
+            printf(" %c %s -----> ", mano[p-1].tipo, mano[p-1].color);
+
+            error = sacarCarta(baraja, mano, p-1, *carry, max);
+
+            if (error > 0)
+                return 1;
+
+            *carry += 1;
+
+            imprimirElementoCarta(mano[p-1], 2);
+            printf(" %c %s\t\n\n", mano[p-1].tipo, mano[p-1].color);
+        }
+
+        free(memory);
+    }
+
+    return 0;
+}
+

@@ -30,7 +30,14 @@ int main()
                 ordenarCartas(mano2, 5);
                 imprimirMano(mano1);
                 printf("-------------------\n\n");
-                imprimirMano(mano2);
+                //imprimirMano(mano2);
+                printf("\n\n");
+                cambios(baraja, mano1, &carry, 54);
+                imprimirMano(mano1);
+                printf("-------------------\n\n");
+                ordenarCartas(mano1, 5);
+                imprimirMano(mano1);
+                printf("carry: %d\n", carry);
             }
             else
             {
