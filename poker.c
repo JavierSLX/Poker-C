@@ -160,7 +160,7 @@ int cambios(carta baraja[], carta mano[], int *carry, int max)
 
     do
     {
-        printf("\n\nCuantas cartas quiere cambiar: ");
+        printf("\nCuantas cartas quiere cambiar: ");
         scanf("%d", &n);
 
         if (n < 0)
@@ -220,6 +220,79 @@ int cambios(carta baraja[], carta mano[], int *carry, int max)
 
         free(memory);
     }
+
+    return 0;
+}
+
+//Imprime un borde
+void borde(int n)
+{
+    int i;
+
+    for (i = 0; i < n; i++)
+        printf("%c", 205);
+
+    printf("\n");
+    return;
+}
+
+//Imprime los datos basicos de un jugador
+void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)
+{
+    int i;
+
+    if (jugador == 1)
+    {
+        printf("--> JUGADOR <--\n");
+    }
+    else
+    {
+        printf("--> PC%d <--\n", jugador-1);
+    }
+
+    if (oculto > 0)
+    {
+        for (i = 0; i < 5; i++)
+            printf("Carta %d\t\t", i+1);
+
+        printf("\n");
+        for (i = 0; i < 5; i++)
+           printf("* * ****\t");
+
+        printf("\n\nFondo: $%d\n", fondo);
+        printf("Apuesta: $%d\n\n", apuesta);
+    }
+    else
+    {
+        imprimirMano(mano);
+        printf("Fondo: $%d\n", fondo);
+        printf("Apuesta: $%d\n\n", apuesta);
+    }
+
+    return;
+}
+
+//Pregunta al usuario cuanto quiere apostar (regresa 1 si el jugador decide retirarse)
+int apostar(int *fondo, int *apuesta, int *total)
+{
+    int cantidad;
+
+    do
+    {
+        printf("\nCuando quiere apostar (0 = retirarse): ");
+        scanf("%d", &cantidad);
+
+        if (cantidad == 0)
+            return 1;
+
+        if (cantidad > *fondo)
+            printf("\nNo tiene suficiente dinero para apostar\n");
+
+    }while(cantidad > *fondo);
+
+    *fondo -= cantidad;
+    *total += cantidad;
+    *apuesta += cantidad;
 
     return 0;
 }

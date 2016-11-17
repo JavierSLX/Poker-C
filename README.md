@@ -4,6 +4,11 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 
 ##Actualizaciones
 **16/Nov/16**. Se crearon las funciones (sin probar aún):  
+- `void borde(int n)`.  
+- `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)`.  
+- `int apostar(int *fondo, int *apuesta, int *total)`. 
+
+**16/Nov/16**. Se crearon las funciones (sin probar aún):  
 - `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)`.  
 - `int cambios(carta baraja[], carta mano[], int *carry, int max)`.  
 
@@ -113,6 +118,9 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int prioridadTipo(char tipo)` **(NO PROBADA ✘)**. Auxilia a la función `void ordenarCartas(carta monton[], int length)`. 
 - `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)` **(NO PROBADA ✘)**. Permite sacar una carta de la baraja y la reemplaza por la carta que se le indique.  
 - `int cambios(carta baraja[], carta mano[], int *carry, int max)` **(NO PROBADA ✘)**. Realiza los cambios de cartas de los jugadores.  
+- `void borde(int n)` **(NO PROBADA ✘)**. Imprime un par de líneas que simula un borde.  
+- `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)` **(NO PROBADA ✘)**. Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
+- `int apostar(int *fondo, int *apuesta, int *total)` **(NO PROBADA ✘)**. Registra la apuesta del jugador (humano).  
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -139,6 +147,15 @@ Permite sacar una carta de la baraja y la reemplaza por la carta que se le indiq
 - `int cambios(carta baraja[], carta mano[], int *carry, int max)`.  
 Realiza los cambios de cartas de los jugadores.  
 	+ **CREADA 16/11/16**. La función obtiene los elementos básicos, y le pide al jugador cuantas cartas va a cambiar. En este caso, sólo puede cambiar mínimo 1 carta y máximo 3, de las cuales le va pidiendo una a una que le vaya indicando que carta va a cambiar. Regresa un 1 en caso de que no se puedan hacer los cambios pedidos.  
+- `void borde(int n)`.  
+Imprime un par de líneas que simula un borde.  
+	+ **CREADA 16/11/16**. La función consiste en un ciclo que imprime n cantidad de líneas para crear un borde.  
+- `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)`.  
+Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
+	+ **CREADA 16/11/16**. La función toma como parámetros la información básica del jugador para mostrarla a pantalla. Se hace notar que existe un parámetro llamado oculto para indicarle a la función si imprime la información de las cartas que contiene o se mostrarán ocultas.  
+- `int apostar(int *fondo, int *apuesta, int *total)`.  
+Registra la apuesta del jugador (humano).  
+	+ **CREADA 16/11/16**. La función hace las operaciones para hacer el cálculo de la apuesta del jugador, cuanto le queda de fondo y el total que hay en juego.  
 
 ##Principal
 
