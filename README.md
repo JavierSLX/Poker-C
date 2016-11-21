@@ -3,6 +3,8 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**21/Nov/16**. Se modificó la función `void ordenarCartas(carta monton[], int length)` por `void ordenarCartas(carta monton[], int length, int v)` permitiendo ordenar las cartas del juego por valor o por número.
+
 **16/Nov/16**. Se crearon las funciones (sin probar aún):  
 - `void borde(int n)`.  
 - `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)`.  
@@ -135,9 +137,10 @@ Imprime los elementos que el jugador tiene como visibles para poder jugar.
 - `void asignarValor(carta baraja[], int length)`.  
 Define el valor de las cartas a este juego en específico.  
 	+ **CREADA 12/11/16**. Como el juego de poker su valor de cartas es único, se le asigna un valor distinto, en su mayoría toma el valor de su número, excepto el As (que en lugar de valor 1 toma valor 14) y el de comodín que toma el valor -1, dando a entender en futuras funciones que puede ser cambiado de acuerdo a la ventaja del jugador.  
-- `void ordenarCartas(carta monton[], int length)`.  
+- `void ordenarCartas(carta monton[], int length, int v)`.  
 Ordena las cartas de acuerdo al tipo y al valor de la carta para hacer un poco más visible la mano.  
 	+ **CREADA 12/11/16**. Se usa un ordenamiento de tipo burbuja, al comienzo de la función le da prioridad a los tipos (ordenando primero comodines, espadas, tréboles, corazones y rombos respectivamente) y en la segunda parte ordena dependiendo de su valor de cada tipo.  
+	+ **MODIFICADA 21/11/16**. Se modificó la función por `void ordenarCartas(carta monton[], int length, int v)` permitiendo ordenar las cartas del juego por valor o por número.  
 - `int prioridadTipo(char tipo)`.  
 Auxilia a la función `void ordenarCartas(carta monton[], int length)`.  
 	+ **CREADA 12/11/16**. Ayuda a la función anterior dándole a cada tipo un valor para poder ordenar de una cierta manera. Esta función puede ser cambiada para que el orden de la mano pueda ser distinta.  

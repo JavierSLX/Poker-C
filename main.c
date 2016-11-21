@@ -3,21 +3,23 @@
 int main()
 {
     int error;
-    int apuesta1 = 0;
-    int apuesta2 = 0;
-    int apuesta3 = 0;
-    int apuesta4 = 0;
+    jugador humano;
+    jugador pc1;
+    jugador pc2;
+    jugador pc3;
     int total = 0;
     carta baraja[54];
-    carta mano1[5];
-    carta mano2[5];
-    carta mano3[5];
-    carta mano4[5];
-    int fondo1 = FONDO1;
-    int fondo2 = FONDO2;
-    int fondo3 = FONDO3;
-    int fondo4 = FONDO4;
     int carry = 0;
+
+    //Da los valores de inicio de cada jugador
+    humano.apuesta = 0;
+    humano.fondo = FONDO;
+    pc1.apuesta = 0;
+    pc1.fondo = FONDO;
+    pc2.apuesta = 0;
+    pc2.fondo = FONDO;
+    pc3.apuesta = 0;
+    pc3.fondo = FONDO;
 
     //Crea la baraja
     error = crearBaraja(baraja);
@@ -28,44 +30,48 @@ int main()
     //Barajea el arreglo
     barajear(baraja);
 
+    //Se le asigna valor a las cartas de acuerdo a las reglas del Poker
+    asignarValor(baraja, 54);
+
     //Reparte las manos (de 2 a 4 jugadores)
-    error = repartirMano(baraja, mano1, 5, &carry, 54);
+    error = repartirMano(baraja, humano.mano, 5, &carry, 54);
 
     if (error > 0)
         return 1;
 
-    error = repartirMano(baraja, mano2, 5, &carry, 54);
+    error = repartirMano(baraja, pc1.mano, 5, &carry, 54);
 
     if (error > 0)
         return 1;
 
-    error = repartirMano(baraja, mano3, 5, &carry, 54);
+    error = repartirMano(baraja, pc2.mano, 5, &carry, 54);
 
     if (error > 0)
         return 1;
 
-    error = repartirMano(baraja, mano4, 5, &carry, 54);
+    error = repartirMano(baraja, pc3.mano, 5, &carry, 54);
 
     if (error > 0)
         return 1;
 
     //Ordena las cartas
-    ordenarCartas(mano1, 5);
-    ordenarCartas(mano2, 5);
-    ordenarCartas(mano3, 5);
-    ordenarCartas(mano4, 5);
+    ordenarCartas(humano.mano, 5, 1);
+    /*ordenarCartas(pc1.mano, 5, 1);
+    ordenarCartas(pc2.mano, 5, 1);
+    ordenarCartas(pc3.mano, 5, 1);*/
 
     //Imprime el tablero
     borde(80);
-    datos(mano1, 1, fondo1, apuesta1, 0);
-    datos(mano2, 2, fondo2, apuesta2, 0);
-    datos(mano3, 3, fondo3, apuesta3, 0);
-    datos(mano4, 4, fondo4, apuesta4, 0);
-    printf("\n\t\t\tTOTAL: $%d\n", total);
+    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    /*datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
+    checarManoPC(pc1.mano, pc1.cambio);
+    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
+    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
+    printf("\n\t\t\tTOTAL: $%d\n", total);*/
     borde(80);
 
-    //Se hacen las apuestas
-    error = apostar(&fondo1, &apuesta1, &total);
+    /*//Se hacen las apuestas
+    error = apostar(&humano.fondo, &humano.apuesta, &total);
 
     if (error > 0)
         return 1;
@@ -73,29 +79,29 @@ int main()
     //Imprime el tablero
     system("cls");
     borde(80);
-    datos(mano1, 1, fondo1, apuesta1, 0);
-    datos(mano2, 2, fondo2, apuesta2, 0);
-    datos(mano3, 3, fondo3, apuesta3, 0);
-    datos(mano4, 4, fondo4, apuesta4, 0);
+    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
+    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
+    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
     printf("\n\t\t\tTOTAL: $%d\n", total);
     borde(80);
 
     //Se cambian las cartas
-    error = cambios(baraja, mano1, &carry, 54);
-    ordenarCartas(mano1, 5);
+    error = cambios(baraja, humano.mano, &carry, 54);
+    ordenarCartas(humano.mano, 5, 1);
 
     //Imprime el tablero
     system("cls");
     borde(80);
-    datos(mano1, 1, fondo1, apuesta1, 0);
-    datos(mano2, 2, fondo2, apuesta2, 0);
-    datos(mano3, 3, fondo3, apuesta3, 0);
-    datos(mano4, 4, fondo4, apuesta4, 0);
+    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
+    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
+    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
     printf("\n\t\t\tTOTAL: $%d\n", total);
     borde(80);
 
     //Aumenta la apuesta
-    error = apostar(&fondo1, &apuesta1, &total);
+    error = apostar(&humano.fondo, &humano.apuesta, &total);
 
     if (error > 0)
         return 1;
@@ -103,12 +109,12 @@ int main()
     //Imprime el tablero
     system("cls");
     borde(80);
-    datos(mano1, 1, fondo1, apuesta1, 0);
-    datos(mano2, 2, fondo2, apuesta2, 0);
-    datos(mano3, 3, fondo3, apuesta3, 0);
-    datos(mano4, 4, fondo4, apuesta4, 0);
+    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
+    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
+    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
     printf("\n\t\t\tTOTAL: $%d\n", total);
-    borde(80);
+    borde(80);*/
 
     //Libera la memoria de la baraja
     liberarMemoria(baraja, 54);

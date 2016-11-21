@@ -75,11 +75,12 @@ void asignarValor(carta baraja[], int length)
 }
 
 //Ordena la mano de forma ascendente y por tipo
-void ordenarCartas(carta monton[], int length)
+void ordenarCartas(carta monton[], int length, int v)
 {
     int i, j;
     carta temp;
 
+    //Ordena las cartas por tipo
     for (i = 1; i < length; i++)
     {
         for (j = 0; j < length - 1; j++)
@@ -93,15 +94,36 @@ void ordenarCartas(carta monton[], int length)
         }
     }
 
-    for (i = 1; i < length; i++)
+    //Ordena las cartas por valor o por numero segun se requiera
+    if (v > 0)
     {
-        for (j = 0; j < length - 1; j++)
+        for (i = 1; i < length; i++)
         {
-            if ((monton[j].valor > monton[j+1].valor) && (monton[j].tipo == monton[j+1].tipo))
+            for (j = 0; j < length - 1; j++)
             {
-                temp = monton[j];
-                monton[j] = monton[j+1];
-                monton[j+1] = temp;
+                if ((monton[j].valor > monton[j+1].valor) && (monton[j].tipo == monton[j+1].tipo))
+                {
+                    temp = monton[j];
+                    monton[j] = monton[j+1];
+                    monton[j+1] = temp;
+                    imprimirMano(monton);
+                }
+            }
+        }
+    }
+    else
+    {
+        for (i = 1; i < length; i++)
+        {
+            for (j = 0; j < length - 1; j++)
+            {
+                if ((monton[j].numero > monton[j+1].numero) && (monton[j].tipo == monton[j+1].tipo))
+                {
+                    temp = monton[j];
+                    monton[j] = monton[j+1];
+                    monton[j+1] = temp;
+                    imprimirMano(monton);
+                }
             }
         }
     }
@@ -297,3 +319,105 @@ int apostar(int *fondo, int *apuesta, int *total)
     return 0;
 }
 
+//Checa la mano de la PC y toma la decision de cuanto apuesta y que cartas cambiar
+int checarManoPC (carta mano[], int descarte[])
+{
+    int porcentaje = 0;
+    int i, j;
+    int tipo = 0;
+    int comodines = 0;
+    int tp = 0;
+    int cr = 0;
+    int coincidencia = 0;
+    char col[7];
+    char palo;
+
+    //Al inicio considera cambiar toda la mano, y con el proceso busca que cartas deja
+    for (i = 0; i < 5; i++)
+        descarte[i] = 1;
+
+    //Busca si tiene comodines
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].numero == -1)
+        {
+            descarte[i] = 0;
+            comodines++;
+        }
+    }
+
+    //Busca si la mano tiene cartas del mismo color
+    for (i = 0; i < 4; i++)
+    {
+        for (j = i+1; j < 5; j++)
+        {
+            if (strcmp(mano[i].color, mano[j].color) == 0)
+            {
+                tipo++;
+            }
+        }
+
+        if (tipo > cr)
+        {
+            cr = tipo;
+            tipo = 0;
+            strcpy(col, mano[i].color);
+        }
+    }
+    cr++;
+
+    //Busca si la mano tiene cartas del mismo tipo
+    tipo = 0;
+    for (i = 0; i < 4; i++)
+    {
+        for (j = i+1; j < 5; j++)
+        {
+            if (mano[i].tipo == mano[j].tipo)
+                tipo++;
+        }
+
+        if (tipo > tp)
+        {
+            tp = tipo;
+            tipo = 0;
+            palo = mano[i].tipo;
+        }
+    }
+    tp++;
+
+    /*printf("\nComodines: %d\n", comodines);
+    printf("\nColor repetido %s en %d\n", col, cr);
+    printf("\nTipo repetido %c en %d\n", palo, tp);*/
+
+    //Busca si es posible que pueda realizar una
+    return porcentaje;
+}
+
+//Funcion que busca cartas faltantes de una escalera de color, la indica en un arreglo int con las posiciones faltantes
+//Y regresa la cantidad de cartas total faltantes
+int faltaEscaleraColor(carta mano[], int posiciones[], char tp)
+{
+    int i, j;
+    int falta = 0;
+    int cont = 0;
+    int c[5] = {0};
+    int orden[5] = {0};
+
+    //Checa que cartas no son del mismo tipo
+    for (i = 0; i < 4; i++)
+    {
+        if (mano[i].tipo != tp)
+            c[i] = 1;
+    }
+
+    //Copia el orden que tiene las cartas del mismo tipo en un arreglo
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].tipo == tp)
+            orden[i] = mano[i].numero;
+    }
+
+    //Ordena las cartas (excluyendo 0)
+
+    return 0;
+}

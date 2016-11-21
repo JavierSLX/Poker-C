@@ -321,10 +321,9 @@ void pruebaICaractBaraja(void)
 //Pruebas Unitarias de la funcion
 void driverICaractBaraja(void)
 {
-    int error;
     carta baraja[54];
 
-    error = crearBaraja(baraja);
+    crearBaraja(baraja);
     imprimirCaractBaraja(baraja, 54);
     liberarMemoria(baraja, 54);
     return ;
