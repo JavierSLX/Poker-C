@@ -1,6 +1,6 @@
 #include "poker.h"
 
-int main()
+/*int main()
 {
     int error;
     jugador humano;
@@ -56,21 +56,16 @@ int main()
 
     //Ordena las cartas
     ordenarCartas(humano.mano, 5, 1);
-    /*ordenarCartas(pc1.mano, 5, 1);
-    ordenarCartas(pc2.mano, 5, 1);
-    ordenarCartas(pc3.mano, 5, 1);*/
 
     //Imprime el tablero
     borde(80);
     datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
-    /*datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
-    checarManoPC(pc1.mano, pc1.cambio);
-    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
-    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
-    printf("\n\t\t\tTOTAL: $%d\n", total);*/
     borde(80);
 
-    /*//Se hacen las apuestas
+    //Checa las manos de las PC
+    checarManoPC(humano.mano, humano.cambio);
+
+    //Se hacen las apuestas
     error = apostar(&humano.fondo, &humano.apuesta, &total);
 
     if (error > 0)
@@ -114,10 +109,10 @@ int main()
     datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
     datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
     printf("\n\t\t\tTOTAL: $%d\n", total);
-    borde(80);*/
+    borde(80);
 
     //Libera la memoria de la baraja
     liberarMemoria(baraja, 54);
 
     return 0;
-}
+}*/

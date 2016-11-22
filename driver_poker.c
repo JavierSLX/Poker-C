@@ -7,15 +7,17 @@ void pruebaQuitarJokers(void);
 void pruebaRepartirMano(void);
 void driverRepartirMano(void);
 void pruebaImprimirMano(void);
+void pruebaGeneralManos(void);
 
-/*int main()
+int main()
 {
-    pruebaQuitarJokers();
+    /*pruebaQuitarJokers();
     pruebaRepartirMano();
     driverRepartirMano();
-    pruebaImprimirMano();
+    pruebaImprimirMano();*/
+    pruebaGeneralManos();
     return 0;
-}*/
+}
 
 void pruebaQuitarJokers(void)
 {
@@ -159,3 +161,72 @@ void pruebaImprimirMano(void)
     return;
 }
 
+void pruebaGeneralManos(void)
+{
+    int error;
+    int carry = 0;
+    carta baraja[54];
+    jugador prueba;
+    jugador humano;
+
+    prueba.mano[0].id = 1;
+    prueba.mano[0].numero = 6;
+    prueba.mano[0].tipo = TREBOL;
+    prueba.mano[0].valor = 6;
+    prueba.mano[0].color = NEGRO;
+
+    prueba.mano[1].id = 2;
+    prueba.mano[1].numero = 9;
+    prueba.mano[1].tipo = TREBOL;
+    prueba.mano[1].valor = 9;
+    prueba.mano[1].color = NEGRO;
+
+    prueba.mano[2].id = 3;
+    prueba.mano[2].numero = -1;
+    prueba.mano[2].tipo = COMODIN;
+    prueba.mano[2].valor = -1;
+    prueba.mano[2].color = SN;
+
+    prueba.mano[3].id = 4;
+    prueba.mano[3].numero = -1;
+    prueba.mano[3].tipo = COMODIN;
+    prueba.mano[3].valor = -1;
+    prueba.mano[3].color = SN;
+
+    prueba.mano[4].id = 7;
+    prueba.mano[4].numero = 1;
+    prueba.mano[4].tipo = TREBOL;
+    prueba.mano[4].valor = 14;
+    prueba.mano[4].color = NEGRO;
+
+    //Crea la baraja
+    error = crearBaraja(baraja);
+
+    if (error > 0)
+        return;
+
+    //Barajea el arreglo
+    barajear(baraja);
+
+    //Se le asigna valor a las cartas de acuerdo a las reglas del Poker
+    asignarValor(baraja, 54);
+
+    //Reparte las manos (de 2 a 4 jugadores)
+    error = repartirMano(baraja, humano.mano, 5, &carry, 54);
+
+    //Ordena las cartas
+    ordenarCartas(humano.mano, 5, 1);
+
+    //Imprime el tablero
+    borde(80);
+    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    checarManoPC(humano.mano, humano.cambio);
+    borde(80);
+
+    //Pruebas de Escalera de Color
+    //checarManoPC(prueba.mano, prueba.cambio);
+
+
+    liberarMemoria(baraja, 54);
+    return;
+}

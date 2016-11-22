@@ -106,7 +106,6 @@ void ordenarCartas(carta monton[], int length, int v)
                     temp = monton[j];
                     monton[j] = monton[j+1];
                     monton[j+1] = temp;
-                    imprimirMano(monton);
                 }
             }
         }
@@ -122,7 +121,6 @@ void ordenarCartas(carta monton[], int length, int v)
                     temp = monton[j];
                     monton[j] = monton[j+1];
                     monton[j+1] = temp;
-                    imprimirMano(monton);
                 }
             }
         }
@@ -327,44 +325,22 @@ int checarManoPC (carta mano[], int descarte[])
     int tipo = 0;
     int comodines = 0;
     int tp = 0;
-    int cr = 0;
-    int coincidencia = 0;
-    char col[7];
     char palo;
 
     //Al inicio considera cambiar toda la mano, y con el proceso busca que cartas deja
     for (i = 0; i < 5; i++)
-        descarte[i] = 1;
+        descarte[i] = -1;
 
-    //Busca si tiene comodines
+    //Busca si hay comodines
     for (i = 0; i < 5; i++)
     {
-        if (mano[i].numero == -1)
+        if (mano[i].tipo == COMODIN)
         {
-            descarte[i] = 0;
+            //descarte[i] = 0;
             comodines++;
         }
     }
-
-    //Busca si la mano tiene cartas del mismo color
-    for (i = 0; i < 4; i++)
-    {
-        for (j = i+1; j < 5; j++)
-        {
-            if (strcmp(mano[i].color, mano[j].color) == 0)
-            {
-                tipo++;
-            }
-        }
-
-        if (tipo > cr)
-        {
-            cr = tipo;
-            tipo = 0;
-            strcpy(col, mano[i].color);
-        }
-    }
-    cr++;
+    printf("Comodines: %d\n", comodines);
 
     //Busca si la mano tiene cartas del mismo tipo
     tipo = 0;
@@ -372,7 +348,7 @@ int checarManoPC (carta mano[], int descarte[])
     {
         for (j = i+1; j < 5; j++)
         {
-            if (mano[i].tipo == mano[j].tipo)
+            if (mano[i].tipo == mano[j].tipo && mano[i].tipo != COMODIN)
                 tipo++;
         }
 
@@ -384,40 +360,83 @@ int checarManoPC (carta mano[], int descarte[])
         }
     }
     tp++;
-
-    /*printf("\nComodines: %d\n", comodines);
-    printf("\nColor repetido %s en %d\n", col, cr);
-    printf("\nTipo repetido %c en %d\n", palo, tp);*/
+    printf("Tipo repetido %c en %d\n", palo, tp);
+    porcentaje = probarEscaleraColor(mano, descarte, palo, comodines);
+    printf("%d\n", porcentaje);
 
     //Busca si es posible que pueda realizar una
     return porcentaje;
 }
 
-//Funcion que busca cartas faltantes de una escalera de color, la indica en un arreglo int con las posiciones faltantes
-//Y regresa la cantidad de cartas total faltantes
-int faltaEscaleraColor(carta mano[], int posiciones[], char tp)
+//Funcion que checa cuantas cartas son necesarias para formar una Escalera de Color y regresa las posiciones también necesarias
+int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)
 {
     int i, j;
     int falta = 0;
-    int cont = 0;
-    int c[5] = {0};
+    int coincidencia = 0;
+    int inicio;
+    int ideal[5] = {0};
     int orden[5] = {0};
+    int com = comodines;
 
-    //Checa que cartas no son del mismo tipo
-    for (i = 0; i < 4; i++)
-    {
-        if (mano[i].tipo != tp)
-            c[i] = 1;
-    }
+    //Ordena la mano por numero para poder analizarla
+    ordenarCartas(mano, 5, 0);
 
-    //Copia el orden que tiene las cartas del mismo tipo en un arreglo
+    //Saca el orden que tiene las cartas del mismo tipo en un arreglo
     for (i = 0; i < 5; i++)
     {
-        if (mano[i].tipo == tp)
+        if (mano[i].tipo == palo)
             orden[i] = mano[i].numero;
     }
 
-    //Ordena las cartas (excluyendo 0)
+    //Obtiene el número menor del arreglo (no 0)
+    inicio = 14;
+    for (i = 0; i < 5; i++)
+    {
+        if ((inicio > orden[i]) && (orden[i] != 0))
+        {
+            inicio = orden[i];
+        }
+    }
 
-    return 0;
+    //Forma el arreglo ideal para formar una escalera
+    for (i = 0; i < 5; i++)
+    {
+        ideal[i] = inicio;
+        inicio++;
+    }
+
+    //Busca coincidencias entre el arreglo orden y el ideal
+    for (i = 0; i < 5; i++)
+    {
+        for (j = 0; j < 5; j++)
+        {
+            if (orden[i] == ideal[j])
+            {
+                coincidencia++;
+                posiciones[i] = 0;
+                //printf("%d ", orden[i]);
+            }
+        }
+    }
+
+    //Termina de definir el arreglo de cambios
+    for (i = 0; i < 5; i++)
+    {
+        if (com > 0 && posiciones[i] == -1)
+        {
+            posiciones[i] = 0;
+            com--;
+        }
+    }
+
+    //Calcula las cartas a cambiar
+    coincidencia += comodines;
+    falta = 5 - coincidencia;
+
+    for (i = 0; i < 5; i++)
+        printf("%d ", posiciones[i]);
+    printf("\n");
+
+    return falta;
 }

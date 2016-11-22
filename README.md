@@ -3,6 +3,8 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**21/Nov/16**. Se creó la función `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)` que analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da también las posiciones de dichas cartas.  
+
 **21/Nov/16**. Se modificó la función `void ordenarCartas(carta monton[], int length)` por `void ordenarCartas(carta monton[], int length, int v)` permitiendo ordenar las cartas del juego por valor o por número.
 
 **16/Nov/16**. Se crearon las funciones (sin probar aún):  
@@ -123,6 +125,7 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `void borde(int n)` **(NO PROBADA ✘)**. Imprime un par de líneas que simula un borde.  
 - `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)` **(NO PROBADA ✘)**. Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
 - `int apostar(int *fondo, int *apuesta, int *total)` **(NO PROBADA ✘)**. Registra la apuesta del jugador (humano).  
+- `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)`. Analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da las posiciones de dichas cartas.
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -159,6 +162,9 @@ Imprime los datos básicos del jugador para que se pueda observar su avance en e
 - `int apostar(int *fondo, int *apuesta, int *total)`.  
 Registra la apuesta del jugador (humano).  
 	+ **CREADA 16/11/16**. La función hace las operaciones para hacer el cálculo de la apuesta del jugador, cuanto le queda de fondo y el total que hay en juego.  
+- `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)`.  
+Analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da las posiciones de dichas cartas.  
+	+ **CREADA 21/11/16**. La función analiza las posiciones que se le da y busca la forma de crear una escalera de color. Regresa (después de buscar la mejor opción) en un arreglo de tipo entero, las posiciones a cambiar (dadas por -1) y la cantidad de cartas en total que hay que cambiar.
 
 ##Principal
 
