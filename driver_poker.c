@@ -170,22 +170,22 @@ void pruebaGeneralManos(void)
     jugador humano;
 
     prueba.mano[0].id = 1;
-    prueba.mano[0].numero = 6;
+    prueba.mano[0].numero = 5;
     prueba.mano[0].tipo = TREBOL;
-    prueba.mano[0].valor = 6;
+    prueba.mano[0].valor = 5;
     prueba.mano[0].color = NEGRO;
 
     prueba.mano[1].id = 2;
-    prueba.mano[1].numero = 9;
+    prueba.mano[1].numero = 3;
     prueba.mano[1].tipo = TREBOL;
-    prueba.mano[1].valor = 9;
+    prueba.mano[1].valor = 3;
     prueba.mano[1].color = NEGRO;
 
     prueba.mano[2].id = 3;
-    prueba.mano[2].numero = -1;
-    prueba.mano[2].tipo = COMODIN;
-    prueba.mano[2].valor = -1;
-    prueba.mano[2].color = SN;
+    prueba.mano[2].numero = 2;
+    prueba.mano[2].tipo = TREBOL;
+    prueba.mano[2].valor = 2;
+    prueba.mano[2].color = NEGRO;
 
     prueba.mano[3].id = 4;
     prueba.mano[3].numero = -1;
@@ -219,12 +219,13 @@ void pruebaGeneralManos(void)
 
     //Imprime el tablero
     borde(80);
-    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
-    checarManoPC(humano.mano, humano.cambio);
+    //datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    //checarManoPC(humano.mano, humano.cambio);
+    datos(prueba.mano, 1, prueba.fondo, prueba.apuesta, 0);
     borde(80);
 
     //Pruebas de Escalera de Color
-    //checarManoPC(prueba.mano, prueba.cambio);
+    checarManoPC(prueba.mano, prueba.cambio);
 
 
     liberarMemoria(baraja, 54);

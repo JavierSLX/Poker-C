@@ -340,6 +340,7 @@ int checarManoPC (carta mano[], int descarte[])
             comodines++;
         }
     }
+    printf("\nDATOS BASICOS\n");
     printf("Comodines: %d\n", comodines);
 
     //Busca si la mano tiene cartas del mismo tipo
@@ -363,6 +364,9 @@ int checarManoPC (carta mano[], int descarte[])
     printf("Tipo repetido %c en %d\n", palo, tp);
     porcentaje = probarEscaleraColor(mano, descarte, palo, comodines);
     printf("%d\n", porcentaje);
+    porcentaje = comprobarEscaleraColor(mano, palo, comodines);
+    if (porcentaje > 0)
+        printf("Hay una escalera de color\n");
 
     //Busca si es posible que pueda realizar una
     return porcentaje;
@@ -434,9 +438,68 @@ int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines
     coincidencia += comodines;
     falta = 5 - coincidencia;
 
+    printf("\nCambios para escalera color:\n");
     for (i = 0; i < 5; i++)
         printf("%d ", posiciones[i]);
     printf("\n");
 
     return falta;
 }
+
+//Checa si la mano posee una escalera de color (regresa 1 en caso de existir)
+int comprobarEscaleraColor (carta mano[], char tipo, int comodines)
+{
+    int i, j;
+    int inicio;
+    int cont = 0;
+    int orden[5] = {0};
+    int ideal[5];
+
+    //Ordena la mano por numero para poder analizarla
+    ordenarCartas(mano, 5, 0);
+
+    //Saca el orden que tiene las cartas del mismo tipo en un arreglo
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].tipo == tipo)
+            orden[i] = mano[i].numero;
+    }
+
+    //Obtiene el número menor del arreglo (no 0)
+    inicio = 14;
+    for (i = 0; i < 5; i++)
+    {
+        if ((inicio > orden[i]) && (orden[i] != 0))
+        {
+            inicio = orden[i];
+        }
+    }
+
+    //Forma el arreglo ideal para formar una escalera
+    for (i = 0; i < 5; i++)
+    {
+        ideal[i] = inicio;
+        inicio++;
+    }
+
+    //Busca coincidencias entre el arreglo orden y el ideal
+    for (i = 0; i < 5; i++)
+    {
+        for (j = 0; j < 5; j++)
+        {
+            if (orden[i] == ideal[j])
+            {
+                cont++;
+            }
+        }
+    }
+
+    //Si hay comodines los agrega al contador
+    cont += comodines;
+
+    if (cont == 5)
+        return 1;
+    else
+        return 0;
+}
+

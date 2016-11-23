@@ -26,6 +26,7 @@ void borde(int n);
 void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto);
 int apostar(int *fondo, int *apuesta, int *total);
 int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines);
+int comprobarEscaleraColor (carta mano[], char tipo, int comodines);
 int checarManoPC (carta mano[], int descarte[]);
 
 
