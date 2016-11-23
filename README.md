@@ -3,6 +3,11 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**22/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
+- `void inicioDescarte(int a[])`.  
+- `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)`.  
+- `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)`.  
+
 **22/Nov/16**. Se creó la función `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` que comprueba si existe una escalera de color en la mano. 
 
 **21/Nov/16**. Se creó la función `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)` que analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da también las posiciones de dichas cartas.  
@@ -129,6 +134,9 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int apostar(int *fondo, int *apuesta, int *total)` **(NO PROBADA ✘)**. Registra la apuesta del jugador (humano).  
 - `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)` **(NO PROBADA ✘)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da las posiciones de dichas cartas.  
 - `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` **(NO PROBADA ✘)**. Checa si existe una escalera de color en la mano del jugador.  
+- `void inicioDescarte(int a[])` **(NO PROBADA ✘)**. Inicializa un arreglo de 5 elementos a -1.  
+- `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)` **(NO PROBADA ✘)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da las posiciones de dichas cartas.  
+- `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` **(NO PROBADA ✘)**. Checa si existe una escalera real en la mano del jugador.  
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -168,9 +176,19 @@ Registra la apuesta del jugador (humano).
 - `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)`.  
 Analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da las posiciones de dichas cartas.  
 	+ **CREADA 21/11/16**. La función analiza las posiciones que se le da y busca la forma de crear una escalera de color. Regresa (después de buscar la mejor opción) en un arreglo de tipo entero, las posiciones a cambiar (dadas por -1) y la cantidad de cartas en total que hay que cambiar.  
-`int comprobarEscaleraColor (carta mano[], char tipo, int comodines)`.  
+- `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)`.  
 Checa si existe una escalera de color en la mano del jugador.  
-	+ **CREADA 22/11/16**. La función es parecida a la de *probarEscaleraColor* esta, sin embargo, sólo comprueba si existe en la mano una escalera de color y retorna 1 en caso de haberla.
+	+ **CREADA 22/11/16**. La función es parecida a la de *probarEscaleraColor* esta, sin embargo, sólo comprueba si existe en la mano una escalera de color y retorna 1 en caso de haberla.  
+	+ **MODIFICADA 22/11/16**. La función ahora regresa la carta más alta de la escalera.  
+- `void inicioDescarte(int a[])`.  
+Inicializa un arreglo de 5 elementos a -1.  
+	+ **CREADA 22/11/16**. La función inicializa todo el arreglo auxiliar en -1 para poder ser analizado en cada función de probación de manos.  
+- `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)`.  
+Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da las posiciones de dichas cartas.  
+	+ **CREADA 22/11/16**. La función analiza las posiciones que se le da y busca la forma de crear una escalera real. Regresa (después de buscar la mejor opción) en un arreglo de tipo entero, las posiciones a cambiar (dadas por -1) y la cantidad de cartas en total que hay que cambiar.  
+- `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)`.  
+Checa si existe una escalera real en la mano del jugador.  
+	+ **CREADA 22/11/16**. La función es parecida a la de *probarEscaleraReal* esta, sin embargo, sólo comprueba si existe en la mano una escalera de color y retorna el valor más alto de la escalera (14) en caso de haberla.  
 
 ##Principal
 

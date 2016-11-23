@@ -170,21 +170,21 @@ void pruebaGeneralManos(void)
     jugador humano;
 
     prueba.mano[0].id = 1;
-    prueba.mano[0].numero = 5;
+    prueba.mano[0].numero = 11;
     prueba.mano[0].tipo = TREBOL;
-    prueba.mano[0].valor = 5;
+    prueba.mano[0].valor = 11;
     prueba.mano[0].color = NEGRO;
 
     prueba.mano[1].id = 2;
-    prueba.mano[1].numero = 3;
-    prueba.mano[1].tipo = TREBOL;
-    prueba.mano[1].valor = 3;
-    prueba.mano[1].color = NEGRO;
+    prueba.mano[1].numero = -1;
+    prueba.mano[1].tipo = COMODIN;
+    prueba.mano[1].valor = -1;
+    prueba.mano[1].color = SN;
 
     prueba.mano[2].id = 3;
-    prueba.mano[2].numero = 2;
+    prueba.mano[2].numero = 12;
     prueba.mano[2].tipo = TREBOL;
-    prueba.mano[2].valor = 2;
+    prueba.mano[2].valor = 12;
     prueba.mano[2].color = NEGRO;
 
     prueba.mano[3].id = 4;
@@ -193,10 +193,10 @@ void pruebaGeneralManos(void)
     prueba.mano[3].valor = -1;
     prueba.mano[3].color = SN;
 
-    prueba.mano[4].id = 7;
-    prueba.mano[4].numero = 1;
+    prueba.mano[4].id = 10;
+    prueba.mano[4].numero = 10;
     prueba.mano[4].tipo = TREBOL;
-    prueba.mano[4].valor = 14;
+    prueba.mano[4].valor = 10;
     prueba.mano[4].color = NEGRO;
 
     //Crea la baraja
@@ -216,16 +216,17 @@ void pruebaGeneralManos(void)
 
     //Ordena las cartas
     ordenarCartas(humano.mano, 5, 1);
+    ordenarCartas(prueba.mano, 5, 1);
 
     //Imprime el tablero
     borde(80);
-    //datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
-    //checarManoPC(humano.mano, humano.cambio);
-    datos(prueba.mano, 1, prueba.fondo, prueba.apuesta, 0);
+    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    //datos(prueba.mano, 1, prueba.fondo, prueba.apuesta, 0);
     borde(80);
 
-    //Pruebas de Escalera de Color
-    checarManoPC(prueba.mano, prueba.cambio);
+    //Pruebas las manos que pueden ser obtenidas
+    //checarManoPC(prueba.mano, prueba.cambio);
+    checarManoPC(humano.mano, humano.cambio);
 
 
     liberarMemoria(baraja, 54);

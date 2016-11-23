@@ -317,6 +317,17 @@ int apostar(int *fondo, int *apuesta, int *total)
     return 0;
 }
 
+//Inicializa todo el arreglo de descarte a -1
+void inicioDescarte(int a[])
+{
+    int i;
+
+    for (i = 0; i < 5; i++)
+        a[i] = -1;
+
+    return;
+}
+
 //Checa la mano de la PC y toma la decision de cuanto apuesta y que cartas cambiar
 int checarManoPC (carta mano[], int descarte[])
 {
@@ -327,16 +338,11 @@ int checarManoPC (carta mano[], int descarte[])
     int tp = 0;
     char palo;
 
-    //Al inicio considera cambiar toda la mano, y con el proceso busca que cartas deja
-    for (i = 0; i < 5; i++)
-        descarte[i] = -1;
-
     //Busca si hay comodines
     for (i = 0; i < 5; i++)
     {
         if (mano[i].tipo == COMODIN)
         {
-            //descarte[i] = 0;
             comodines++;
         }
     }
@@ -361,15 +367,124 @@ int checarManoPC (carta mano[], int descarte[])
         }
     }
     tp++;
+
+    //Datos que comprueban la mano
     printf("Tipo repetido %c en %d\n", palo, tp);
+
+    //-------------------------------------
+    printf("\nEscalera real:\n");
+    porcentaje = probarEscaleraReal(mano, descarte, palo, comodines);
+    printf("%d\n\n", porcentaje);
+    porcentaje = comprobarEscaleraReal(mano, palo, comodines);
+    if (porcentaje > 0)
+        printf("Hay una escalera real(Carta alta: %d)\n", porcentaje);
+    printf("Escalera de color:\n");
     porcentaje = probarEscaleraColor(mano, descarte, palo, comodines);
-    printf("%d\n", porcentaje);
+    printf("%d\n\n", porcentaje);
     porcentaje = comprobarEscaleraColor(mano, palo, comodines);
     if (porcentaje > 0)
-        printf("Hay una escalera de color\n");
+        printf("Hay una escalera de color(Carta alta: %d)\n", porcentaje);
+    //--------------------------------------
 
-    //Busca si es posible que pueda realizar una
+    //Busca si es posible que pueda realizar una apuesta
     return porcentaje;
+}
+
+//Funcion que checa cuantas cartas son necesarias para formar una Escalera Real y regresa las posiciones necesarias también
+int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)
+{
+    int i, j;
+    int falta = 0;
+    int coincidencia = 0;
+    int ideal[5] = {10, 11, 12, 13, 14};
+    int orden[5] = {0};
+    int com = comodines;
+
+    //Ordena las cartas por valor
+    ordenarCartas(mano, 5, 1);
+
+    //Inicializa las cartas a descartar en -1
+    inicioDescarte(posiciones);
+
+    //Saca el orden que tiene las cartas del mismo tipo en un arreglo
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].tipo == palo)
+            orden[i] = mano[i].valor;
+    }
+
+    //Busca coincidencias entre el arreglo orden y el ideal
+    for (i = 0; i < 5; i++)
+    {
+        for (j = 0; j < 5; j++)
+        {
+            if (orden[i] == ideal[j])
+            {
+                coincidencia++;
+                posiciones[i] = 0;
+            }
+        }
+    }
+
+    //Termina de definir el arreglo de cambios
+    for (i = 0; i < 5; i++)
+    {
+        if (com > 0 && posiciones[i] == -1)
+        {
+            posiciones[i] = 0;
+            com--;
+        }
+    }
+
+    //Calcula las cartas a cambiar
+    coincidencia += comodines;
+    falta = 5 - coincidencia;
+
+    //Datos de comprobacion de la funcion
+    printf("\nCambios para escalera real:\n");
+    for (i = 0; i < 5; i++)
+        printf("%d ", posiciones[i]);
+    printf("\n");
+
+    return falta;
+}
+
+//Checa si la mano posee una escalera real (regresa el valor más alto (14) en caso de existir
+int comprobarEscaleraReal (carta mano[], char tipo, int comodines)
+{
+    int i, j;
+    int coincidencia = 0;
+    int ideal[5] = {10, 11, 12, 13, 14};
+    int orden[5] = {0};
+
+    //Ordena las cartas por valor
+    ordenarCartas(mano, 5, 1);
+
+    //Saca el orden que tiene las cartas del mismo tipo en un arreglo
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].tipo == tipo)
+            orden[i] = mano[i].valor;
+    }
+
+    //Busca coincidencias entre el arreglo orden y el ideal
+    for (i = 0; i < 5; i++)
+    {
+        for (j = 0; j < 5; j++)
+        {
+            if (orden[i] == ideal[j])
+            {
+                coincidencia++;
+            }
+        }
+    }
+
+    coincidencia += comodines;
+
+    if (coincidencia == 5)
+        return 14;
+    else
+        return 0;
 }
 
 //Funcion que checa cuantas cartas son necesarias para formar una Escalera de Color y regresa las posiciones también necesarias
@@ -385,6 +500,9 @@ int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines
 
     //Ordena la mano por numero para poder analizarla
     ordenarCartas(mano, 5, 0);
+
+    //Inicializa las cartas a descartar en -1
+    inicioDescarte(posiciones);
 
     //Saca el orden que tiene las cartas del mismo tipo en un arreglo
     for (i = 0; i < 5; i++)
@@ -438,6 +556,7 @@ int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines
     coincidencia += comodines;
     falta = 5 - coincidencia;
 
+    //Datos de comprobacion de la funcion
     printf("\nCambios para escalera color:\n");
     for (i = 0; i < 5; i++)
         printf("%d ", posiciones[i]);
@@ -446,7 +565,7 @@ int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines
     return falta;
 }
 
-//Checa si la mano posee una escalera de color (regresa 1 en caso de existir)
+//Checa si la mano posee una escalera de color (regresa el valor de la carta más alta en caso de existir)
 int comprobarEscaleraColor (carta mano[], char tipo, int comodines)
 {
     int i, j;
@@ -494,12 +613,10 @@ int comprobarEscaleraColor (carta mano[], char tipo, int comodines)
         }
     }
 
-    //Si hay comodines los agrega al contador
-    cont += comodines;
-
-    if (cont == 5)
-        return 1;
-    else
+    if ((cont + comodines) < 5)
         return 0;
+
+    //Regresa la carta más alta
+    return ideal[4];
 }
 
