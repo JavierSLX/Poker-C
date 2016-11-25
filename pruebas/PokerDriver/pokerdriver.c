@@ -1,23 +1,4 @@
-#include "poker.h"
-#include <assert.h>
-#define N 10000
-#define M 5
-
-void pruebaQuitarJokers(void);
-void pruebaRepartirMano(void);
-void driverRepartirMano(void);
-void pruebaImprimirMano(void);
-void pruebaGeneralManos(void);
-
-int main()
-{
-    /*pruebaQuitarJokers();
-    pruebaRepartirMano();
-    driverRepartirMano();
-    pruebaImprimirMano();*/
-    pruebaGeneralManos();
-    return 0;
-}
+#include "pokerdriver.h"
 
 void pruebaQuitarJokers(void)
 {

@@ -1,36 +1,4 @@
-#include "baraja.h"
-#include <assert.h>
-#define N 10000
-
-//assert (algo == 0);
-
-void pruebaIElemCart(void);
-void driverIElemCart(void);
-void pruebaICaractCarta(void);
-void driverICaractCarta(void);
-void pruebaICaractBaraja(void);
-void driverICaractBaraja(void);
-void pruebaDefinirCarta(void);
-void driverDefinirCarta(void);
-void pruebaLiberarMemoria(void);
-void pruebaCrearBaraja(void);
-void pruebaBarajear(void);
-
-/*int main()
-{
-    pruebaIElemCart();
-    driverIElemCart();
-    pruebaICaractCarta();
-    driverICaractCarta();
-    pruebaICaractBaraja();
-    driverICaractBaraja();
-    pruebaDefinirCarta();
-    driverDefinirCarta();
-    pruebaLiberarMemoria();
-    pruebaCrearBaraja();
-    pruebaBarajear();
-    return 0;
-}*/
+#include "barajadriver.h"
 
 //Funcion imprimirElementoCarta
 //Prueba la funcion N numero de veces
@@ -91,7 +59,6 @@ void pruebaIElemCart(void)
         printf("\n");
         free(elemento.color);
     }
-
 
     return ;
 }
@@ -615,4 +582,5 @@ void pruebaBarajear(void)
 
     return;
 }
+
 

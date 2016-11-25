@@ -3,6 +3,8 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**23/Nov/16**. Se reacomodó el código de pruebas (drivers de baraja y poker) en dos respectivos proyectos en CodeBlocks llamados *BarajaDriver* y *PokerDriver* ambos contenidos en la librería `/pruebas/`. 
+
 **22/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
 - `void inicioDescarte(int a[])`.  
 - `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)`.  

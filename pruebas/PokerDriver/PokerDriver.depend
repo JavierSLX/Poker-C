@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1479872280 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\poker.c
+	"poker.h"
+
+1479871345 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\poker.h
+	"baraja.h"
+
+1479754063 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\baraja.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+
+1480036005 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\main.c
+	"pokerdriver.h"
+
+1480035886 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\pokerdriver.h
+	"../../poker.h"
+	<assert.h>
+
+1480035967 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\pokerdriver.c
+	"pokerdriver.h"
+
