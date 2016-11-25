@@ -3,7 +3,13 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
-**23/Nov/16**. Se reacomodó el código de pruebas (drivers de baraja y poker) en dos respectivos proyectos en CodeBlocks llamados *BarajaDriver* y *PokerDriver* ambos contenidos en la librería `/pruebas/`. 
+**24/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
+- `int checarManoPC (jugador hp)`  
+- `int cartaMasAlta (carta mano[])`  
+- `void probarPar (carta mano[], int posiciones[])`  
+- `int comprobarPares (carta mano[], int pares[], int comodines)`. 
+
+**24/Nov/16**. Se reacomodó el código de pruebas (drivers de baraja y poker) en dos respectivos proyectos en CodeBlocks llamados *BarajaDriver* y *PokerDriver* ambos contenidos en la librería `/pruebas/`. 
 
 **22/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
 - `void inicioDescarte(int a[])`.  
@@ -139,6 +145,10 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `void inicioDescarte(int a[])` **(NO PROBADA ✘)**. Inicializa un arreglo de 5 elementos a -1.  
 - `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)` **(NO PROBADA ✘)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da las posiciones de dichas cartas.  
 - `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` **(NO PROBADA ✘)**. Checa si existe una escalera real en la mano del jugador.  
+- `int checarManoPC (jugador hp)` **(NO PROBADA ✘)**. Permite checar las posibles jugadas de la computadora.  
+- `int cartaMasAlta (carta mano[])` **(NO PROBADA ✘)**. Obtiene el ID de la carta más alta que se encuentra en la mano.   
+- `void probarPar (carta mano[], int posiciones[])` **(NO PROBADA ✘)**. Da las 4 cartas que se deben cambiar para obtener mínimo un par.    
+- `int comprobarPares (carta mano[], int pares[], int comodines)` **(NO PROBADA ✘)**. Comprueba si hay 1 o 2 pares en la mano.  
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -191,6 +201,18 @@ Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da l
 - `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)`.  
 Checa si existe una escalera real en la mano del jugador.  
 	+ **CREADA 22/11/16**. La función es parecida a la de *probarEscaleraReal* esta, sin embargo, sólo comprueba si existe en la mano una escalera de color y retorna el valor más alto de la escalera (14) en caso de haberla.  
+- `int checarManoPC (jugador hp)`.  
+Permite checar las posibles jugadas de la computadora.  
+	+ **CREADA 24/11/16**. La función va checando jugada por jugada en la mano, y saca cuanto debe de apostar en el juego. ***AUN NO ESTÁ TERMINADA***.   
+- `int cartaMasAlta (carta mano[])`.  
+Obtiene el ID de la carta más alta que se encuentra en la mano.  
+	+ **CREADA 24/11/16**. Analiza que carta es la más alta en la mano (sin tomar en cuenta los comodines) y regresa el ID de tal carta.
+- `void probarPar (carta mano[], int posiciones[])`.  
+Da las 4 cartas que se deben cambiar para obtener mínimo un par.  
+	+ **CREADA 24/11/16**. Checa que carta es la más recomendable mantener en la mano y cambia las otras 4 para formar al menos un par.    
+- `int comprobarPares (carta mano[], int pares[], int comodines)`.  
+Comprueba si hay 1 o 2 pares en la mano.  
+	+ **CREADA 24/11/16**. Obtiene los pares de la mano (de ninguno a dos pares máximos), y regresa como tal el número de pares. Los valores de los pares se registran en el arreglo pares que se pide como parámetro en la función.
 
 ##Principal
 

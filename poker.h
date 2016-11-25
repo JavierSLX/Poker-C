@@ -10,6 +10,7 @@ typedef struct
     int apuesta;
     int fondo;
     int cambio[5];
+    int pares[2];
     int ventaja[13];
 
 }jugador;
@@ -26,11 +27,16 @@ void borde(int n);
 void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto);
 int apostar(int *fondo, int *apuesta, int *total);
 void inicioDescarte(int a[]);
+
 int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines);
 int comprobarEscaleraReal (carta mano[], char tipo, int comodines);
 int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines);
 int comprobarEscaleraColor (carta mano[], char tipo, int comodines);
-int checarManoPC (carta mano[], int descarte[]);
+int checarManoPC (jugador hp);
+
+int cartaMasAlta (carta mano[]);
+void probarPar (carta mano[], int posiciones[]);
+int comprobarPares (carta mano[], int pares[], int comodines);
 
 
 #endif

@@ -206,8 +206,8 @@ void pruebaGeneralManos(void)
     borde(80);
 
     //Pruebas las manos que pueden ser obtenidas
-    //checarManoPC(prueba.mano, prueba.cambio);
-    checarManoPC(humano.mano, humano.cambio);
+    //checarManoPC(prueba.mano, prueba.cambio, prueba.pares);
+    checarManoPC(humano);
 
 
     liberarMemoria(baraja, 54);

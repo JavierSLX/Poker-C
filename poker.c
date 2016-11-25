@@ -329,7 +329,7 @@ void inicioDescarte(int a[])
 }
 
 //Checa la mano de la PC y toma la decision de cuanto apuesta y que cartas cambiar
-int checarManoPC (carta mano[], int descarte[])
+int checarManoPC (jugador hp)
 {
     int porcentaje = 0;
     int i, j;
@@ -341,7 +341,7 @@ int checarManoPC (carta mano[], int descarte[])
     //Busca si hay comodines
     for (i = 0; i < 5; i++)
     {
-        if (mano[i].tipo == COMODIN)
+        if (hp.mano[i].tipo == COMODIN)
         {
             comodines++;
         }
@@ -355,7 +355,7 @@ int checarManoPC (carta mano[], int descarte[])
     {
         for (j = i+1; j < 5; j++)
         {
-            if (mano[i].tipo == mano[j].tipo && mano[i].tipo != COMODIN)
+            if (hp.mano[i].tipo == hp.mano[j].tipo && hp.mano[i].tipo != COMODIN)
                 tipo++;
         }
 
@@ -363,7 +363,7 @@ int checarManoPC (carta mano[], int descarte[])
         {
             tp = tipo;
             tipo = 0;
-            palo = mano[i].tipo;
+            palo = hp.mano[i].tipo;
         }
     }
     tp++;
@@ -373,17 +373,23 @@ int checarManoPC (carta mano[], int descarte[])
 
     //-------------------------------------
     printf("\nEscalera real:\n");
-    porcentaje = probarEscaleraReal(mano, descarte, palo, comodines);
+    porcentaje = probarEscaleraReal(hp.mano, hp.cambio, palo, comodines);
     printf("%d\n\n", porcentaje);
-    porcentaje = comprobarEscaleraReal(mano, palo, comodines);
+    porcentaje = comprobarEscaleraReal(hp.mano, palo, comodines);
     if (porcentaje > 0)
         printf("Hay una escalera real(Carta alta: %d)\n", porcentaje);
     printf("Escalera de color:\n");
-    porcentaje = probarEscaleraColor(mano, descarte, palo, comodines);
+    porcentaje = probarEscaleraColor(hp.mano, hp.cambio, palo, comodines);
     printf("%d\n\n", porcentaje);
-    porcentaje = comprobarEscaleraColor(mano, palo, comodines);
+    porcentaje = comprobarEscaleraColor(hp.mano, palo, comodines);
     if (porcentaje > 0)
         printf("Hay una escalera de color(Carta alta: %d)\n", porcentaje);
+    printf("Par(es):\n");
+    probarPar(hp.mano, hp.cambio);
+    porcentaje = comprobarPares(hp.mano, hp.pares, comodines);
+    printf("Pares: %d\n\n", porcentaje);
+    if (porcentaje > 0)
+        printf("Hay par(es): %d %d\n", hp.pares[0], hp.pares[1]);
     //--------------------------------------
 
     //Busca si es posible que pueda realizar una apuesta
@@ -618,5 +624,129 @@ int comprobarEscaleraColor (carta mano[], char tipo, int comodines)
 
     //Regresa la carta más alta
     return ideal[4];
+}
+
+//Función que cual es la carta mas alta de la mano (sin contar los comodines) regresando el id de la carta
+int cartaMasAlta (carta mano[])
+{
+    int i;
+    int lugar = 0;
+    int alta;
+
+    alta = mano[0].valor;
+    for (i = 1; i < 5; i++)
+    {
+        if (mano[i].valor > alta)
+        {
+           alta = mano[i].valor;
+           lugar = i;
+        }
+    }
+
+    return mano[lugar].id;
+}
+
+//En caso de no tener ninguna jugada, checa la carta más alta y reemplaza las demás para buscar formar un par
+void probarPar (carta mano[], int posiciones[])
+{
+    int i;
+    int id;
+
+    //Ordena la mano por valor para poder analizarla
+    ordenarCartas(mano, 5, 1);
+
+    //Inicializa las cartas a descartar en -1
+    inicioDescarte(posiciones);
+
+    //Saca el ID de la carta más alta
+    id = cartaMasAlta(mano);
+
+    //Define que carta es la que no se va a cambiar
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].id == id)
+            posiciones[i] = 0;
+    }
+
+    for (i = 0; i < 5; i++)
+        printf("%d ", posiciones[i]);
+    printf("\n");
+
+    return;
+}
+
+//Checa cuantos pares contiene la mano, los registra en un arreglo pedido en un parámetro y regresa la cantidad de pares que tiene
+int comprobarPares (carta mano[], int pares[], int comodines)
+{
+    int n = 0;
+    int i, j;
+    int par = 0;
+    int numero;
+
+    //Inicia el arreglo pares en 0
+    for (i = 0; i < 2; i++)
+        pares[i] = 0;
+
+    //Busca el primer par
+    if (comodines > 0)
+    {
+        numero = cartaMasAlta(mano);
+        for (i = 0; i < 5; i++)
+            if (numero == mano[i].id)
+                pares[0] = mano[i].valor;
+        n++;
+        return n;
+    }
+    else
+    {
+        for (i = 0; i < 5; i++)
+        {
+            for (j = 0; j < 5; j++)
+            {
+                if (mano[i].valor == mano[j].valor)
+                    par++;
+
+                if (par >= 2)
+                {
+                    pares[0] = mano[i].valor;
+                    n++;
+                    break;
+                }
+            }
+
+            if (par >= 2)
+                break;
+            else
+                par = 0;
+        }
+    }
+
+    //Busca el segundo par en la mano
+    par = 0;
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].valor == pares[0])
+            continue;
+
+        for (j = 0; j < 5; j++)
+        {
+            if (mano[i].valor == mano[j].valor)
+                par++;
+
+            if (par >= 2)
+            {
+                pares[1] = mano[i].valor;
+                n++;
+                break;
+            }
+        }
+
+        if (par >= 2)
+            break;
+        else
+            par = 0;
+    }
+
+    return n;
 }
 
