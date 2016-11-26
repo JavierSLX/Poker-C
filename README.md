@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**26/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
+- `int comprobarFullHouse (carta mano[], int comodines)`  
+- `int probarFullHouse (carta mano[], int posiciones[], int comodines)`  
+
 **25/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
 - `int comprobarPoker (carta mano[], int comodines)`  
 - `int probarPoker (carta mano[], int posiciones[], int comodines)`.  
@@ -161,6 +165,9 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int comprobarTrio (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe un trio de cartas.  
 - `int comprobarPoker (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada poker.  
 - `int probarPoker (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
+- `int comprobarFullHouse (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comrpueba si en la mano existe una jugada full.  
+- `int probarFullHouse (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada full y las posiciones de cambio.  
+
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -237,6 +244,12 @@ Comprueba si en la mano existe una jugada poker.
 - `int probarPoker (carta mano[], int posiciones[], int comodines)`.  
 Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
 	+ **CREADA 25/11/16**. Saca cuantas cartas faltan para poder formar una jugada de poker y le registra en el arreglo *posiciones* que cartas son las que se recomienda cambiar. Regresa las cartas que faltan para formar la jugada poker.  
+- `int comprobarFullHouse (carta mano[], int comodines)`.  
+Comprueba si en la mano existe una jugada full.  
+	+ **CREADA 26/11/16**. Verifica que se haya realizado una jugada de full en la mano, en caso de haberlo logrado, regresa el valor de la jugada.
+- `int probarFullHouse (carta mano[], int posiciones[], int comodines)`.  
+Da las cartas faltantes para formar una jugada full y las posiciones de cambio.  
+	+ **CREADA 26/11/16**. Saca cuantas cartas faltan para poder formar una jugada de full y registra en el arreglo *posiciones* que cartas son las que se recomienda cambiar. Regresa las cartas que faltan para formar la jugada full.
 
 ##Principal
 

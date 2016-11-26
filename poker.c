@@ -383,7 +383,7 @@ int checarManoPC (jugador hp)
     printf("%d\n\n", porcentaje);
     porcentaje = comprobarEscaleraColor(hp.mano, palo, comodines);
     if (porcentaje > 0)
-        printf("Hay una escalera de color(Carta alta: %d)\n", porcentaje);*/
+        printf("Hay una escalera de color(Carta alta: %d)\n", porcentaje);
     //-----------------------------------------------------------
     printf("\nPoker:\n");
     porcentaje = probarPoker(hp.mano, hp.cambio, comodines);
@@ -393,7 +393,17 @@ int checarManoPC (jugador hp)
     printf("Cartas faltantes: %d\n", porcentaje);
     porcentaje = comprobarPoker(hp.mano, comodines);
     if (porcentaje > 0)
-        printf("Hay un poker (Carta alta: %d)\n", porcentaje);
+        printf("Hay un poker (Carta alta: %d)\n", porcentaje);*/
+    //-----------------------------------------------------------
+    printf("\nFull:\n");
+    porcentaje = probarFullHouse(hp.mano, hp.cambio, comodines);
+    for (i = 0; i < 5; i++)
+        printf("%d ", hp.cambio[i]);
+    printf("\n");
+    printf("Cartas faltantes: %d\n", porcentaje);
+    porcentaje = comprobarFullHouse(hp.mano, comodines);
+    if (porcentaje > 0)
+        printf("Hay un Full (Carta alta: %d)\n", porcentaje);
     //-----------------------------------------------------------
     /*printf("Trio:\n");
     porcentaje = probarTrio(hp.mano, hp.cambio, comodines);
@@ -1070,5 +1080,155 @@ int probarPoker (carta mano[], int posiciones[], int comodines)
     }
 
     return n;
+}
+
+//Checa si existe full en la mano y regresa su valor (el del trio) en caso de existir
+int comprobarFullHouse (carta mano[], int comodines)
+{
+    int i;
+    int valor = 0;
+    int par = 0;
+    int trio = 0;
+    int pares[2];
+    int alta;
+
+    switch (comodines)
+    {
+        case 2:
+            par = comprobarPares(mano, pares, 0);
+
+            if (par > 0)
+            {
+                alta = pares[0];
+                for (i = 0; i < 5; i++)
+                    if (mano[i].valor > alta)
+                        alta = mano[i].valor;
+
+                if (alta > pares[0])
+                    valor = alta;
+                else
+                    valor = pares[0];
+            }
+            else
+            {
+                trio = comprobarTrio(mano, 0);
+
+                if (trio > 0)
+                    valor = trio;
+            }
+            break;
+        case 1:
+            par = comprobarPares(mano, pares, 0);
+
+            if (par > 1)
+            {
+                if (pares[0] > pares[1])
+                    valor = pares[0];
+                else
+                    valor = pares[1];
+            }
+            else
+            {
+                trio = comprobarTrio(mano, 0);
+
+                if (trio > 0)
+                    valor = trio;
+            }
+            break;
+        default:
+            par = comprobarPares(mano, pares, 0);
+
+            if (pares[0] > 0 && pares[1] > 0)
+            {
+                trio = comprobarTrio(mano, 0);
+
+                if (trio > 0)
+                    valor = trio;
+            }
+    }
+
+    return valor;
+}
+
+//Comprueba que cartas hay que cambiar en caso de que sea posible formar un full (regresa n cantidad de cartas necesarias y un arreglo con las posiciones)
+int probarFullHouse (carta mano[], int posiciones[], int comodines)
+{
+    int i;
+    int valor = 0;
+    int alta;
+    int par;
+    int pares[2] = {0};
+    int trio;
+    int faltantes = 0;
+
+    //Ordena la mano por valor para poder analizarla
+    ordenarCartas(mano, 5, 1);
+
+    //Inicializa las cartas a descartar en -1
+    inicioDescarte(posiciones);
+
+    //Checa si no existe ya un poker en la mano (si lo hay termina la funcion)
+    valor = comprobarFullHouse(mano, comodines);
+
+    if (valor > 0)
+    {
+        for (i = 0; i < 5; i++)
+            posiciones[i] = 0;
+
+        return faltantes;
+    }
+
+    switch (comodines)
+    {
+        case 2:
+            par = comprobarPares(mano, pares, 0);
+
+            for (i = 0; i < 5; i++)
+                if ((mano[i].valor == pares[0]) || (mano[i].valor == pares[1]) || (mano[i].valor == -1))
+                    posiciones[i] = 0;
+
+            if (par > 0)
+                faltantes = 5 - (2 + comodines);
+            else
+                faltantes = 5 - comodines;
+            break;
+        default:
+            trio = comprobarTrio(mano, 0);
+            valor = trio;
+            if (trio == 0)
+            {
+                par = comprobarPares(mano, pares, 0);
+                if (par == 0)
+                {
+                    alta = cartaMasAlta(mano);
+                    for (i = 0; i < 5; i++)
+                        if (mano[i].id == alta)
+                        {
+                            valor = mano[i].valor;
+                            break;
+                        }
+
+                    faltantes = 5 - (1 + comodines);
+                }
+                else
+                {
+                    faltantes = 5 - (2 + comodines);
+                }
+            }
+            else
+            {
+                for (i = 0; i < 5; i++)
+                    if (mano[i].valor == trio)
+                        posiciones[i] = 0;
+                faltantes = 5 - (3 + comodines);
+            }
+
+            for (i = 0; i < 5; i++)
+                if ((mano[i].valor == pares[0]) || (mano[i].valor == pares[1]) || (mano[i].valor == -1))
+                    posiciones[i] = 0;
+    }
+
+
+    return faltantes;
 }
 
