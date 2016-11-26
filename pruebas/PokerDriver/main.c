@@ -5,7 +5,7 @@ int main()
     /*pruebaQuitarJokers();
     pruebaRepartirMano();
     driverRepartirMano();
-    pruebaImprimirMano();*/
-    pruebaGeneralManos();
+    pruebaImprimirMano();
+    pruebaGeneralManos();*/
     return 0;
 }

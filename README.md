@@ -4,6 +4,10 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 
 ##Actualizaciones
 **26/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
+- `int comprobarEscalera(carta mano[], int comodines)`  
+- `int probarEscalera (carta mano[], int posiciones[], int comodines)`  
+
+**26/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
 - `int contarComodines (carta mano[])`  
 - `int checarRepeticionTipo (carta mano[], char *tipo)`  
 - `int comprobarColor (carta mano[], int comodines)`  
@@ -158,26 +162,27 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `void borde(int n)` **(NO PROBADA ✘)**. Imprime un par de líneas que simula un borde.  
 - `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)` **(NO PROBADA ✘)**. Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
 - `int apostar(int *fondo, int *apuesta, int *total)` **(NO PROBADA ✘)**. Registra la apuesta del jugador (humano).  
+- `void inicioDescarte(int a[])` **(NO PROBADA ✘)**. Inicializa un arreglo de 5 elementos a -1.  
+- `int contarComodines (carta mano[])` **(NO PROBADA ✘)**. Cuenta los comodines existentes en la mano.  
+- `int checarRepeticionTipo (carta mano[], char *tipo)` **(NO PROBADA ✘)**. Cuenta cuantas cartas son repetidas en cuanto a tipo (espadas, tréboles, corazones y rombos).  
+- `int cartaMasAlta (carta mano[])` **(NO PROBADA ✘)**. Obtiene el ID de la carta más alta que se encuentra en la mano.   
+- `int comprobarPares (carta mano[], int pares[], int comodines)` **(NO PROBADA ✘)**. Comprueba si hay 1 o 2 pares en la mano.  
+- `void probarPar (carta mano[], int posiciones[])` **(NO PROBADA ✘)**. Da las 4 cartas que se deben cambiar para obtener mínimo un par.  
+- `int comprobarTrio (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe un trio de cartas.  
+- `int probarTrio (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
+- `int comprobarEscalera(carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada escalera.     
+- `int probarEscalera (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada escalera y las posiciones de cambio.   
+- `int comprobarColor (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada color.     
+- `int probarColor (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada color y las posiciones de cambio.  
+- `int comprobarFullHouse (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada full.  
+- `int probarFullHouse (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada full y las posiciones de cambio.  
+- `int comprobarPoker (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada poker.  
+- `int probarPoker (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
 - `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)` **(NO PROBADA ✘)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da las posiciones de dichas cartas.  
 - `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` **(NO PROBADA ✘)**. Checa si existe una escalera de color en la mano del jugador.  
-- `void inicioDescarte(int a[])` **(NO PROBADA ✘)**. Inicializa un arreglo de 5 elementos a -1.  
 - `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)` **(NO PROBADA ✘)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da las posiciones de dichas cartas.  
 - `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` **(NO PROBADA ✘)**. Checa si existe una escalera real en la mano del jugador.  
 - `int checarManoPC (jugador hp)` **(NO PROBADA ✘)**. Permite checar las posibles jugadas de la computadora.  
-- `int cartaMasAlta (carta mano[])` **(NO PROBADA ✘)**. Obtiene el ID de la carta más alta que se encuentra en la mano.   
-- `void probarPar (carta mano[], int posiciones[])` **(NO PROBADA ✘)**. Da las 4 cartas que se deben cambiar para obtener mínimo un par.    
-- `int comprobarPares (carta mano[], int pares[], int comodines)` **(NO PROBADA ✘)**. Comprueba si hay 1 o 2 pares en la mano.  
-- `int probarTrio (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
-- `int comprobarTrio (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe un trio de cartas.  
-- `int comprobarPoker (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada poker.  
-- `int probarPoker (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
-- `int comprobarFullHouse (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada full.  
-- `int probarFullHouse (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada full y las posiciones de cambio.  
-- `int contarComodines (carta mano[])` **(NO PROBADA ✘)**. Cuenta los comodines existentes en la mano.   
-- `int checarRepeticionTipo (carta mano[], char *tipo)` **(NO PROBADA ✘)**. Cuenta cuantas cartas son repetidas en cuanto a tipo (espadas, tréboles, corazones y rombos).  
-- `int comprobarColor (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada color.     
-- `int probarColor (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada color y las posiciones de cambio.  
-
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -271,7 +276,13 @@ Comprueba si en la mano existe una jugada color.
 	+ **CREADA 26/11/16**. Verifica que se haya realizado una jugada de color en la mano, en caso de haberlo logrado, regresa el valor de la jugada.    
 - `int probarColor (carta mano[], int posiciones[], int comodines)`.  
 Da las cartas faltantes para formar una jugada color y las posiciones de cambio.  
-	+ + **CREADA 26/11/16**. Saca cuantas cartas faltan para poder formar una jugada de color y registra en el arreglo *posiciones* que cartas son las que se recomienda cambiar. Regresa las cartas que faltan para formar la jugada color.  
+	+ **CREADA 26/11/16**. Saca cuantas cartas faltan para poder formar una jugada de color y registra en el arreglo *posiciones* que cartas son las que se recomienda cambiar. Regresa las cartas que faltan para formar la jugada color.  
+- `int comprobarEscalera(carta mano[], int comodines)`.  
+Comprueba si en la mano existe una jugada escalera.     
+	+ **CREADA 26/11/16**. Verifica que se haya realizado una jugada de escalera en la mano, en caso de haberlo logrado, regresa el valor de la jugada.
+- `int probarEscalera (carta mano[], int posiciones[], int comodines)`.  
+Da las cartas faltantes para formar una jugada escalera y las posiciones de cambio.  
+	+ **CREADA 26/11/16**. Saca cuantas cartas faltan para poder formar una jugada de escalera y registra en el arreglo *posiciones* que cartas son las que se recomienda cambiar. Regresa las cartas que faltan para formar la jugada escalera.  
 
 ##Principal
 

@@ -11,7 +11,7 @@ typedef struct
     int fondo;
     int cambio[5];
     int pares[2];
-    int ventaja[13];
+    int ventaja[10];
 
 }jugador;
 
@@ -29,24 +29,23 @@ int apostar(int *fondo, int *apuesta, int *total);
 void inicioDescarte(int a[]);
 int contarComodines (carta mano[]);
 int checarRepeticionTipo (carta mano[], char *tipo);
-
-int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines);
-int comprobarEscaleraReal (carta mano[], char tipo, int comodines);
-int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines);
-int comprobarEscaleraColor (carta mano[], char tipo, int comodines);
-int checarManoPC (jugador hp);
-
 int cartaMasAlta (carta mano[]);
-void probarPar (carta mano[], int posiciones[]);
 int comprobarPares (carta mano[], int pares[], int comodines);
-int probarTrio (carta mano[], int posiciones[], int comodines);
+void probarPar (carta mano[], int posiciones[]);
 int comprobarTrio (carta mano[], int comodines);
-int comprobarPoker (carta mano[], int comodines);
-int probarPoker (carta mano[], int posiciones[], int comodines);
-int comprobarFullHouse (carta mano[], int comodines);
-int probarFullHouse (carta mano[], int posiciones[], int comodines);
+int probarTrio (carta mano[], int posiciones[], int comodines);
+int comprobarEscalera(carta mano[], int comodines);
+int probarEscalera (carta mano[], int posiciones[], int comodines);
 int comprobarColor (carta mano[], int comodines);
 int probarColor (carta mano[], int posiciones[], int comodines);
-
+int comprobarFullHouse (carta mano[], int comodines);
+int probarFullHouse (carta mano[], int posiciones[], int comodines);
+int comprobarPoker (carta mano[], int comodines);
+int probarPoker (carta mano[], int posiciones[], int comodines);
+int comprobarEscaleraColor (carta mano[], char tipo, int comodines);
+int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines);
+int comprobarEscaleraReal (carta mano[], char tipo, int comodines);
+int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines);
+int checarManoPC (jugador hp);
 
 #endif
