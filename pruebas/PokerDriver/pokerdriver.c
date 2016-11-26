@@ -151,33 +151,33 @@ void pruebaGeneralManos(void)
     jugador humano;
 
     prueba.mano[0].id = 1;
-    prueba.mano[0].numero = 2;
-    prueba.mano[0].tipo = ESPADA;
-    prueba.mano[0].valor = 2;
-    prueba.mano[0].color = NEGRO;
+    prueba.mano[0].numero = -1;
+    prueba.mano[0].tipo = COMODIN;
+    prueba.mano[0].valor = -1;
+    prueba.mano[0].color = SN;
 
     prueba.mano[1].id = 2;
-    prueba.mano[1].numero = 1;
-    prueba.mano[1].tipo = ESPADA;
-    prueba.mano[1].valor = 14;
+    prueba.mano[1].numero = 7;
+    prueba.mano[1].tipo = TREBOL;
+    prueba.mano[1].valor = 7;
     prueba.mano[1].color = NEGRO;
 
     prueba.mano[2].id = 3;
-    prueba.mano[2].numero = 1;
-    prueba.mano[2].tipo = TREBOL;
-    prueba.mano[2].valor = 14;
-    prueba.mano[2].color = NEGRO;
+    prueba.mano[2].numero = -1;
+    prueba.mano[2].tipo = COMODIN;
+    prueba.mano[2].valor = -1;
+    prueba.mano[2].color = SN;
 
     prueba.mano[3].id = 4;
-    prueba.mano[3].numero = 1;
-    prueba.mano[3].tipo = CORAZON;
-    prueba.mano[3].valor = 14;
-    prueba.mano[3].color = ROJO;
+    prueba.mano[3].numero = 10;
+    prueba.mano[3].tipo = ESPADA;
+    prueba.mano[3].valor = 10;
+    prueba.mano[3].color = NEGRO;
 
     prueba.mano[4].id = 12;
-    prueba.mano[4].numero = 1;
-    prueba.mano[4].tipo = ROMBO;
-    prueba.mano[4].valor = 14;
+    prueba.mano[4].numero = 12;
+    prueba.mano[4].tipo = CORAZON;
+    prueba.mano[4].valor = 12;
     prueba.mano[4].color = ROJO;
 
     //Crea la baraja
@@ -201,13 +201,13 @@ void pruebaGeneralManos(void)
 
     //Imprime el tablero
     borde(80);
-    //datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
-    datos(prueba.mano, 1, prueba.fondo, prueba.apuesta, 0);
+    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    //datos(prueba.mano, 1, prueba.fondo, prueba.apuesta, 0);
     borde(80);
 
     //Pruebas las manos que pueden ser obtenidas
-    checarManoPC(prueba);
-    //checarManoPC(humano);
+    //checarManoPC(prueba);
+    checarManoPC(humano);
 
 
     liberarMemoria(baraja, 54);

@@ -27,6 +27,8 @@ void borde(int n);
 void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto);
 int apostar(int *fondo, int *apuesta, int *total);
 void inicioDescarte(int a[]);
+int contarComodines (carta mano[]);
+int checarRepeticionTipo (carta mano[], char *tipo);
 
 int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines);
 int comprobarEscaleraReal (carta mano[], char tipo, int comodines);
@@ -43,6 +45,8 @@ int comprobarPoker (carta mano[], int comodines);
 int probarPoker (carta mano[], int posiciones[], int comodines);
 int comprobarFullHouse (carta mano[], int comodines);
 int probarFullHouse (carta mano[], int posiciones[], int comodines);
+int comprobarColor (carta mano[], int comodines);
+int probarColor (carta mano[], int posiciones[], int comodines);
 
 
 #endif

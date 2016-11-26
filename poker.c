@@ -332,41 +332,19 @@ void inicioDescarte(int a[])
 int checarManoPC (jugador hp)
 {
     int porcentaje = 0;
-    int i, j;
-    int tipo = 0;
+    int i;
     int comodines = 0;
     int tp = 0;
     char palo = 'N';
 
     //Busca si hay comodines
-    for (i = 0; i < 5; i++)
-    {
-        if (hp.mano[i].valor == -1)
-        {
-            comodines++;
-        }
-    }
+    comodines = contarComodines (hp.mano);
+
     printf("\nDATOS BASICOS\n");
     printf("Comodines: %d\n", comodines);
 
     //Busca si la mano tiene cartas del mismo tipo
-    tipo = 0;
-    for (i = 0; i < 4; i++)
-    {
-        for (j = i+1; j < 5; j++)
-        {
-            if (hp.mano[i].tipo == hp.mano[j].tipo && hp.mano[i].tipo != COMODIN)
-                tipo++;
-        }
-
-        if (tipo > tp)
-        {
-            tp = tipo;
-            tipo = 0;
-            palo = hp.mano[i].tipo;
-        }
-    }
-    tp++;
+    tp = checarRepeticionTipo (hp.mano, &palo);
 
     //Datos que comprueban la mano
     printf("Tipo repetido %c en %d\n", palo, tp);
@@ -393,7 +371,7 @@ int checarManoPC (jugador hp)
     printf("Cartas faltantes: %d\n", porcentaje);
     porcentaje = comprobarPoker(hp.mano, comodines);
     if (porcentaje > 0)
-        printf("Hay un poker (Carta alta: %d)\n", porcentaje);*/
+        printf("Hay un poker (Carta alta: %d)\n", porcentaje);
     //-----------------------------------------------------------
     printf("\nFull:\n");
     porcentaje = probarFullHouse(hp.mano, hp.cambio, comodines);
@@ -403,7 +381,17 @@ int checarManoPC (jugador hp)
     printf("Cartas faltantes: %d\n", porcentaje);
     porcentaje = comprobarFullHouse(hp.mano, comodines);
     if (porcentaje > 0)
-        printf("Hay un Full (Carta alta: %d)\n", porcentaje);
+        printf("Hay un Full (Carta alta: %d)\n", porcentaje);*/
+    //-----------------------------------------------------------
+    printf("\nColor:\n");
+    porcentaje = probarColor(hp.mano, hp.cambio, comodines);
+    for (i = 0; i < 5; i++)
+        printf("%d ", hp.cambio[i]);
+    printf("\n");
+    printf("Cartas faltantes: %d\n", porcentaje);
+    porcentaje = comprobarColor (hp.mano, comodines);
+    if (porcentaje > 0)
+        printf("Hay un Color (Carta alta: %d)\n", porcentaje);
     //-----------------------------------------------------------
     /*printf("Trio:\n");
     porcentaje = probarTrio(hp.mano, hp.cambio, comodines);
@@ -1230,5 +1218,128 @@ int probarFullHouse (carta mano[], int posiciones[], int comodines)
 
 
     return faltantes;
+}
+
+//Regresa la cantidad de comodines que tiene la mano
+int contarComodines (carta mano[])
+{
+    int n = 0;
+    int i;
+
+    for (i = 0; i < 5; i++)
+        if (mano[i].valor == -1)
+            n++;
+
+    return n;
+}
+
+//Checa si la mano tiene un tipo repetido (regresa la cantidad de repeticiones y por referencia el tipo que se repite)
+int checarRepeticionTipo (carta mano[], char *tipo)
+{
+    int n = 0;
+    int i, j;
+    int cont;
+
+    for (i = 0; i < 4; i++)
+    {
+        cont = 0;
+        for (j = i+1; j < 5; j++)
+        {
+            if (mano[i].tipo == mano[j].tipo && mano[i].tipo != COMODIN)
+                cont++;
+        }
+
+        if (cont > n)
+        {
+            n = cont;
+            *tipo = mano[i].tipo;
+        }
+    }
+    n++;
+
+    return n;
+}
+
+//Checa si existe la jugada color en la mano y regresa su valor (la carta más alta) en caso de existir
+int comprobarColor (carta mano[], int comodines)
+{
+    int i;
+    int id;
+    char tipo = 'A';
+    int cont;
+    int valor = 0;
+
+    cont = checarRepeticionTipo(mano, &tipo);
+
+    if (comodines > 0)
+        cont += comodines;
+
+    if (cont > 4)
+    {
+        if (comodines > 0)
+            valor = 14;
+        else
+        {
+            id = cartaMasAlta(mano);
+            for (i < 0; i < 5; i++)
+                if (mano[i].id == id)
+                {
+                    valor = mano[i].valor;
+                    break;
+                }
+        }
+    }
+
+    return valor;
+}
+
+//Comprueba que cartas hay que cambiar en caso de que sea posible formar un color (regresa n cantidad de cartas necesarias y un arreglo con las posiciones)
+int probarColor (carta mano[], int posiciones[], int comodines)
+{
+    int i;
+    int id;
+    int cantidad = 0;
+    char tipo = 'A';
+    int n = 0;
+
+    //Ordena la mano por valor para poder analizarla
+    ordenarCartas(mano, 5, 1);
+
+    //Inicializa las cartas a descartar en -1
+    inicioDescarte(posiciones);
+
+    //Checa si no existe ya un color en la mano (si lo hay termina la funcion)
+    id = comprobarColor(mano, comodines);
+
+    if (id > 0)
+    {
+        for (i = 0; i < 5; i++)
+            posiciones[i] = 0;
+
+        return cantidad;
+    }
+
+    //Checa las cartas que hacen falta
+    n = checarRepeticionTipo(mano, &tipo);
+
+    if (n < 2)
+    {
+        id = cartaMasAlta(mano);
+        for (i = 0; i < 5; i++)
+            if (mano[i].id == id || mano[i].valor == -1)
+                posiciones[i] = 0;
+
+        cantidad += 5 - (comodines + 1);
+    }
+    else
+    {
+        for (i = 0; i < 5; i++)
+            if (mano[i].tipo == tipo || mano[i].valor == -1)
+                posiciones[i] = 0;
+
+        cantidad += 5 - (comodines + n);
+    }
+
+    return cantidad;
 }
 
