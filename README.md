@@ -4,6 +4,10 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 
 ##Actualizaciones
 **25/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
+- `int comprobarPoker (carta mano[], int comodines)`  
+- `int probarPoker (carta mano[], int posiciones[], int comodines)`.  
+
+**25/Nov/16**. Se crearon las siguientes funciones (sin probar aún):  
 - `int probarTrio (carta mano[], int posiciones[], int comodines)`  
 - `int comprobarTrio (carta mano[], int comodines)`.  
 
@@ -154,7 +158,9 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `void probarPar (carta mano[], int posiciones[])` **(NO PROBADA ✘)**. Da las 4 cartas que se deben cambiar para obtener mínimo un par.    
 - `int comprobarPares (carta mano[], int pares[], int comodines)` **(NO PROBADA ✘)**. Comprueba si hay 1 o 2 pares en la mano.  
 - `int probarTrio (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
-- `int comprobarTrio (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe un trio de cartas.
+- `int comprobarTrio (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe un trio de cartas.  
+- `int comprobarPoker (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada poker.  
+- `int probarPoker (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
@@ -224,7 +230,13 @@ Da las cartas faltantes para formar un trío, y las posiciones de cambio.
 	+ **CREADA 25/11/16**. Saca cuantas cartas son necesarias para formar un posible trío en la mano y las posiciones de las cartas a cambiar para poder formarse. Regresa la cantidad de cartas que son necesarias. En caso de faltar todas las cartas, regresa que debe descartar toda la mano.  
 - `int comprobarTrio (carta mano[], int comodines)`.  
 Comprueba si en la mano existe un trio de cartas.  
-	+ **CREADA 25/11/16**. Verifica que se haya formado un trío en la mano, de haberlo hecho, regresa el valor de la jugada.
+	+ **CREADA 25/11/16**. Verifica que se haya formado un trío en la mano, de haberlo hecho, regresa el valor de la jugada.  
+- `int comprobarPoker (carta mano[], int comodines)`.  
+Comprueba si en la mano existe una jugada poker.  
+	+ **CREADA 25/11/16**. Verifica que se haya realizado una jugada de poker en la mano, en caso de haberlo logrado, regresa el valor de la jugada.
+- `int probarPoker (carta mano[], int posiciones[], int comodines)`.  
+Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
+	+ **CREADA 25/11/16**. Saca cuantas cartas faltan para poder formar una jugada de poker y le registra en el arreglo *posiciones* que cartas son las que se recomienda cambiar. Regresa las cartas que faltan para formar la jugada poker.  
 
 ##Principal
 

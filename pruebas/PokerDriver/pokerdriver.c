@@ -151,33 +151,33 @@ void pruebaGeneralManos(void)
     jugador humano;
 
     prueba.mano[0].id = 1;
-    prueba.mano[0].numero = 11;
+    prueba.mano[0].numero = -1;
     prueba.mano[0].tipo = TREBOL;
-    prueba.mano[0].valor = 11;
+    prueba.mano[0].valor = -1;
     prueba.mano[0].color = NEGRO;
 
     prueba.mano[1].id = 2;
-    prueba.mano[1].numero = 10;
+    prueba.mano[1].numero = 9;
     prueba.mano[1].tipo = ROMBO;
-    prueba.mano[1].valor = 10;
+    prueba.mano[1].valor = 9;
     prueba.mano[1].color = ROJO;
 
     prueba.mano[2].id = 3;
-    prueba.mano[2].numero = 13;
+    prueba.mano[2].numero = 9;
     prueba.mano[2].tipo = TREBOL;
-    prueba.mano[2].valor = 13;
+    prueba.mano[2].valor = 9;
     prueba.mano[2].color = NEGRO;
 
     prueba.mano[3].id = 4;
-    prueba.mano[3].numero = 12;
+    prueba.mano[3].numero = 7;
     prueba.mano[3].tipo = CORAZON;
-    prueba.mano[3].valor = 12;
+    prueba.mano[3].valor = 7;
     prueba.mano[3].color = ROJO;
 
     prueba.mano[4].id = 12;
-    prueba.mano[4].numero = 12;
+    prueba.mano[4].numero = 8;
     prueba.mano[4].tipo = ESPADA;
-    prueba.mano[4].valor = 12;
+    prueba.mano[4].valor = 8;
     prueba.mano[4].color = NEGRO;
 
     //Crea la baraja

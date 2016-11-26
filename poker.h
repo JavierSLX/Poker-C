@@ -39,6 +39,8 @@ void probarPar (carta mano[], int posiciones[]);
 int comprobarPares (carta mano[], int pares[], int comodines);
 int probarTrio (carta mano[], int posiciones[], int comodines);
 int comprobarTrio (carta mano[], int comodines);
+int comprobarPoker (carta mano[], int comodines);
+int probarPoker (carta mano[], int posiciones[], int comodines);
 
 
 #endif
