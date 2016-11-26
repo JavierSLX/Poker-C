@@ -37,6 +37,8 @@ int checarManoPC (jugador hp);
 int cartaMasAlta (carta mano[]);
 void probarPar (carta mano[], int posiciones[]);
 int comprobarPares (carta mano[], int pares[], int comodines);
+int probarTrio (carta mano[], int posiciones[], int comodines);
+int comprobarTrio (carta mano[], int comodines);
 
 
 #endif
