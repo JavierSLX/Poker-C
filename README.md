@@ -3,7 +3,11 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
-**26/Nov/16**. Se realizó la primera revisión informal (se puede checar en `/revisiones/Informales/1ra Revisión.md`. Se realizaron las pruebas de la función `void asignarValor(carta baraja[], int length)` los resultados pueden observarse en `/pruebas/poker/asignarValor`.  
+**26/Nov/16**. Se realizaron las pruebas de la función `void ordenarCartas(carta monton[], int length, int v)` los resultados pueden observarse en `/pruebas/poker/ordenarCartas/`.  
+
+![pOC](./pruebas/poker/ordenarCartas/images/pruebaOrdenarCartas.png)  
+
+**26/Nov/16**. Se realizó la primera revisión informal (se puede checar en `/revisiones/Informales/1ra Revisión.md`). Se realizaron las pruebas de la función `void asignarValor(carta baraja[], int length)` los resultados pueden observarse en `/pruebas/poker/asignarValor/`.  
 
 ![pAV](./pruebas/poker/asignarValor/images/pruebaAsignarValor.png)  
 
@@ -159,7 +163,7 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)` **(PROBADA ✔)**. Toma del arreglo baraja cinco cartas para darle a cada jugador.
 - `void imprimirMano(carta mano[])` **(PROBADA ✔)**. Imprime la mano que tiene el jugador.  
 - `void asignarValor(carta baraja[], int length)` **(PROBADA ✔)**. Define el valor de las cartas a este juego en específico.  
-- `void ordenarCartas(carta monton[], int length)` **(NO PROBADA ✘)**. Ordena las cartas de acuerdo al tipo y al valor de la carta para hacer un poco más visible la mano.  
+- `void ordenarCartas(carta monton[], int length)` **(PROBADA ✔)**. Ordena las cartas de acuerdo al tipo y al valor de la carta para hacer un poco más visible la mano.  
 - `int prioridadTipo(char tipo)` **(NO PROBADA ✘)**. Auxilia a la función `void ordenarCartas(carta monton[], int length)`. 
 - `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)` **(NO PROBADA ✘)**. Permite sacar una carta de la baraja y la reemplaza por la carta que se le indique.  
 - `int cambios(carta baraja[], carta mano[], int *carry, int max)` **(NO PROBADA ✘)**. Realiza los cambios de cartas de los jugadores.  
@@ -296,7 +300,9 @@ Da las cartas faltantes para formar una jugada escalera y las posiciones de camb
 ##Pruebas
 ***ERRORES CORREGIDOS: 3*** 
 
-- **26/11/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `void asignarValor(carta baraja[], int length)` los resultados pueden observarse en `/pruebas/poker/asignarValor`. 
+- **26/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `void ordenarCartas(carta monton[], int length, int v)` los resultados pueden observarse en `/pruebas/poker/ordenarCartas/`.  
+
+- **26/11/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `void asignarValor(carta baraja[], int length)` los resultados pueden observarse en `/pruebas/poker/asignarValor/`. 
 
 - **10/11/16**. Se usó el archivo *driver_poker.c* para realizar las distintas pruebas de la función `void imprimirMano(carta mano[])`. Los resultados de la prueba se pueden observar en la respectiva carpeta (`/pruebas/poker/imprimirMano`).  
 

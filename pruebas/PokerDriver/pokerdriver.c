@@ -232,3 +232,23 @@ void pruebaAsignarValor(void)
     return;
 }
 
+void pruebaOrdenarCartas(void)
+{
+    int i;
+    carta baraja[54];
+    int carry;
+    carta mano[5];
+
+    for (i = 0; i < N; i++)
+    {
+        carry = 0;
+        crearBaraja(baraja);
+        barajear(baraja);
+        repartirMano(baraja, mano, 5, &carry, 54);
+        ordenarCartas(mano, 5, i%2);
+        liberarMemoria(baraja, 54);
+    }
+
+    printf("Se ordenaron %d manos distintas de manera satisfactoria\n", N);
+}
+
