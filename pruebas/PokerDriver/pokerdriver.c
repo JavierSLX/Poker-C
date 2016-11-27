@@ -213,3 +213,22 @@ void pruebaGeneralManos(void)
     liberarMemoria(baraja, 54);
     return;
 }
+
+void pruebaAsignarValor(void)
+{
+    int i;
+    carta baraja[54];
+
+    for (i = 0; i < N; i++)
+    {
+        crearBaraja(baraja);
+        barajear(baraja);
+        asignarValor(baraja, 54);
+
+        liberarMemoria(baraja, 54);
+    }
+
+    printf("Se asigno valores a %d barajas de manera correcta!\n", N);
+    return;
+}
+

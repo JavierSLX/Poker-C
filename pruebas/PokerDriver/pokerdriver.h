@@ -11,5 +11,6 @@ void pruebaRepartirMano(void);
 void driverRepartirMano(void);
 void pruebaImprimirMano(void);
 void pruebaGeneralManos(void);
+void pruebaAsignarValor(void);
 
 #endif
