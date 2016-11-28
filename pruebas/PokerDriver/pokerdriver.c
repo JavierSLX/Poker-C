@@ -252,3 +252,27 @@ void pruebaOrdenarCartas(void)
     printf("Se ordenaron %d manos distintas de manera satisfactoria\n", N);
 }
 
+void pruebaSacarCarta(void)
+{
+    int i;
+    carta baraja[54];
+    carta mano[5];
+    int carry;
+
+    for (i = 0; i < N; i++)
+    {
+        carry = 0;
+        crearBaraja(baraja);
+        barajear(baraja);
+        repartirMano(baraja, mano, 5, &carry, 54);
+        //imprimirMano(mano);
+        sacarCarta(baraja, mano, 0, &carry, 54);
+        //imprimirMano(mano);
+        liberarMemoria(baraja, 54);
+    }
+
+    printf("Se sacaron %d cartas de manera exitosa!\n", N);
+
+    return;
+}
+

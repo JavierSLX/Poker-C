@@ -21,7 +21,7 @@ void imprimirMano(carta mano[]);
 void asignarValor(carta baraja[], int length);
 void ordenarCartas(carta monton[], int length, int v);
 int prioridadTipo(char tipo);
-int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max);
+int sacarCarta(carta baraja[], carta mano[], int posicion, int *carry, int max);
 int cambios(carta baraja[], carta mano[], int *carry, int max);
 void borde(int n);
 void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto);

@@ -155,15 +155,15 @@ int prioridadTipo (char tipo)
     return valor;
 }
 
-//Reemplaza una carta por otra que se saca de la baraja
-int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)
+//Reemplaza una carta por otra que se saca de la baraja (la posicion va de 0 a 4 en una mano normal)
+int sacarCarta(carta baraja[], carta mano[], int posicion, int *carry, int max)
 {
-    if (carry + 1 > max)
+    if (*carry + 1 > max)
         return 1;
 
-    mano[posicion] = baraja[carry];
+    mano[posicion] = baraja[*carry];
 
-    carry++;
+    *carry += 1;
 
     return 0;
 }
@@ -227,7 +227,7 @@ int cambios(carta baraja[], carta mano[], int *carry, int max)
             imprimirElementoCarta(mano[p-1], 2);
             printf(" %c %s -----> ", mano[p-1].tipo, mano[p-1].color);
 
-            error = sacarCarta(baraja, mano, p-1, *carry, max);
+            error = sacarCarta(baraja, mano, p-1, carry, max);
 
             if (error > 0)
                 return 1;

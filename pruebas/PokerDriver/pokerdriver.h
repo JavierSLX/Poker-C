@@ -13,5 +13,6 @@ void pruebaImprimirMano(void);
 void pruebaGeneralManos(void);
 void pruebaAsignarValor(void);
 void pruebaOrdenarCartas(void);
+void pruebaSacarCarta(void);
 
 #endif

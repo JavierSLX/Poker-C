@@ -7,7 +7,8 @@ int main()
     driverRepartirMano();
     pruebaImprimirMano();
     pruebaGeneralManos();
-    pruebaAsignarValor();*/
-    pruebaOrdenarCartas();
+    pruebaAsignarValor();
+    pruebaOrdenarCartas();*/
+    pruebaSacarCarta();
     return 0;
 }
