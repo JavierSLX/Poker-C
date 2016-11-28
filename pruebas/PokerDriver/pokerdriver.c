@@ -276,3 +276,29 @@ void pruebaSacarCarta(void)
     return;
 }
 
+void pruebaCambios(void)
+{
+    int cont = 0;
+    int carry = 0;
+    carta baraja[54];
+    carta mano[5];
+
+    crearBaraja(baraja);
+    barajear(baraja);
+    repartirMano(baraja, mano, 5, &carry, 54);
+
+    do
+    {
+        printf("C: %d\n", carry);
+        cambios(baraja, mano, &carry, 54);
+        cont++;
+        printf("Cont: %d | Carry: %d\n", cont, carry);
+        imprimirMano(mano);
+
+    }while(carry < 54);
+
+    printf("Se hicieron %d cambios satisfactorios con un carry de %d\n", cont, carry);
+    liberarMemoria(baraja, 54);
+    return;
+}
+

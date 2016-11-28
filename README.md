@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**27/Nov/16**. Se realizaron las pruebas de la función `int cambios(carta baraja[], carta mano[], int *carry, int max)` los resultados pueden observarse en `/pruebas/poker/cambios/`. 
+
+![pC](./pruebas/poker/cambios/images/pruebaCambios.png)  
+
 **27/Nov/16**. Se realizaron las pruebas de la función `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)` los resultados pueden observarse en `/pruebas/poker/sacarCarta/`. 
 
 ![pSC](./pruebas/poker/sacarCarta/images/pruebaSacarCarta.png)  
@@ -302,7 +306,9 @@ Da las cartas faltantes para formar una jugada escalera y las posiciones de camb
 - **CREADO 27/10/16**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
-***ERRORES CORREGIDOS: 3***  
+***ERRORES CORREGIDOS: 5***   
+- **27/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int cambios(carta baraja[], carta mano[], int *carry, int max)` los resultados pueden observarse en `/pruebas/poker/cambios/`. Se corrigieron 2 errores de esta función.   
+
 - **27/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)` los resultados pueden observarse en `/pruebas/poker/sacarCarta/`. 
 
 - **26/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `void ordenarCartas(carta monton[], int length, int v)` los resultados pueden observarse en `/pruebas/poker/ordenarCartas/`.  

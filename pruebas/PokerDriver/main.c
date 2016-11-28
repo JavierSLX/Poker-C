@@ -8,7 +8,9 @@ int main()
     pruebaImprimirMano();
     pruebaGeneralManos();
     pruebaAsignarValor();
-    pruebaOrdenarCartas();*/
-    pruebaSacarCarta();
+    pruebaOrdenarCartas();
+    pruebaSacarCarta();*/
+    pruebaCambios();
+
     return 0;
 }

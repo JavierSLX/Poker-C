@@ -232,12 +232,13 @@ int cambios(carta baraja[], carta mano[], int *carry, int max)
             if (error > 0)
                 return 1;
 
-            *carry += 1;
+            //*carry += 1;
 
             imprimirElementoCarta(mano[p-1], 2);
             printf(" %c %s\t\n\n", mano[p-1].tipo, mano[p-1].color);
         }
 
+        memory -= cont;
         free(memory);
     }
 
