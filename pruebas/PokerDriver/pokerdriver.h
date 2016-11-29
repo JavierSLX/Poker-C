@@ -15,5 +15,6 @@ void pruebaAsignarValor(void);
 void pruebaOrdenarCartas(void);
 void pruebaSacarCarta(void);
 void pruebaCambios(void);
+void pruebaDatos(void);
 
 #endif

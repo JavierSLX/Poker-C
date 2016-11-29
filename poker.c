@@ -258,17 +258,17 @@ void borde(int n)
 }
 
 //Imprime los datos basicos de un jugador
-void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)
+void datos(jugador travis, int oculto)
 {
     int i;
 
-    if (jugador == 1)
+    if (travis.numero == 1)
     {
         printf("--> JUGADOR <--\n");
     }
     else
     {
-        printf("--> PC%d <--\n", jugador-1);
+        printf("--> PC%d <--\n", travis.numero-1);
     }
 
     if (oculto > 0)
@@ -280,14 +280,14 @@ void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)
         for (i = 0; i < 5; i++)
            printf("* * ****\t");
 
-        printf("\n\nFondo: $%d\n", fondo);
-        printf("Apuesta: $%d\n\n", apuesta);
+        printf("\n\nFondo: $%d\n", travis.fondo);
+        printf("Apuesta: $%d\n\n", travis.apuesta);
     }
     else
     {
-        imprimirMano(mano);
-        printf("Fondo: $%d\n", fondo);
-        printf("Apuesta: $%d\n\n", apuesta);
+        imprimirMano(travis.mano);
+        printf("Fondo: $%d\n", travis.fondo);
+        printf("Apuesta: $%d\n\n", travis.apuesta);
     }
 
     return;

@@ -9,8 +9,9 @@ int main()
     pruebaGeneralManos();
     pruebaAsignarValor();
     pruebaOrdenarCartas();
-    pruebaSacarCarta();*/
-    pruebaCambios();
+    pruebaSacarCarta();
+    pruebaCambios();*/
+    pruebaDatos();
 
     return 0;
 }

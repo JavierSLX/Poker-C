@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**28/Nov/16**. Se realizaron las pruebas de la función `void datos(jugador travis, int oculto)` los resultados pueden observarse en `/pruebas/poker/datos/`. 
+
+![pD](./pruebas/poker/datos/images/pruebaDatos.png)  
+
 **27/Nov/16**. Se realizaron las pruebas de la función `int cambios(carta baraja[], carta mano[], int *carry, int max)` los resultados pueden observarse en `/pruebas/poker/cambios/`. 
 
 ![pC](./pruebas/poker/cambios/images/pruebaCambios.png)  
@@ -62,7 +66,7 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 
 **16/Nov/16**. Se crearon las funciones (sin probar aún):  
 - `void borde(int n)`.  
-- `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)`.  
+- `void datos(jugador travis, int oculto)`.  
 - `int apostar(int *fondo, int *apuesta, int *total)`. 
 
 **16/Nov/16**. Se crearon las funciones (sin probar aún):  
@@ -174,9 +178,9 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `void ordenarCartas(carta monton[], int length)` **(PROBADA ✔)**. Ordena las cartas de acuerdo al tipo y al valor de la carta para hacer un poco más visible la mano.  
 - `int prioridadTipo(char tipo)` **(PROBADA ✔)**. Auxilia a la función `void ordenarCartas(carta monton[], int length)`. 
 - `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)` **(PROBADA ✔)**. Permite sacar una carta de la baraja y la reemplaza por la carta que se le indique.  
-- `int cambios(carta baraja[], carta mano[], int *carry, int max)` **(NO PROBADA ✘)**. Realiza los cambios de cartas de los jugadores.  
-- `void borde(int n)` **(NO PROBADA ✘)**. Imprime un par de líneas que simula un borde.  
-- `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)` **(NO PROBADA ✘)**. Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
+- `int cambios(carta baraja[], carta mano[], int *carry, int max)` **(PROBADA ✔)**. Realiza los cambios de cartas de los jugadores.  
+- `void borde(int n)` **(PROBADA ✔)**. Imprime un par de líneas que simula un borde.  
+- `void datos(jugador travis, int oculto)` **(PROBADA ✔)**. Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
 - `int apostar(int *fondo, int *apuesta, int *total)` **(NO PROBADA ✘)**. Registra la apuesta del jugador (humano).  
 - `void inicioDescarte(int a[])` **(NO PROBADA ✘)**. Inicializa un arreglo de 5 elementos a -1.  
 - `int contarComodines (carta mano[])` **(NO PROBADA ✘)**. Cuenta los comodines existentes en la mano.  
@@ -229,7 +233,7 @@ Realiza los cambios de cartas de los jugadores.
 - `void borde(int n)`.  
 Imprime un par de líneas que simula un borde.  
 	+ **CREADA 16/11/16**. La función consiste en un ciclo que imprime n cantidad de líneas para crear un borde.  
-- `void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto)`.  
+- `void datos(jugador travis, int oculto)`.  
 Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
 	+ **CREADA 16/11/16**. La función toma como parámetros la información básica del jugador para mostrarla a pantalla. Se hace notar que existe un parámetro llamado oculto para indicarle a la función si imprime la información de las cartas que contiene o se mostrarán ocultas.  
 - `int apostar(int *fondo, int *apuesta, int *total)`.  
@@ -307,6 +311,8 @@ Da las cartas faltantes para formar una jugada escalera y las posiciones de camb
 
 ##Pruebas
 ***ERRORES CORREGIDOS: 5***   
+- **28/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `void datos(jugador travis, int oculto)` los resultados pueden observarse en `/pruebas/poker/datos/`.  
+
 - **27/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int cambios(carta baraja[], carta mano[], int *carry, int max)` los resultados pueden observarse en `/pruebas/poker/cambios/`. Se corrigieron 2 errores de esta función.   
 
 - **27/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)` los resultados pueden observarse en `/pruebas/poker/sacarCarta/`. 

@@ -7,6 +7,7 @@
 typedef struct
 {
     carta mano[5];
+    int numero;
     int apuesta;
     int fondo;
     int cambio[5];
@@ -24,7 +25,7 @@ int prioridadTipo(char tipo);
 int sacarCarta(carta baraja[], carta mano[], int posicion, int *carry, int max);
 int cambios(carta baraja[], carta mano[], int *carry, int max);
 void borde(int n);
-void datos(carta mano[], int jugador, int fondo, int apuesta, int oculto);
+void datos(jugador travis, int oculto);
 int apostar(int *fondo, int *apuesta, int *total);
 void inicioDescarte(int a[]);
 int contarComodines (carta mano[]);

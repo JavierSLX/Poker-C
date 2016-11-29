@@ -201,13 +201,13 @@ void pruebaGeneralManos(void)
 
     //Imprime el tablero
     borde(80);
-    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    //datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
     //datos(prueba.mano, 1, prueba.fondo, prueba.apuesta, 0);
     borde(80);
 
     //Pruebas las manos que pueden ser obtenidas
     //checarManoPC(prueba);
-    checarManoPC(humano);
+    //checarManoPC(humano);
 
 
     liberarMemoria(baraja, 54);
@@ -299,6 +299,34 @@ void pruebaCambios(void)
 
     printf("Se hicieron %d cambios satisfactorios con un carry de %d\n", cont, carry);
     liberarMemoria(baraja, 54);
+    return;
+}
+
+void pruebaDatos(void)
+{
+    int i;
+    int carry;
+    carta baraja[54];
+    jugador prueba;
+    jugador pc;
+
+    prueba.numero = 1;
+    pc.numero = 2;
+
+    for (i = 0; i < N; i++)
+    {
+        carry = 0;
+        crearBaraja(baraja);
+        barajear(baraja);
+        asignarValor(baraja, 54);
+
+        repartirMano(baraja, prueba.mano, 5, &carry, 54);
+        repartirMano(baraja, pc.mano, 5, &carry, 54);
+
+        datos(prueba, i%2);
+        datos(pc, i%2);
+        liberarMemoria(baraja, 54);
+    }
     return;
 }
 
