@@ -294,14 +294,22 @@ void datos(jugador travis, int oculto)
 }
 
 //Pregunta al usuario cuanto quiere apostar (regresa 1 si el jugador decide retirarse)
-int apostar(int *fondo, int *apuesta, int *total)
+int apostar(int *fondo, int *apuesta, int *total, int numero, int n)
 {
     int cantidad;
 
+    if (n > *fondo)
+        return 1;
+
     do
     {
-        printf("\nCuando quiere apostar (0 = retirarse): ");
-        scanf("%d", &cantidad);
+        if (numero == 1)
+        {
+            printf("\nCuando quiere apostar (0 = retirarse): ");
+            scanf("%d", &cantidad);
+        }
+        else
+            cantidad = n;
 
         if (cantidad == 0)
             return 1;

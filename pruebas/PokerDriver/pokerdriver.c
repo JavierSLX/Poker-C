@@ -330,3 +330,59 @@ void pruebaDatos(void)
     return;
 }
 
+void pruebaApostar(void)
+{
+    int total = 0;
+    int error = 0;
+    jugador prueba;
+    jugador pc;
+
+    prueba.numero = 1;
+    pc.numero = 2;
+
+    do
+    {
+        prueba.fondo = FONDO;
+        pc.fondo = FONDO;
+        prueba.apuesta = 0;
+        pc.apuesta = 0;
+
+        printf("Ingresar 0\n");
+        error = apostar(&prueba.fondo, &prueba.apuesta, &total, 1, 0);
+
+    }while(prueba.apuesta != 0);
+    assert(error == 1);
+
+    do
+    {
+        prueba.fondo = FONDO;
+        pc.fondo = FONDO;
+        prueba.apuesta = 0;
+        pc.apuesta = 0;
+
+        printf("Ingrese la misma apuesta para jugador como para PC(500)\n");
+        error = apostar (&prueba.fondo, &prueba.apuesta, &total, prueba.numero, 0);
+        error = apostar (&pc.fondo, &pc.apuesta, &total, pc.numero, 500);
+
+    }while(prueba.apuesta != pc.apuesta || prueba.apuesta >= FONDO);
+    assert(total == 1000);
+    assert(prueba.apuesta == 500);
+    assert(pc.apuesta == 500);
+    assert(prueba.fondo == 500);
+    assert(pc.fondo == 500);
+
+    do
+    {
+        prueba.fondo = FONDO;
+        prueba.apuesta = 0;
+        total = 0;
+
+        printf("Ingrese una cantidad menor que 500\n");
+        error = apostar (&prueba.fondo, &prueba.apuesta, &total, prueba.numero, 0);
+
+    }while(prueba.apuesta > 500);
+    assert((total + prueba.fondo) == FONDO);
+
+    return;
+}
+

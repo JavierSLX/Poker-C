@@ -10,8 +10,9 @@ int main()
     pruebaAsignarValor();
     pruebaOrdenarCartas();
     pruebaSacarCarta();
-    pruebaCambios();*/
-    pruebaDatos();
+    pruebaCambios();
+    pruebaDatos();*/
+    pruebaApostar();
 
     return 0;
 }

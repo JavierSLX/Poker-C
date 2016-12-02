@@ -26,7 +26,7 @@ int sacarCarta(carta baraja[], carta mano[], int posicion, int *carry, int max);
 int cambios(carta baraja[], carta mano[], int *carry, int max);
 void borde(int n);
 void datos(jugador travis, int oculto);
-int apostar(int *fondo, int *apuesta, int *total);
+int apostar(int *fondo, int *apuesta, int *total, int numero, int n);
 void inicioDescarte(int a[]);
 int contarComodines (carta mano[]);
 int checarRepeticionTipo (carta mano[], char *tipo);

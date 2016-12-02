@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**01/Dic/16**. Se realizaron las pruebas de la función `int apostar(int *fondo, int *apuesta, int *total, int numero, int n)` los resultados pueden observarse en `/pruebas/poker/apostar/`. 
+
+![pAr](./pruebas/poker/apostar/images/pruebaApostar.png)  
+
 **28/Nov/16**. Se realizaron las pruebas de la función `void datos(jugador travis, int oculto)` los resultados pueden observarse en `/pruebas/poker/datos/`. 
 
 ![pD](./pruebas/poker/datos/images/pruebaDatos.png)  
@@ -67,7 +71,7 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 **16/Nov/16**. Se crearon las funciones (sin probar aún):  
 - `void borde(int n)`.  
 - `void datos(jugador travis, int oculto)`.  
-- `int apostar(int *fondo, int *apuesta, int *total)`. 
+- `int apostar(int *fondo, int *apuesta, int *total, int numero, int n)`. 
 
 **16/Nov/16**. Se crearon las funciones (sin probar aún):  
 - `int sacarCarta(carta baraja[], carta mano[], int posicion, int carry, int max)`.  
@@ -181,9 +185,9 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int cambios(carta baraja[], carta mano[], int *carry, int max)` **(PROBADA ✔)**. Realiza los cambios de cartas de los jugadores.  
 - `void borde(int n)` **(PROBADA ✔)**. Imprime un par de líneas que simula un borde.  
 - `void datos(jugador travis, int oculto)` **(PROBADA ✔)**. Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
-- `int apostar(int *fondo, int *apuesta, int *total)` **(NO PROBADA ✘)**. Registra la apuesta del jugador (humano).  
-- `void inicioDescarte(int a[])` **(NO PROBADA ✘)**. Inicializa un arreglo de 5 elementos a -1.  
-- `int contarComodines (carta mano[])` **(NO PROBADA ✘)**. Cuenta los comodines existentes en la mano.  
+- `int apostar(int *fondo, int *apuesta, int *total, int numero, int n)` **(PROBADA ✔)**. Registra la apuesta del jugador (humano).  
+- `void inicioDescarte(int a[])` **(PROBADA ✔)**. Inicializa un arreglo de 5 elementos a -1.  
+- `int contarComodines (carta mano[])` **(PROBADA ✔)**. Cuenta los comodines existentes en la mano.  
 - `int checarRepeticionTipo (carta mano[], char *tipo)` **(NO PROBADA ✘)**. Cuenta cuantas cartas son repetidas en cuanto a tipo (espadas, tréboles, corazones y rombos).  
 - `int cartaMasAlta (carta mano[])` **(NO PROBADA ✘)**. Obtiene el ID de la carta más alta que se encuentra en la mano.   
 - `int comprobarPares (carta mano[], int pares[], int comodines)` **(NO PROBADA ✘)**. Comprueba si hay 1 o 2 pares en la mano.  
@@ -236,7 +240,7 @@ Imprime un par de líneas que simula un borde.
 - `void datos(jugador travis, int oculto)`.  
 Imprime los datos básicos del jugador para que se pueda observar su avance en el juego.  
 	+ **CREADA 16/11/16**. La función toma como parámetros la información básica del jugador para mostrarla a pantalla. Se hace notar que existe un parámetro llamado oculto para indicarle a la función si imprime la información de las cartas que contiene o se mostrarán ocultas.  
-- `int apostar(int *fondo, int *apuesta, int *total)`.  
+- `int apostar(int *fondo, int *apuesta, int *total, int numero, int n)`.  
 Registra la apuesta del jugador (humano).  
 	+ **CREADA 16/11/16**. La función hace las operaciones para hacer el cálculo de la apuesta del jugador, cuanto le queda de fondo y el total que hay en juego.  
 - `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)`.  
@@ -311,6 +315,8 @@ Da las cartas faltantes para formar una jugada escalera y las posiciones de camb
 
 ##Pruebas
 ***ERRORES CORREGIDOS: 5***   
+- **01/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int apostar(int *fondo, int *apuesta, int *total, int numero, int n)` los resultados pueden observarse en `/pruebas/poker/apostar/`.  
+
 - **28/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `void datos(jugador travis, int oculto)` los resultados pueden observarse en `/pruebas/poker/datos/`.  
 
 - **27/Nov/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int cambios(carta baraja[], carta mano[], int *carry, int max)` los resultados pueden observarse en `/pruebas/poker/cambios/`. Se corrigieron 2 errores de esta función.   
