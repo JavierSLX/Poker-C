@@ -11,8 +11,9 @@ int main()
     pruebaOrdenarCartas();
     pruebaSacarCarta();
     pruebaCambios();
-    pruebaDatos();*/
-    pruebaApostar();
+    pruebaDatos();
+    pruebaApostar();*/
+    pruebaCartaMasAlta();
 
     return 0;
 }

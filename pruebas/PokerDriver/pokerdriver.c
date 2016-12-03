@@ -386,3 +386,111 @@ void pruebaApostar(void)
     return;
 }
 
+void imprimirManoArc(carta mano[], FILE *f)
+{
+    int i;
+
+    for (i = 0; i < 5; i++)
+        fprintf(f, "Carta %d\t\t", i+1);
+    fprintf(f, "\n");
+
+    for (i = 0; i < 5; i++)
+    {
+        if (mano[i].numero < 0)
+            fprintf(f, "N ");
+        else if (mano[i].numero == 1)
+            fprintf(f, "A ");
+        else if (mano[i].numero > 10)
+        {
+            switch(mano[i].numero)
+            {
+                case 11:
+                    fprintf(f, "J ");
+                    break;
+                case 12:
+                    fprintf(f, "Q ");
+                    break;
+                default:
+                    fprintf(f, "K ");
+            }
+        }
+        else
+           fprintf(f, "%d ", mano[i].numero);
+        fprintf(f, "%c %s\t", mano[i].tipo, mano[i].color);
+    }
+    fprintf(f, "\n\n");
+
+    return;
+}
+
+void pruebaCartaMasAlta (void)
+{
+    int i;
+    int carry;
+    int id;
+    int bandera = 0;
+    int cont = 0;
+    int rep = 0;
+    int error;
+    carta baraja[54];
+    jugador prueba;
+    FILE *cartaAlta = NULL;
+    FILE *fail = NULL;
+
+    cartaAlta = fopen("files/cartaAlta.txt", "w");
+    if (cartaAlta == NULL)
+        return;
+
+    fail = fopen("files/failsCartaAlta.txt", "w");
+    if (fail == NULL)
+        return;
+
+
+    do
+    {
+        carry = 0;
+        cont++;
+        error = crearBaraja(baraja);
+        if (error > 0)
+            return;
+
+        barajear(baraja);
+        asignarValor(baraja, 54);
+
+        do
+        {
+            error = repartirMano(baraja, prueba.mano, 5, &carry, 54);
+            rep++;
+            if (error > 0)
+                break;
+
+            id = cartaMasAlta(prueba.mano);
+
+            for (i = 0; i < 5; i++)
+            {
+                if (prueba.mano[i].id == id)
+                {
+                    if (prueba.mano[i].valor > 13)
+                    {
+                        imprimirManoArc(prueba.mano, cartaAlta);
+                        bandera = 1;
+                    }
+                    else
+                        imprimirManoArc(prueba.mano, fail);
+                    break;
+                }
+            }
+
+        }while(carry < 50 && bandera == 0);
+
+        liberarMemoria(baraja, 54);
+
+    }while(bandera == 0);
+
+    printf("Numero de barajas usadas: %d\n", cont);
+    printf("Manos repartidas: %d\n", rep);
+    fclose(cartaAlta);
+    fclose(fail);
+    return;
+}
+

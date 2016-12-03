@@ -17,5 +17,7 @@ void pruebaSacarCarta(void);
 void pruebaCambios(void);
 void pruebaDatos(void);
 void pruebaApostar(void);
+void imprimirManoArc(carta mano[], FILE *f);
+void pruebaCartaMasAlta(void);
 
 #endif
