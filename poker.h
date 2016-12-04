@@ -31,7 +31,7 @@ void inicioDescarte(int a[]);
 int contarComodines (carta mano[]);
 int checarRepeticionTipo (carta mano[], char *tipo);
 int cartaMasAlta (carta mano[]);
-int comprobarPares (carta mano[], int pares[], int comodines);
+int comprobarPares (carta mano[], int pares[], int posiciones[], int comodines);
 void probarPar (carta mano[], int posiciones[]);
 int comprobarTrio (carta mano[], int posiciones[], int comodines);
 int probarTrio (carta mano[], int posiciones[], int comodines);

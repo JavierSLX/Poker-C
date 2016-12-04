@@ -442,7 +442,7 @@ void probarPar (carta mano[], int posiciones[])
 }
 
 //Checa cuantos pares contiene la mano, los registra en un arreglo pedido en un parámetro y regresa la cantidad de pares que tiene
-int comprobarPares (carta mano[], int pares[], int comodines)
+int comprobarPares (carta mano[], int pares[], int posiciones[], int comodines)
 {
     int n = 0;
     int i, j;
@@ -515,6 +515,22 @@ int comprobarPares (carta mano[], int pares[], int comodines)
             par = 0;
     }
 
+    if (n > 0)
+    {
+        inicioDescarte(posiciones);
+        switch(n)
+        {
+            case 2:
+                for (i = 0; i < 5; i++)
+                    if (mano[i].valor == pares[1] || mano[i].valor == -1)
+                        posiciones[i] = 0;
+            default:
+                for (i = 0; i < 5; i++)
+                    if (mano[i].valor == pares[0] || mano[i].valor == -1)
+                        posiciones[i] = 0;
+        }
+    }
+
     return n;
 }
 
@@ -554,7 +570,7 @@ int probarTrio (carta mano[], int posiciones[], int comodines)
     }
     else if (comodines == 1)
     {
-        par = comprobarPares(mano, pares, 0);
+        par = comprobarPares(mano, pares, posiciones, 0);
         if (par > 0)
         {
             for (i = 0; i < 5; i++)
@@ -582,7 +598,7 @@ int probarTrio (carta mano[], int posiciones[], int comodines)
     //Checa cuando no hay comodines
     else
     {
-        par = comprobarPares(mano, pares, 0);
+        par = comprobarPares(mano, pares, posiciones, 0);
         if (par > 0)
         {
             for (i = 0; i < 5; i++)
@@ -649,7 +665,7 @@ int comprobarTrio (carta mano[], int posiciones[], int comodines)
                     valor = mano[i].valor;
             break;
         case 1:
-            par = comprobarPares(mano, pares, 0);
+            par = comprobarPares(mano, pares, posiciones, 0);
 
             if (par > 0)
                 valor = pares[0];
@@ -697,7 +713,7 @@ int comprobarPoker (carta mano[], int posiciones[], int comodines)
     switch (comodines)
     {
         case 2:
-            par = comprobarPares(mano, pares, 0);
+            par = comprobarPares(mano, pares, posiciones, 0);
 
             if (par > 0)
                 valor = pares[0];
@@ -845,7 +861,7 @@ int comprobarFullHouse (carta mano[], int posiciones[], int comodines)
     switch (comodines)
     {
         case 2:
-            par = comprobarPares(mano, pares, 0);
+            par = comprobarPares(mano, pares, posiciones, 0);
 
             if (par > 0)
             {
@@ -868,7 +884,7 @@ int comprobarFullHouse (carta mano[], int posiciones[], int comodines)
             }
             break;
         case 1:
-            par = comprobarPares(mano, pares, 0);
+            par = comprobarPares(mano, pares, posiciones, 0);
 
             if (par > 1)
             {
@@ -886,7 +902,7 @@ int comprobarFullHouse (carta mano[], int posiciones[], int comodines)
             }
             break;
         default:
-            par = comprobarPares(mano, pares, 0);
+            par = comprobarPares(mano, pares, posiciones, 0);
 
             if (pares[0] > 0 && pares[1] > 0)
             {
@@ -931,7 +947,7 @@ int probarFullHouse (carta mano[], int posiciones[], int comodines)
     switch (comodines)
     {
         case 2:
-            par = comprobarPares(mano, pares, 0);
+            par = comprobarPares(mano, pares, posiciones, 0);
 
             for (i = 0; i < 5; i++)
                 if ((mano[i].valor == pares[0]) || (mano[i].valor == pares[1]) || (mano[i].valor == -1))
@@ -947,7 +963,7 @@ int probarFullHouse (carta mano[], int posiciones[], int comodines)
             valor = trio;
             if (trio == 0)
             {
-                par = comprobarPares(mano, pares, 0);
+                par = comprobarPares(mano, pares, posiciones, 0);
                 if (par == 0)
                 {
                     alta = cartaMasAlta(mano);

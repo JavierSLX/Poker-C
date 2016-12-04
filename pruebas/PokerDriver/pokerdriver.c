@@ -538,7 +538,7 @@ void pruebaComprobarPares (void)
         do
         {
 
-            exito = comprobarPares(prueba.mano, prueba.pares, contarComodines(prueba.mano));
+            exito = comprobarPares(prueba.mano, prueba.pares, prueba.cambio, contarComodines(prueba.mano));
             if (exito > 0)
             {
                 imprimirManoArc(prueba.mano, pares);
@@ -574,11 +574,11 @@ void pruebaComprobarPares (void)
     printf("PAR(ES): %d %d\n", prueba.ventaja[1], prueba.ventaja[2]);
     printf("Numero de barajas usadas: %d\n", cont);
     printf("Manos repartidas: %d\n", rep);
-    /*printf("Cartas Inservibles: ");
+    printf("Cartas Inservibles: ");
     for (i = 0; i < 5; i++)
         if (prueba.cambio[i] == -1)
             printf("%d ", i+1);
-    printf("\n");*/
+    printf("\n");
     fclose(pares);
     fclose(fail);
     return;

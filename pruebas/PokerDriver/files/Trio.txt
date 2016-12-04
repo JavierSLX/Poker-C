@@ -1,3 +1,3 @@
 Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
-Q R rojo	8 E negro	K E negro	K C rojo	K R rojo	
+6 E negro	N N blanco	5 T negro	6 C rojo	5 R rojo	
 

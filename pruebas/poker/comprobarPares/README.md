@@ -1,6 +1,6 @@
 ##Diseño
 ###poker.c
-`int comprobarPares (carta mano[], int pares[], int comodines)`. 
+`int comprobarPares (carta mano[], int pares[], int posiciones[], int comodines)`. 
 
 **03/12/16**. Se diseñó su grafo para poder calcular la complejidad de la función y poder realizar las pruebas unitarias de la función.  
 

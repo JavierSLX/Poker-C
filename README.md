@@ -7,7 +7,7 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 
 ![pCT](./pruebas/poker/comprobarTrio/images/pruebaComprobarTrio.png)  
 
-**03/Dic/16**. Se realizaron las pruebas de la función `int comprobarPares (carta mano[], int pares[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarPares/`. 
+**03/Dic/16**. Se realizaron las pruebas de la función `int comprobarPares (carta mano[], int pares[], int posiciones[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarPares/`. 
 
 ![pCP](./pruebas/poker/comprobarPares/images/pruebaComprobarPares.png)  
 
@@ -202,7 +202,7 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int contarComodines (carta mano[])` **(PROBADA ✔)**. Cuenta los comodines existentes en la mano.  
 - `int checarRepeticionTipo (carta mano[], char *tipo)` **(PROBADA ✔)**. Cuenta cuantas cartas son repetidas en cuanto a tipo (espadas, tréboles, corazones y rombos).  
 - `int cartaMasAlta (carta mano[])` **(PROBADA ✔)**. Obtiene el ID de la carta más alta que se encuentra en la mano.   
-- `int comprobarPares (carta mano[], int pares[], int comodines)` **((PROBADA ✔)**. Comprueba si hay 1 o 2 pares en la mano.  
+- `int comprobarPares (carta mano[], int pares[], int posiciones[], int comodines)` **((PROBADA ✔)**. Comprueba si hay 1 o 2 pares en la mano.  
 - `void probarPar (carta mano[], int posiciones[])` **(PROBADA ✔)**. Da las 4 cartas que se deben cambiar para obtener mínimo un par.  
 - `int comprobarTrio (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Comprueba si en la mano existe un trio de cartas.  
 - `int probarTrio (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
@@ -280,7 +280,7 @@ Obtiene el ID de la carta más alta que se encuentra en la mano.
 - `void probarPar (carta mano[], int posiciones[])`.  
 Da las 4 cartas que se deben cambiar para obtener mínimo un par.  
 	+ **CREADA 24/11/16**. Checa que carta es la más recomendable mantener en la mano y cambia las otras 4 para formar al menos un par.    
-- `int comprobarPares (carta mano[], int pares[], int comodines)`.  
+- `int comprobarPares (carta mano[], int pares[], int posiciones[], int comodines)`.  
 Comprueba si hay 1 o 2 pares en la mano.  
 	+ **CREADA 24/11/16**. Obtiene los pares de la mano (de ninguno a dos pares máximos), y regresa como tal el número de pares. Los valores de los pares se registran en el arreglo pares que se pide como parámetro en la función.  
 - `int probarTrio (carta mano[], int posiciones[], int comodines)`.  
