@@ -743,6 +743,14 @@ int comprobarPoker (carta mano[], int posiciones[], int comodines)
             }
     }
 
+    if (valor > 0)
+    {
+        inicioDescarte(posiciones);
+        for (i = 0; i < 5; i++)
+            if (mano[i].valor == valor || mano[i].valor == -1)
+                posiciones[i] = 0;
+    }
+
     return valor;
 }
 

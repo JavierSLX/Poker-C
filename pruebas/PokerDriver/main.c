@@ -17,8 +17,9 @@ int main()
     pruebaComprobarPares();
     pruebaComprobarTrio();
     pruebaComprobarEscalera();
-    pruebaComprobarColor();*/
-    pruebaComprobarFullHouse();
+    pruebaComprobarColor();
+    pruebaComprobarFullHouse();*/
+    pruebaComprobarPoker();
 
     return 0;
 }
