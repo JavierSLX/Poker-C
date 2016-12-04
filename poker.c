@@ -1183,7 +1183,7 @@ int comprobarEscalera(carta mano[], int comodines)
     else
     {
         //busca el valor más alto (no comodin)
-        numero = 0;
+        /*numero = 0;
         for (i = 0; i < 5; i++)
             if (mano[i].numero > numero)
                 numero = mano[i].numero;
@@ -1195,7 +1195,15 @@ int comprobarEscalera(carta mano[], int comodines)
                 valor = 13;
         }
         else
-            valor = numero;
+            valor = numero;*/
+
+        c = comodines;
+        numero = 14;
+        for (i = 0; i < 5; i++)
+            if (mano[i].numero < numero && mano[i].numero != -1)
+                numero = mano[i].numero;
+
+        valor = numero + 4;
     }
 
     return valor;

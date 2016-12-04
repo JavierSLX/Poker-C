@@ -668,3 +668,87 @@ void pruebaComprobarTrio (void)
     return;
 }
 
+void pruebaComprobarEscalera (void)
+{
+    int i;
+    int carry;
+    int cont = 0;
+    int rep = 0;
+    int error;
+    int escalera;
+    carta baraja[54];
+    jugador prueba;
+    FILE *fescalera = NULL;
+    FILE *fail = NULL;
+
+    //Abre los archivos de pruebas
+    fescalera = fopen("files/Escalera.txt", "w");
+    if (fescalera == NULL)
+        return;
+
+    fail = fopen("files/failsEscalera.txt", "w");
+    if (fail == NULL)
+        return;
+
+    //Comienza el ciclo hasta encontrar 1 escalera
+    do
+    {
+        carry = 0;
+        cont++;
+        error = crearBaraja(baraja);
+        if (error > 0)
+            return;
+
+        barajear(baraja);
+        asignarValor(baraja, 54);
+        error = repartirMano(baraja, prueba.mano, 5, &carry, 54);
+        rep++;
+
+        //Hace cambios hasta encontrar una escalera o el carry llegue a su límite
+        do
+        {
+
+            escalera = comprobarEscalera(prueba.mano, contarComodines(prueba.mano));
+            if (escalera > 0)
+            {
+                imprimirManoArc(prueba.mano, fescalera);
+                break;
+            }
+            else
+                imprimirManoArc(prueba.mano, fail);
+
+            //Deja las cartas que sirven y cambia las demas
+            probarEscalera(prueba.mano, prueba.cambio, contarComodines(prueba.mano));
+            for (i = 0; i < 5; i++)
+            {
+                if (prueba.cambio[i] == -1)
+                    error = sacarCarta(baraja, prueba.mano, i, &carry, 54);
+
+                if (error > 0)
+                    break;
+            }
+
+            //Si el carry llega a su límite, sale del ciclo para crear una nueva baraja
+            if (error > 0)
+                    break;
+            rep++;
+        }while(carry <= 54);
+
+        liberarMemoria(baraja, 54);
+
+    }while(escalera == 0);
+
+    prueba.ventaja[4] = escalera;
+    printf("ESCALERA encontrada: %d\n", prueba.ventaja[4]);
+    printf("Numero de barajas usadas: %d\n", cont);
+    printf("Manos repartidas: %d\n", rep);
+    /*printf("Cartas Inservibles: ");
+    for (i = 0; i < 5; i++)
+        if (prueba.cambio[i] == -1)
+            printf("%d ", i+1);
+    printf("\n");*/
+    fclose(fescalera);
+    fclose(fail);
+    return;
+}
+

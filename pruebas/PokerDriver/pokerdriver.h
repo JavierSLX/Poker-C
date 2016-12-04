@@ -21,5 +21,6 @@ void imprimirManoArc(carta mano[], FILE *f);
 void pruebaCartaMasAlta(void);
 void pruebaComprobarPares (void);
 void pruebaComprobarTrio (void);
+void pruebaComprobarEscalera(void);
 
 #endif
