@@ -752,3 +752,87 @@ void pruebaComprobarEscalera (void)
     return;
 }
 
+void pruebaComprobarColor(void)
+{
+    int i;
+    int carry;
+    int cont = 0;
+    int rep = 0;
+    int error;
+    int color;
+    carta baraja[54];
+    jugador prueba;
+    FILE *fcolor = NULL;
+    FILE *fail = NULL;
+
+    //Abre los archivos de pruebas
+    fcolor = fopen("files/Color.txt", "w");
+    if (fcolor == NULL)
+        return;
+
+    fail = fopen("files/failsColor.txt", "w");
+    if (fail == NULL)
+        return;
+
+    //Comienza el ciclo hasta encontrar 1 color
+    do
+    {
+        carry = 0;
+        cont++;
+        error = crearBaraja(baraja);
+        if (error > 0)
+            return;
+
+        barajear(baraja);
+        asignarValor(baraja, 54);
+        error = repartirMano(baraja, prueba.mano, 5, &carry, 54);
+        rep++;
+
+        //Hace cambios hasta encontrar un color o el carry llegue a su límite
+        do
+        {
+
+            color = comprobarColor(prueba.mano, contarComodines(prueba.mano));
+            if (color > 0)
+            {
+                imprimirManoArc(prueba.mano, fcolor);
+                break;
+            }
+            else
+                imprimirManoArc(prueba.mano, fail);
+
+            //Deja las cartas que sirven y cambia las demas
+            probarColor(prueba.mano, prueba.cambio, contarComodines(prueba.mano));
+            for (i = 0; i < 5; i++)
+            {
+                if (prueba.cambio[i] == -1)
+                    error = sacarCarta(baraja, prueba.mano, i, &carry, 54);
+
+                if (error > 0)
+                    break;
+            }
+
+            //Si el carry llega a su límite, sale del ciclo para crear una nueva baraja
+            if (error > 0)
+                    break;
+            rep++;
+        }while(carry <= 54);
+
+        liberarMemoria(baraja, 54);
+
+    }while(color == 0);
+
+    prueba.ventaja[5] = color;
+    printf("COLOR encontrado: %d\n", prueba.ventaja[5]);
+    printf("Numero de barajas usadas: %d\n", cont);
+    printf("Manos repartidas: %d\n", rep);
+    /*printf("Cartas Inservibles: ");
+    for (i = 0; i < 5; i++)
+        if (prueba.cambio[i] == -1)
+            printf("%d ", i+1);
+    printf("\n");*/
+    fclose(fcolor);
+    fclose(fail);
+    return;
+}
+

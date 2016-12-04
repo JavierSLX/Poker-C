@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**03/Dic/16**. Se realizaron las pruebas de la función `int comprobarColor (carta mano[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarColor/`.    
+
+![pCC](./pruebas/poker/comprobarColor/images/pruebaComprobarColor.png)  
+
 **03/Dic/16**. Se realizaron las pruebas de la función `int comprobarEscalera(carta mano[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscalera/`. 
 
 ![pCE](./pruebas/poker/comprobarEscalera/images/pruebaComprobarEscalera.png)  
@@ -212,8 +216,8 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int probarTrio (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
 - `int comprobarEscalera(carta mano[], int comodines)` **(PROBADA ✔)**. Comprueba si en la mano existe una jugada escalera.     
 - `int probarEscalera (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Da las cartas faltantes para formar una jugada escalera y las posiciones de cambio.   
-- `int comprobarColor (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada color.     
-- `int probarColor (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada color y las posiciones de cambio.  
+- `int comprobarColor (carta mano[], int comodines)` **(PROBADA ✔)**. Comprueba si en la mano existe una jugada color.     
+- `int probarColor (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Da las cartas faltantes para formar una jugada color y las posiciones de cambio.  
 - `int comprobarFullHouse (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada full.  
 - `int probarFullHouse (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada full y las posiciones de cambio.  
 - `int comprobarPoker (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada poker.  
@@ -331,11 +335,13 @@ Da las cartas faltantes para formar una jugada escalera y las posiciones de camb
 
 ##Pruebas
 ***ERRORES CORREGIDOS: 12***   
-- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarEscalera(carta mano[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscalera/`. 
+- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarColor (carta mano[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarColor/`.  
+- 
+- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarEscalera(carta mano[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscalera/`.  
 
-- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarTrio (carta mano[], int posiciones[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarTrio/`. 
+- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarTrio (carta mano[], int posiciones[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarTrio/`.  
 
-- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarPares (carta mano[], int pares[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarPares/`. 
+- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarPares (carta mano[], int pares[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarPares/`.  
 
 - **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int cartaMasAlta (carta mano[])` los resultados pueden observarse en `/pruebas/poker/cartaMasAlta/`. 
 

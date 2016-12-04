@@ -15,8 +15,9 @@ int main()
     pruebaApostar();
     pruebaCartaMasAlta();
     pruebaComprobarPares();
-    pruebaComprobarTrio();*/
-    pruebaComprobarEscalera();
+    pruebaComprobarTrio();
+    pruebaComprobarEscalera();*/
+    pruebaComprobarColor();
 
     return 0;
 }

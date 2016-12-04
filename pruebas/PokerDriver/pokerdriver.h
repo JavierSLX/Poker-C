@@ -22,5 +22,6 @@ void pruebaCartaMasAlta(void);
 void pruebaComprobarPares (void);
 void pruebaComprobarTrio (void);
 void pruebaComprobarEscalera(void);
+void pruebaComprobarColor(void);
 
 #endif
