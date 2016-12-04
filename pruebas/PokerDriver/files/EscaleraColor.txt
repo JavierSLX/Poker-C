@@ -1,0 +1,3 @@
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	3 E negro	4 E negro	5 E negro	6 E negro	
+

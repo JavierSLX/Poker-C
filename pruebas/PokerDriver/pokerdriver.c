@@ -1004,3 +1004,88 @@ void pruebaComprobarPoker(void)
     return;
 }
 
+void pruebaComprobarEscaleraColor(void)
+{
+    int i;
+    int carry;
+    char tipo;
+    int cont = 0;
+    int rep = 0;
+    int error;
+    int ecolor;
+    carta baraja[54];
+    jugador prueba;
+    FILE *fecolor = NULL;
+    FILE *fail = NULL;
+
+    //Abre los archivos de pruebas
+    fecolor = fopen("files/EscaleraColor.txt", "w");
+    if (fecolor == NULL)
+        return;
+
+    fail = fopen("files/failsEscaleraColor.txt", "w");
+    if (fail == NULL)
+        return;
+
+    //Comienza el ciclo hasta encontrar una Escalera de Color
+    do
+    {
+        carry = 0;
+        cont++;
+        error = crearBaraja(baraja);
+        if (error > 0)
+            return;
+
+        barajear(baraja);
+        asignarValor(baraja, 54);
+        error = repartirMano(baraja, prueba.mano, 5, &carry, 54);
+        rep++;
+
+        //Hace cambios hasta encontrar una Escalera de Color o el carry llegue a su límite
+        do
+        {
+            checarRepeticionTipo(prueba.mano, &tipo);
+            ecolor = comprobarEscaleraColor(prueba.mano, tipo, contarComodines(prueba.mano));
+            if (ecolor > 0)
+            {
+                imprimirManoArc(prueba.mano, fecolor);
+                break;
+            }
+            else
+                imprimirManoArc(prueba.mano, fail);
+
+            //Deja las cartas que sirven y cambia las demas
+            probarEscaleraColor(prueba.mano, prueba.cambio, tipo, contarComodines(prueba.mano));
+            for (i = 0; i < 5; i++)
+            {
+                if (prueba.cambio[i] == -1)
+                    error = sacarCarta(baraja, prueba.mano, i, &carry, 54);
+
+                if (error > 0)
+                    break;
+            }
+
+            //Si el carry llega a su límite, sale del ciclo para crear una nueva baraja
+            if (error > 0)
+                    break;
+            rep++;
+        }while(carry <= 54);
+
+        liberarMemoria(baraja, 54);
+
+    }while(ecolor == 0);
+
+    prueba.ventaja[8] = ecolor;
+    printf("ESCALERA DE COLOR encontrada: %d\n", prueba.ventaja[8]);
+    printf("Numero de barajas usadas: %d\n", cont);
+    printf("Manos repartidas: %d\n", rep);
+    /*printf("Cartas Inservibles: ");
+    for (i = 0; i < 5; i++)
+        if (prueba.cambio[i] == -1)
+            printf("%d ", i+1);
+    printf("\n");*/
+    fclose(fecolor);
+    fclose(fail);
+    return;
+}
+
