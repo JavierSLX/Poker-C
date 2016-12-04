@@ -1,10 +1,10 @@
 ##Diseño
 ###poker.c
-`int comprobarColor (carta mano[], int comodines)`. 
+`int comprobarFullHouse (carta mano[], int posiciones[], int comodines)`. 
 
 **03/12/16**. Se diseñó su grafo para poder calcular la complejidad de la función y poder realizar las pruebas unitarias de la función.  
 
-![GrafoCE](./images/grafoComprobarColor.png)  
+![GrafoCFH](./images/grafoComprobarFullHouse.png)  
 
 Los elementos que representan los nodos son los siguientes:  
 1. ***i = 0***. Inicializa el contador a 0.  
@@ -22,6 +22,6 @@ A lo que se deduce que 3 son las pruebas mínimas para recorrer todo el grafo.
 ###driver_poker.c
 **CREADO 03/12/16**. Se usó el archivo driver_poker.c para realizar las distintas pruebas de las funciones, entre ellas las pruebas unitarias.  
 
-- **03/12/16**. Se probó la función hasta encontrar un color, lo que al final se obtuvo un resultado ***EXITOSO ✔***.  
+- **03/12/16**. Se probó la función hasta encontrar full house, lo que al final se obtuvo un resultado ***EXITOSO ✔***.  
 
-![pruebaCC](./images/pruebaComprobarColor.png) 
+![pruebaCFH](./images/pruebaComprobarFullHouse.png) 

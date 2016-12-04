@@ -836,3 +836,87 @@ void pruebaComprobarColor(void)
     return;
 }
 
+void pruebaComprobarFullHouse(void)
+{
+    int i;
+    int carry;
+    int cont = 0;
+    int rep = 0;
+    int error;
+    int full;
+    carta baraja[54];
+    jugador prueba;
+    FILE *ffull = NULL;
+    FILE *fail = NULL;
+
+    //Abre los archivos de pruebas
+    ffull = fopen("files/FullHouse.txt", "w");
+    if (ffull == NULL)
+        return;
+
+    fail = fopen("files/failsFullHouse.txt", "w");
+    if (fail == NULL)
+        return;
+
+    //Comienza el ciclo hasta encontrar Full House
+    do
+    {
+        carry = 0;
+        cont++;
+        error = crearBaraja(baraja);
+        if (error > 0)
+            return;
+
+        barajear(baraja);
+        asignarValor(baraja, 54);
+        error = repartirMano(baraja, prueba.mano, 5, &carry, 54);
+        rep++;
+
+        //Hace cambios hasta encontrar full house o el carry llegue a su límite
+        do
+        {
+
+            full = comprobarFullHouse(prueba.mano, prueba.cambio, contarComodines(prueba.mano));
+            if (full > 0)
+            {
+                imprimirManoArc(prueba.mano, ffull);
+                break;
+            }
+            else
+                imprimirManoArc(prueba.mano, fail);
+
+            //Deja las cartas que sirven y cambia las demas
+            probarFullHouse(prueba.mano, prueba.cambio, contarComodines(prueba.mano));
+            for (i = 0; i < 5; i++)
+            {
+                if (prueba.cambio[i] == -1)
+                    error = sacarCarta(baraja, prueba.mano, i, &carry, 54);
+
+                if (error > 0)
+                    break;
+            }
+
+            //Si el carry llega a su límite, sale del ciclo para crear una nueva baraja
+            if (error > 0)
+                    break;
+            rep++;
+        }while(carry <= 54);
+
+        liberarMemoria(baraja, 54);
+
+    }while(full == 0);
+
+    prueba.ventaja[6] = full;
+    printf("FULL HOUSE encontrado: %d\n", prueba.ventaja[6]);
+    printf("Numero de barajas usadas: %d\n", cont);
+    printf("Manos repartidas: %d\n", rep);
+    /*printf("Cartas Inservibles: ");
+    for (i = 0; i < 5; i++)
+        if (prueba.cambio[i] == -1)
+            printf("%d ", i+1);
+    printf("\n");*/
+    fclose(ffull);
+    fclose(fail);
+    return;
+}
+
