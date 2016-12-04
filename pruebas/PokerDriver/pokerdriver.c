@@ -583,3 +583,88 @@ void pruebaComprobarPares (void)
     fclose(fail);
     return;
 }
+
+void pruebaComprobarTrio (void)
+{
+    int i;
+    int carry;
+    int cont = 0;
+    int rep = 0;
+    int error;
+    int trio;
+    carta baraja[54];
+    jugador prueba;
+    FILE *ftrio = NULL;
+    FILE *fail = NULL;
+
+    //Abre los archivos de pruebas
+    ftrio = fopen("files/Trio.txt", "w");
+    if (ftrio == NULL)
+        return;
+
+    fail = fopen("files/failsTrio.txt", "w");
+    if (fail == NULL)
+        return;
+
+    //Comienza el ciclo hasta encontrar 1 trio
+    do
+    {
+        carry = 0;
+        cont++;
+        error = crearBaraja(baraja);
+        if (error > 0)
+            return;
+
+        barajear(baraja);
+        asignarValor(baraja, 54);
+        error = repartirMano(baraja, prueba.mano, 5, &carry, 54);
+        rep++;
+
+        //Hace cambios hasta encontrar un trio o el carry llegue a su límite
+        do
+        {
+
+            trio = comprobarTrio(prueba.mano, prueba.cambio, contarComodines(prueba.mano));
+            if (trio > 0)
+            {
+                imprimirManoArc(prueba.mano, ftrio);
+                break;
+            }
+            else
+                imprimirManoArc(prueba.mano, fail);
+
+            //Deja las cartas que sirven y cambia las demas
+            probarTrio(prueba.mano, prueba.cambio, contarComodines(prueba.mano));
+            for (i = 0; i < 5; i++)
+            {
+                if (prueba.cambio[i] == -1)
+                    error = sacarCarta(baraja, prueba.mano, i, &carry, 54);
+
+                if (error > 0)
+                    break;
+            }
+
+            //Si el carry llega a su límite, sale de la función para crear una nueva baraja
+            if (error > 0)
+                    break;
+            rep++;
+        }while(carry <= 54);
+
+        liberarMemoria(baraja, 54);
+
+    }while(trio == 0);
+
+    prueba.ventaja[3] = trio;
+    printf("TRIO encontrado: %d\n", prueba.ventaja[3]);
+    printf("Numero de barajas usadas: %d\n", cont);
+    printf("Manos repartidas: %d\n", rep);
+    printf("Cartas Inservibles: ");
+    for (i = 0; i < 5; i++)
+        if (prueba.cambio[i] == -1)
+            printf("%d ", i+1);
+    printf("\n");
+    fclose(ftrio);
+    fclose(fail);
+    return;
+}
+

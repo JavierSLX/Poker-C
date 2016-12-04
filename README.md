@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**03/Dic/16**. Se realizaron las pruebas de la función `int comprobarTrio (carta mano[], int posiciones[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarTrio/`. 
+
+![pCT](./pruebas/poker/comprobarTrio/images/pruebaComprobarTrio.png)  
+
 **03/Dic/16**. Se realizaron las pruebas de la función `int comprobarPares (carta mano[], int pares[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarPares/`. 
 
 ![pCP](./pruebas/poker/comprobarPares/images/pruebaComprobarPares.png)  
@@ -199,16 +203,16 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int checarRepeticionTipo (carta mano[], char *tipo)` **(PROBADA ✔)**. Cuenta cuantas cartas son repetidas en cuanto a tipo (espadas, tréboles, corazones y rombos).  
 - `int cartaMasAlta (carta mano[])` **(PROBADA ✔)**. Obtiene el ID de la carta más alta que se encuentra en la mano.   
 - `int comprobarPares (carta mano[], int pares[], int comodines)` **((PROBADA ✔)**. Comprueba si hay 1 o 2 pares en la mano.  
-- `void probarPar (carta mano[], int posiciones[])` **((PROBADA ✔)**. Da las 4 cartas que se deben cambiar para obtener mínimo un par.  
-- `int comprobarTrio (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe un trio de cartas.  
-- `int probarTrio (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
+- `void probarPar (carta mano[], int posiciones[])` **(PROBADA ✔)**. Da las 4 cartas que se deben cambiar para obtener mínimo un par.  
+- `int comprobarTrio (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Comprueba si en la mano existe un trio de cartas.  
+- `int probarTrio (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
 - `int comprobarEscalera(carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada escalera.     
 - `int probarEscalera (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada escalera y las posiciones de cambio.   
 - `int comprobarColor (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada color.     
 - `int probarColor (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada color y las posiciones de cambio.  
-- `int comprobarFullHouse (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada full.  
+- `int comprobarFullHouse (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada full.  
 - `int probarFullHouse (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada full y las posiciones de cambio.  
-- `int comprobarPoker (carta mano[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada poker.  
+- `int comprobarPoker (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Comprueba si en la mano existe una jugada poker.  
 - `int probarPoker (carta mano[], int posiciones[], int comodines)` **(NO PROBADA ✘)**. Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
 - `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)` **(NO PROBADA ✘)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da las posiciones de dichas cartas.  
 - `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` **(NO PROBADA ✘)**. Checa si existe una escalera de color en la mano del jugador.  
@@ -282,16 +286,16 @@ Comprueba si hay 1 o 2 pares en la mano.
 - `int probarTrio (carta mano[], int posiciones[], int comodines)`.  
 Da las cartas faltantes para formar un trío, y las posiciones de cambio.  
 	+ **CREADA 25/11/16**. Saca cuantas cartas son necesarias para formar un posible trío en la mano y las posiciones de las cartas a cambiar para poder formarse. Regresa la cantidad de cartas que son necesarias. En caso de faltar todas las cartas, regresa que debe descartar toda la mano.  
-- `int comprobarTrio (carta mano[], int comodines)`.  
+- `int comprobarTrio (carta mano[], int posiciones[], int comodines)`.  
 Comprueba si en la mano existe un trio de cartas.  
 	+ **CREADA 25/11/16**. Verifica que se haya formado un trío en la mano, de haberlo hecho, regresa el valor de la jugada.  
-- `int comprobarPoker (carta mano[], int comodines)`.  
+- `int comprobarPoker (carta mano[], int posiciones[], int comodines)`.  
 Comprueba si en la mano existe una jugada poker.  
 	+ **CREADA 25/11/16**. Verifica que se haya realizado una jugada de poker en la mano, en caso de haberlo logrado, regresa el valor de la jugada.
 - `int probarPoker (carta mano[], int posiciones[], int comodines)`.  
 Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
 	+ **CREADA 25/11/16**. Saca cuantas cartas faltan para poder formar una jugada de poker y le registra en el arreglo *posiciones* que cartas son las que se recomienda cambiar. Regresa las cartas que faltan para formar la jugada poker.  
-- `int comprobarFullHouse (carta mano[], int comodines)`.  
+- `int comprobarFullHouse (carta mano[], int posiciones[], int comodines)`.  
 Comprueba si en la mano existe una jugada full.  
 	+ **CREADA 26/11/16**. Verifica que se haya realizado una jugada de full en la mano, en caso de haberlo logrado, regresa el valor de la jugada.
 - `int probarFullHouse (carta mano[], int posiciones[], int comodines)`.  
@@ -322,7 +326,9 @@ Da las cartas faltantes para formar una jugada escalera y las posiciones de camb
 - **CREADO 27/10/16**. Se probaron las funciones de manera básica para notar su funcionamiento, aún no se detectan dos de los posibles errores que el compilador arrojó, errores lógicos dados por el programador al parecer.
 
 ##Pruebas
-***ERRORES CORREGIDOS: 5***   
+***ERRORES CORREGIDOS: 10***   
+- **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarTrio (carta mano[], int posiciones[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarTrio/`. 
+
 - **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarPares (carta mano[], int pares[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarPares/`. 
 
 - **03/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int cartaMasAlta (carta mano[])` los resultados pueden observarse en `/pruebas/poker/cartaMasAlta/`. 

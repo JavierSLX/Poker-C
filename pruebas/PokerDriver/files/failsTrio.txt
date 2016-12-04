@@ -1,0 +1,18 @@
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+K E negro	7 E negro	10 R rojo	K C rojo	9 R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+J T negro	K E negro	K C rojo	7 C rojo	Q T negro	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+K E negro	6 C rojo	Q C rojo	3 T negro	K C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+K E negro	A T negro	A R rojo	2 C rojo	K C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+K E negro	7 R rojo	A E negro	K C rojo	4 T negro	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+K E negro	3 E negro	10 E negro	K C rojo	A C rojo	
+

@@ -534,6 +534,12 @@ int probarTrio (carta mano[], int posiciones[], int comodines)
     //Inicializa las cartas a descartar en -1
     inicioDescarte(posiciones);
 
+    //Comprueba si no hay un trio
+    trio = comprobarTrio(mano, posiciones, comodines);
+
+    if (trio > 0)
+        return trio;
+
     //Checa cuando hay comodines
     if (comodines > 1)
     {
@@ -625,7 +631,7 @@ int probarTrio (carta mano[], int posiciones[], int comodines)
 }
 
 //Checa si existe un trio en la mano y regresa su valor en caso de existir
-int comprobarTrio (carta mano[], int comodines)
+int comprobarTrio (carta mano[], int posiciones[], int comodines)
 {
     int i, j;
     int valor = 0;
@@ -666,11 +672,20 @@ int comprobarTrio (carta mano[], int comodines)
             }
     }
 
+    //Cambia el arreglo de descarte
+    if (valor > 0)
+    {
+        inicioDescarte(posiciones);
+        for (i = 0; i < 5; i++)
+            if (mano[i].valor == valor || mano[i].numero == -1)
+                posiciones[i] = 0;
+    }
+
     return valor;
 }
 
 //Checa si existe un poker en la mano y regresa su valor en caso de existir
-int comprobarPoker (carta mano[], int comodines)
+int comprobarPoker (carta mano[], int posiciones[], int comodines)
 {
     int i, j;
     int valor = 0;
@@ -689,7 +704,7 @@ int comprobarPoker (carta mano[], int comodines)
 
             break;
         case 1:
-            trio = comprobarTrio(mano, 0);
+            trio = comprobarTrio(mano, posiciones, 0);
 
             if (trio > 0)
                 valor = trio;
@@ -731,7 +746,7 @@ int probarPoker (carta mano[], int posiciones[], int comodines)
     inicioDescarte(posiciones);
 
     //Checa si no existe ya un poker en la mano (si lo hay termina la funcion)
-    valor = comprobarPoker(mano, comodines);
+    valor = comprobarPoker(mano, posiciones, comodines);
 
     if (valor > 0)
     {
@@ -818,7 +833,7 @@ int probarPoker (carta mano[], int posiciones[], int comodines)
 }
 
 //Checa si existe full en la mano y regresa su valor (el del trio) en caso de existir
-int comprobarFullHouse (carta mano[], int comodines)
+int comprobarFullHouse (carta mano[], int posiciones[], int comodines)
 {
     int i;
     int valor = 0;
@@ -846,7 +861,7 @@ int comprobarFullHouse (carta mano[], int comodines)
             }
             else
             {
-                trio = comprobarTrio(mano, 0);
+                trio = comprobarTrio(mano, posiciones, 0);
 
                 if (trio > 0)
                     valor = trio;
@@ -864,7 +879,7 @@ int comprobarFullHouse (carta mano[], int comodines)
             }
             else
             {
-                trio = comprobarTrio(mano, 0);
+                trio = comprobarTrio(mano, posiciones, 0);
 
                 if (trio > 0)
                     valor = trio;
@@ -875,7 +890,7 @@ int comprobarFullHouse (carta mano[], int comodines)
 
             if (pares[0] > 0 && pares[1] > 0)
             {
-                trio = comprobarTrio(mano, 0);
+                trio = comprobarTrio(mano, posiciones, 0);
 
                 if (trio > 0)
                     valor = trio;
@@ -903,7 +918,7 @@ int probarFullHouse (carta mano[], int posiciones[], int comodines)
     inicioDescarte(posiciones);
 
     //Checa si no existe ya un poker en la mano (si lo hay termina la funcion)
-    valor = comprobarFullHouse(mano, comodines);
+    valor = comprobarFullHouse(mano, posiciones, comodines);
 
     if (valor > 0)
     {
@@ -928,7 +943,7 @@ int probarFullHouse (carta mano[], int posiciones[], int comodines)
                 faltantes = 5 - comodines;
             break;
         default:
-            trio = comprobarTrio(mano, 0);
+            trio = comprobarTrio(mano, posiciones, 0);
             valor = trio;
             if (trio == 0)
             {
