@@ -12,8 +12,9 @@ int main()
     pruebaSacarCarta();
     pruebaCambios();
     pruebaDatos();
-    pruebaApostar();*/
-    pruebaCartaMasAlta();
+    pruebaApostar();
+    pruebaCartaMasAlta();*/
+    pruebaComprobarPares();
 
     return 0;
 }

@@ -434,9 +434,9 @@ void probarPar (carta mano[], int posiciones[])
             posiciones[i] = 0;
     }
 
-    for (i = 0; i < 5; i++)
+    /*for (i = 0; i < 5; i++)
         printf("%d ", posiciones[i]);
-    printf("\n");
+    printf("\n");*/
 
     return;
 }

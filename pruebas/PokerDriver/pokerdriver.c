@@ -494,3 +494,92 @@ void pruebaCartaMasAlta (void)
     return;
 }
 
+void pruebaComprobarPares (void)
+{
+    int i;
+    int carry;
+    int cont = 0;
+    int rep = 0;
+    int error;
+    int exito;
+    carta baraja[54];
+    jugador prueba;
+    FILE *pares = NULL;
+    FILE *fail = NULL;
+
+    //Abre los archivos de pruebas
+    pares = fopen("files/Par.txt", "w");
+    if (pares == NULL)
+        return;
+
+    fail = fopen("files/failsPar.txt", "w");
+    if (fail == NULL)
+        return;
+
+    //Inicializa el arreglo de apoyo de pares
+    prueba.pares[0] = 0;
+    prueba.pares[1] = 0;
+
+    //Comienza el ciclo hasta encontrar mínimo 1 par
+    do
+    {
+        carry = 0;
+        cont++;
+        error = crearBaraja(baraja);
+        if (error > 0)
+            return;
+
+        barajear(baraja);
+        asignarValor(baraja, 54);
+        error = repartirMano(baraja, prueba.mano, 5, &carry, 54);
+        rep++;
+
+        //Hace cambios hasta encontrar 1 par mínimo o el carry llegue a su límite
+        do
+        {
+
+            exito = comprobarPares(prueba.mano, prueba.pares, contarComodines(prueba.mano));
+            if (exito > 0)
+            {
+                imprimirManoArc(prueba.mano, pares);
+                break;
+            }
+            else
+                imprimirManoArc(prueba.mano, fail);
+
+            //Deja la carta más alta y cambia las demas
+            probarPar(prueba.mano, prueba.cambio);
+            for (i = 0; i < 5; i++)
+            {
+                if (prueba.cambio[i] == -1)
+                    error = sacarCarta(baraja, prueba.mano, i, &carry, 54);
+
+                if (error > 0)
+                    break;
+            }
+
+            //Si el carry llega a su límite, sale de la función para crear una nueva baraja
+            if (error > 0)
+                    break;
+            rep++;
+        }while(carry <= 54);
+
+        liberarMemoria(baraja, 54);
+
+    }while(exito == 0);
+
+    prueba.ventaja[1] = prueba.pares[0];
+    prueba.ventaja[2] = prueba.pares[1];
+    printf("PAR(ES) encontrados: %d\n", exito);
+    printf("PAR(ES): %d %d\n", prueba.ventaja[1], prueba.ventaja[2]);
+    printf("Numero de barajas usadas: %d\n", cont);
+    printf("Manos repartidas: %d\n", rep);
+    /*printf("Cartas Inservibles: ");
+    for (i = 0; i < 5; i++)
+        if (prueba.cambio[i] == -1)
+            printf("%d ", i+1);
+    printf("\n");*/
+    fclose(pares);
+    fclose(fail);
+    return;
+}
