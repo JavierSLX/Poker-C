@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**04/Dic/16**. Se realizaron las pruebas de la función `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscaleraReal/`.    
+
+![pCER](./pruebas/poker/comprobarEscaleraReal/images/pruebaComprobarEscaleraReal.png)  
+
 **04/Dic/16**. Se realizaron las pruebas de la función `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscaleraColor/`.    
 
 ![pCEC](./pruebas/poker/comprobarEscaleraColor/images/pruebaEscaleraColor.png)  
@@ -236,8 +240,8 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int probarPoker (carta mano[], int posiciones[], int comodines)` **(PROBADA ✔)**. Da las cartas faltantes para formar una jugada de poker y las posiciones de cambio.  
 - `int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines)` **(PROBADA ✔)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera de color y da las posiciones de dichas cartas.  
 - `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` **(PROBADA ✔)**. Checa si existe una escalera de color en la mano del jugador.  
-- `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)` **(NO PROBADA ✘)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da las posiciones de dichas cartas.  
-- `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` **(NO PROBADA ✘)**. Checa si existe una escalera real en la mano del jugador.  
+- `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)` **(PROBADA ✔)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da las posiciones de dichas cartas.  
+- `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` **(PROBADA ✔)**. Checa si existe una escalera real en la mano del jugador.  
 - `int checarManoPC (jugador hp)` **(NO PROBADA ✘)**. Permite checar las posibles jugadas de la computadora.  
 
 ###poker.c
@@ -347,6 +351,8 @@ Da las cartas faltantes para formar una jugada escalera y las posiciones de camb
 
 ##Pruebas
 ***ERRORES CORREGIDOS: 12***   
+- **04/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscaleraReal/`.    
+
 - **04/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscaleraColor/`.    
 
 - **04/Dic/16**. Se usó el archivo *driver_poker.c* para realizar las pruebas de la función `int comprobarPoker (carta mano[], int posiciones[], int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarPoker/`.    

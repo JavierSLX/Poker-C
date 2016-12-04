@@ -1,0 +1,51 @@
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+4 E negro	4 T negro	4 C rojo	6 C rojo	8 C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+Q T negro	3 C rojo	2 R rojo	6 R rojo	9 R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	9 E negro	J T negro	5 R rojo	7 R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	2 T negro	5 T negro	7 C rojo	K R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	3 E negro	8 T negro	5 C rojo	Q C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	J E negro	K E negro	Q C rojo	3 R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	J E negro	K E negro	7 T negro	9 C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	5 E negro	J E negro	K E negro	K T negro	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	Q R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	8 R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	2 C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	A T negro	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	K C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	3 T negro	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	A R rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	J C rojo	
+
+Carta 1		Carta 2		Carta 3		Carta 4		Carta 5		
+N N blanco	N N blanco	J E negro	K E negro	4 R rojo	
+
