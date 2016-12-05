@@ -1461,7 +1461,7 @@ int checarManoPC (jugador travis)
         }
 
     //Saca el valor de la jugada y el arreglo de cambios
-    travis.jugada = sacarValorJugada(travis.ventaja);
+    /*travis.jugada = sacarValorJugada(travis.ventaja);
     sacarArregloCambios(travis.mano, travis.ventaja, travis.cambio);
     printf("VENTAJA DE JUGADOR %d:\n", travis.numero);
     for (i = 0; i < 10; i++)
@@ -1469,7 +1469,7 @@ int checarManoPC (jugador travis)
     printf("\nCAMBIOS:\n");
     for (i = 0; i < 5; i++)
         printf("%d ", travis.cambio[i]);
-    printf("\nValor de la jugada: %d\n\n", travis.jugada);
+    printf("\nValor de la jugada: %d\n\n", travis.jugada);*/
 
     return porcentaje;
 }
@@ -1628,3 +1628,87 @@ int sacarValorJugada(int jugadas[])
 
     return n;
 }
+
+//Saca el monto que apuestan los jugadores (si regresa -1 el juego se termina)
+int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int fase)
+{
+    int monto;
+    int total = 0;
+    int aumento = 0;
+
+    switch(fase)
+    {
+        case 1:
+            monto = 1 + rand() % 50;
+            do
+            {
+                if (aumento == 0)
+                {
+                    printf("El jugador 2 inicia la apuesta con %d\n", monto);
+                    if (a->fondo < monto)
+                    {
+                        printf("\nNO CUENTAS CON LOS SUFICIENTES FONDOS!\n");
+                        printf("GAME OVER!\n");
+                        return -1;
+                    }
+                    total += monto;
+                    b->fondo -= monto;
+                    printf("El jugador 3 iguala la apuesta de %d\n", monto);
+                    total += monto;
+                    c->fondo -= monto;
+                    printf("El jugador 4 iguala la apuesta de %d\n", monto);
+                    total += monto;
+                    d->fondo -= monto;
+                }
+                else
+                {
+                    printf("El jugador 2 iguala la apuesta de %d\n", a->apuesta);
+                    total += a->apuesta - monto;
+                    b->fondo -= a->apuesta - monto;
+                    printf("El jugador 3 iguala la apuesta de %d\n", a->apuesta);
+                    total += a->apuesta - monto;
+                    c->fondo -= a->apuesta - monto;
+                    printf("El jugador 4 iguala la apuesta de %d\n", a->apuesta);
+                    total += a->apuesta - monto;
+                    d->fondo -= a->apuesta - monto;
+                    monto = a->apuesta;
+                }
+
+                if (aumento == 0)
+                {
+                    do
+                    {
+                        printf("Quieres igualar o aumentar la apuesta? (0 = retirarse): ");
+                        scanf("%d", &a->apuesta);
+
+                        if (a->apuesta > a->fondo)
+                            printf("No cuenta con esa cantidad\n");
+
+                    }while(a->apuesta > a->fondo);
+                    a->fondo -= a->apuesta;
+                }
+
+                if (a->apuesta == 0)
+                {
+                    printf("\nTE RETIRAS! QUE LASTIMA!\n");
+                    printf("GAME OVER!\n");
+                    return -1;
+                }
+
+                if (aumento > 0)
+                    aumento = 0;
+
+                if (a->apuesta != monto)
+                    aumento = 1;
+
+            }while(aumento > 0);
+            b->apuesta = monto;
+            c->apuesta = monto;
+            d->apuesta = monto;
+            break;
+        //default:
+    }
+
+    return total;
+}
+

@@ -8,9 +8,12 @@ int main()
     jugador pc2;
     jugador pc3;
     int total = 0;
+    int monto;
     carta baraja[54];
     int carry = 0;
+    srand(time(NULL));
 
+    //------------------------- *** CONFIGURACIÓN BÁSICA ** ---------------------------------
     //Da los valores de inicio de cada jugador
     humano.numero = 1;
     pc1.numero = 2;
@@ -25,6 +28,7 @@ int main()
     pc3.apuesta = 0;
     pc3.fondo = FONDO;
 
+    //------------------------- *** BARAJEA Y REPARTE LAS MANOS ** ---------------------------------
     //Crea la baraja
     error = crearBaraja(baraja);
 
@@ -64,12 +68,33 @@ int main()
     ordenarCartas(pc2.mano, 5, 1);
     ordenarCartas(pc3.mano, 5, 1);
 
+    //Imprime el tablero (oculto)
+    borde(80);
+    datos(humano, 1);
+    datos(pc1, 1);
+    datos(pc2, 1);
+    datos(pc3, 1);
+    borde(80);
+
+    //------------------------- *** SE PIDE LA PRIMERA APUESTA ** ---------------------------------
+
+    total = sacarMontoTotal(&humano, &pc1, &pc2, &pc3, 1);
+
+    if (total == -1)
+        return 1;
+
+    system("pause");
+
+
+    //------------------------- *** SE DESTAPA LA MANO DEL HUMANO ** ---------------------------------
+    system("cls");
     //Imprime el tablero
     borde(80);
     datos(humano, 0);
-    datos(pc1, 0);
-    datos(pc2, 0);
-    datos(pc3, 0);
+    datos(pc1, 1);
+    datos(pc2, 1);
+    datos(pc3, 1);
+    printf("TOTAL = $%d\n\n", total);
     borde(80);
 
     //Checa las manos de las PC
@@ -77,7 +102,6 @@ int main()
     checarManoPC(pc1);
     checarManoPC(pc2);
     checarManoPC(pc3);
-
     /*
     //Se hacen las apuestas
     error = apostar(&humano.fondo, &humano.apuesta, &total, humano.numero, 0);
