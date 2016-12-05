@@ -449,6 +449,9 @@ int comprobarPares (carta mano[], int pares[], int posiciones[], int comodines)
     int par = 0;
     int numero;
 
+    //Ordena la mano por valor para poder analizarla
+    ordenarCartas(mano, 5, 1);
+
     //Inicia el arreglo pares en 0
     for (i = 0; i < 2; i++)
         pares[i] = 0;
@@ -655,6 +658,9 @@ int comprobarTrio (carta mano[], int posiciones[], int comodines)
     int par;
     int trio = 0;
     int pares[2] = {0};
+
+    //Ordena la mano por valor para poder analizarla
+    ordenarCartas(mano, 5, 1);
 
     switch(comodines)
     {
@@ -865,6 +871,9 @@ int comprobarFullHouse (carta mano[], int posiciones[], int comodines)
     int trio = 0;
     int pares[2];
     int alta;
+
+    //Ordena la mano por valor para poder analizarla
+    ordenarCartas(mano, 5, 1);
 
     switch (comodines)
     {
@@ -1415,104 +1424,207 @@ int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines
 }
 
 //Checa la mano de la PC y toma la decision de cuanto apuesta y que cartas cambiar
-int checarManoPC (jugador hp)
+int checarManoPC (jugador travis)
 {
     int porcentaje = 0;
     int i;
-    int comodines = 0;
-    int tp = 0;
-    char palo = 'N';
+    int id;
+    char tipo;
 
-    //Busca si hay comodines
-    comodines = contarComodines (hp.mano);
+    //Analiza que jugadas tiene el jugador (y llena el arreglo "ventaja")
+    for (i = 0; i < 10; i++)
+        travis.ventaja[i] = 0;
 
-    printf("\nDATOS BASICOS\n");
-    printf("Comodines: %d\n", comodines);
+    //sacarJugadas(hp);
+    travis.pares[0] = 0;
+    travis.pares[1] = 0;
 
-    //Busca si la mano tiene cartas del mismo tipo
-    tp = checarRepeticionTipo (hp.mano, &palo);
+    checarRepeticionTipo(travis.mano, &tipo);
 
-    //Datos que comprueban la mano
-    printf("Tipo repetido %c en %d\n", palo, tp);
-    //--------------------------------------------------------------------
-    /*printf("\nEscalera real:\n");
-    porcentaje = probarEscaleraReal(hp.mano, hp.cambio, palo, comodines);
-    for (i = 0; i < 5; i++)
-        printf("%d ", hp.cambio[i]);
-    printf("\n");
-    printf("%d\n", porcentaje);
-    porcentaje = comprobarEscaleraReal(hp.mano, palo, comodines);
-    if (porcentaje > 0)
-        printf("Hay una escalera real(Carta alta: %d)\n", porcentaje);
-    //--------------------------------------------------------------------
-    printf("Escalera de color:\n");
-    porcentaje = probarEscaleraColor(hp.mano, hp.cambio, palo, comodines);
-    for (i = 0; i < 5; i++)
-        printf("%d ", hp.cambio[i]);
-    printf("\n");
-    printf("%d\n", porcentaje);
-    porcentaje = comprobarEscaleraColor(hp.mano, palo, comodines);
-    if (porcentaje > 0)
-        printf("Hay una escalera de color(Carta alta: %d)\n", porcentaje);
-    //-----------------------------------------------------------
-    printf("\nPoker:\n");
-    porcentaje = probarPoker(hp.mano, hp.cambio, comodines);
-    for (i = 0; i < 5; i++)
-        printf("%d ", hp.cambio[i]);
-    printf("\n");
-    printf("Cartas faltantes: %d\n", porcentaje);
-    porcentaje = comprobarPoker(hp.mano, comodines);
-    if (porcentaje > 0)
-        printf("Hay un poker (Carta alta: %d)\n", porcentaje);
-    //-----------------------------------------------------------
-    printf("\nFull:\n");
-    porcentaje = probarFullHouse(hp.mano, hp.cambio, comodines);
-    for (i = 0; i < 5; i++)
-        printf("%d ", hp.cambio[i]);
-    printf("\n");
-    printf("Cartas faltantes: %d\n", porcentaje);
-    porcentaje = comprobarFullHouse(hp.mano, comodines);
-    if (porcentaje > 0)
-        printf("Hay un Full (Carta alta: %d)\n", porcentaje);
-    //-----------------------------------------------------------
-    printf("\nColor:\n");
-    porcentaje = probarColor(hp.mano, hp.cambio, comodines);
-    for (i = 0; i < 5; i++)
-        printf("%d ", hp.cambio[i]);
-    printf("\n");
-    printf("Cartas faltantes: %d\n", porcentaje);
-    porcentaje = comprobarColor (hp.mano, comodines);
-    if (porcentaje > 0)
-        printf("Hay un Color (Carta alta: %d)\n", porcentaje);
-    //-----------------------------------------------------------
-    printf("\nEscalera:\n");
-    porcentaje = probarEscalera(hp.mano, hp.cambio, comodines);
-    for (i = 0; i < 5; i++)
-        printf("%d ", hp.cambio[i]);
-    printf("\n");
-    printf("Cartas faltantes: %d\n", porcentaje);
-    porcentaje = comprobarEscalera(hp.mano, comodines);
-    if (porcentaje > 0)
-        printf("Hay una escalera (Carta alta: %d)\n", porcentaje);
-    //-----------------------------------------------------------
-    printf("Trio:\n");
-    porcentaje = probarTrio(hp.mano, hp.cambio, comodines);
-    for (i = 0; i < 5; i++)
-        printf("%d ", hp.cambio[i]);
-    printf("\n");
-    printf("%d para trio\n\n", porcentaje);
-    porcentaje = comprobarTrio(hp.mano, comodines);
-    if (porcentaje > 0)
-        printf("Hay un trio (Carta alta: %d)\n", porcentaje);
-    //----------------------------------------------------------
-    printf("\nPar(es):\n");
-    probarPar(hp.mano, hp.cambio);
-    porcentaje = comprobarPares(hp.mano, hp.pares, comodines);
-    printf("Pares: %d\n\n", porcentaje);
-    if (porcentaje > 0)
-        printf("Hay par(es): %d %d\n", hp.pares[0], hp.pares[1]);*/
-    //-----------------------------------------------------------
+    travis.ventaja[0] = comprobarEscaleraReal(travis.mano, tipo, contarComodines(travis.mano));
+    travis.ventaja[1] = comprobarEscaleraColor(travis.mano, tipo, contarComodines(travis.mano));
+    travis.ventaja[2] = comprobarPoker(travis.mano, travis.cambio, contarComodines(travis.mano));
+    travis.ventaja[3] = comprobarFullHouse(travis.mano, travis.cambio, contarComodines(travis.mano));
+    travis.ventaja[4] = comprobarColor(travis.mano, contarComodines(travis.mano));
+    travis.ventaja[5] = comprobarEscalera(travis.mano, contarComodines(travis.mano));
+    travis.ventaja[6] = comprobarTrio(travis.mano, travis.cambio, contarComodines(travis.mano));
+    comprobarPares(travis.mano, travis.pares, travis.cambio, contarComodines(travis.mano));
+    travis.ventaja[7] = travis.pares[1];
+    travis.ventaja[8] = travis.pares[0];
+    id = cartaMasAlta(travis.mano);
 
-    //Busca si es posible que pueda realizar una apuesta
+    for (i = 0; i < 5; i++)
+        if (travis.mano[i].id == id)
+        {
+            travis.ventaja[9] = travis.mano[i].valor;
+            break;
+        }
+
+    //Saca el valor de la jugada y el arreglo de cambios
+    travis.jugada = sacarValorJugada(travis.ventaja);
+    sacarArregloCambios(travis.mano, travis.ventaja, travis.cambio);
+    printf("VENTAJA DE JUGADOR %d:\n", travis.numero);
+    for (i = 0; i < 10; i++)
+        printf("%d ", travis.ventaja[i]);
+    printf("\nCAMBIOS:\n");
+    for (i = 0; i < 5; i++)
+        printf("%d ", travis.cambio[i]);
+    printf("\nValor de la jugada: %d\n\n", travis.jugada);
+
     return porcentaje;
+}
+
+int sacarCambios(int a[])
+{
+    int i;
+    int cont = 0;
+
+    for (i = 0; i < 5; i++)
+        if (a[i] == -1)
+            cont++;
+
+    return cont;
+}
+
+//Saca que el arreglo de cartas que hay que cambiar dependiendo de la jugada actual del jugador
+//Regresa la cantidad de cartas que se cambiara
+int sacarArregloCambios(carta mano[], int jugadas[], int a[])
+{
+    int i;
+    int cont = 0;
+    int valor;
+
+    //Crea el arreglo de descarte
+    inicioDescarte(a);
+
+    for (i = 0; i < 10; i++)
+        if (jugadas[i] > 0)
+        {
+            valor = i;
+            break;
+        }
+
+    switch(valor)
+    {
+        //Cuando existe Escalera Real
+        case 0:
+            for (i = 0; i < 5; i++)
+                a[i] = 0;
+            break;
+        //Cuando existe Escalera de Color
+        case 1:
+            for (i = 0; i < 5; i++)
+                a[i] = 0;
+            break;
+        //Cuando existe Poker
+        case 2:
+            for (i = 0; i < 5; i++)
+                if (mano[i].valor == jugadas[2])
+                    a[i] = 0;
+            cont = 1;
+            break;
+        //Cuando existe Full House
+        case 3:
+            for (i = 0; i < 5; i++)
+                a[i] = 0;
+            break;
+        //Cuando existe Color
+        case 4:
+            for (i = 0; i < 5; i++)
+                a[i] = 0;
+            break;
+        //Cuando existe Escalera
+        case 5:
+            for (i = 0; i < 5; i++)
+                a[i] = 0;
+            break;
+        //Cuando existe un trio
+        case 6:
+            for (i = 0; i < 5; i++)
+                if (mano[i].valor == jugadas[6])
+                    a[i] = 0;
+            cont = 2;
+            break;
+        //Cuando existe un doble par o par
+        case 7:
+            for (i = 0; i < 5; i++)
+                if (mano[i].valor == jugadas[7] || mano[i].valor == jugadas[8])
+                    a[i] = 0;
+            cont = 1;
+            break;
+        case 8:
+             for (i = 0; i < 5; i++)
+                if (mano[i].valor == jugadas[8])
+                    a[i] = 0;
+            cont = 3;
+            break;
+        //Cuando no hay nada en la mano
+        default:
+             for (i = 0; i < 5; i++)
+                if (mano[i].valor == jugadas[9])
+                    a[i] = 0;
+            cont = 4;
+            break;
+    }
+
+    return cont;
+}
+
+//Regresa un valor representativo de la jugada que contiene la mano
+int sacarValorJugada(int jugadas[])
+{
+    int n;
+    int i;
+    int valor;
+
+    for (i = 0; i < 10; i++)
+        if (jugadas[i] > 0)
+        {
+            valor = i;
+            break;
+        }
+
+    switch(valor)
+    {
+        //Cuando existe Escalera Real
+        case 0:
+            n = 10;
+            break;
+        //Cuando existe Escalera de Color
+        case 1:
+            n = 9;
+            break;
+        //Cuando existe Poker
+        case 2:
+            n = 8;
+            break;
+        //Cuando existe Full House
+        case 3:
+            n = 7;
+            break;
+        //Cuando existe Color
+        case 4:
+            n = 6;
+            break;
+        //Cuando existe Escalera
+        case 5:
+            n = 5;
+            break;
+        //Cuando existe un trio
+        case 6:
+            n = 4;
+            break;
+        //Cuando existe un doble par o par
+        case 7:
+            n = 3;
+            break;
+        case 8:
+            n = 2;
+            break;
+        //Cuando no hay nada en la mano
+        default:
+            n = 1;
+    }
+
+    return n;
 }

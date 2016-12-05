@@ -1,6 +1,6 @@
 #include "poker.h"
 
-/*int main()
+int main()
 {
     int error;
     jugador humano;
@@ -12,6 +12,10 @@
     int carry = 0;
 
     //Da los valores de inicio de cada jugador
+    humano.numero = 1;
+    pc1.numero = 2;
+    pc2.numero = 3;
+    pc3.numero = 4;
     humano.apuesta = 0;
     humano.fondo = FONDO;
     pc1.apuesta = 0;
@@ -56,17 +60,27 @@
 
     //Ordena las cartas
     ordenarCartas(humano.mano, 5, 1);
+    ordenarCartas(pc1.mano, 5, 1);
+    ordenarCartas(pc2.mano, 5, 1);
+    ordenarCartas(pc3.mano, 5, 1);
 
     //Imprime el tablero
     borde(80);
-    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
+    datos(humano, 0);
+    datos(pc1, 0);
+    datos(pc2, 0);
+    datos(pc3, 0);
     borde(80);
 
     //Checa las manos de las PC
-    checarManoPC(humano.mano, humano.cambio);
+    checarManoPC(humano);
+    checarManoPC(pc1);
+    checarManoPC(pc2);
+    checarManoPC(pc3);
 
+    /*
     //Se hacen las apuestas
-    error = apostar(&humano.fondo, &humano.apuesta, &total);
+    error = apostar(&humano.fondo, &humano.apuesta, &total, humano.numero, 0);
 
     if (error > 0)
         return 1;
@@ -74,10 +88,10 @@
     //Imprime el tablero
     system("cls");
     borde(80);
-    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
-    datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
-    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
-    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
+    datos(humano, 0);
+    datos(pc1, 0);
+    datos(pc2, 0);
+    datos(pc3, 0);
     printf("\n\t\t\tTOTAL: $%d\n", total);
     borde(80);
 
@@ -88,15 +102,15 @@
     //Imprime el tablero
     system("cls");
     borde(80);
-    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
-    datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
-    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
-    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
+    datos(humano, 0);
+    datos(pc1, 0);
+    datos(pc2, 0);
+    datos(pc3, 0);
     printf("\n\t\t\tTOTAL: $%d\n", total);
     borde(80);
 
     //Aumenta la apuesta
-    error = apostar(&humano.fondo, &humano.apuesta, &total);
+    error = apostar(&humano.fondo, &humano.apuesta, &total, humano.numero, 0);
 
     if (error > 0)
         return 1;
@@ -104,15 +118,16 @@
     //Imprime el tablero
     system("cls");
     borde(80);
-    datos(humano.mano, 1, humano.fondo, humano.apuesta, 0);
-    datos(pc1.mano, 2, pc1.fondo, pc1.apuesta, 0);
-    datos(pc2.mano, 3, pc2.fondo, pc2.apuesta, 0);
-    datos(pc3.mano, 4, pc3.fondo, pc3.apuesta, 0);
+    datos(humano, 0);
+    datos(pc1, 0);
+    datos(pc2, 0);
+    datos(pc3, 0);
     printf("\n\t\t\tTOTAL: $%d\n", total);
     borde(80);
+    */
 
     //Libera la memoria de la baraja
     liberarMemoria(baraja, 54);
 
     return 0;
-}*/
+}

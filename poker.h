@@ -12,6 +12,7 @@ typedef struct
     int fondo;
     int cambio[5];
     int pares[2];
+    int jugada;
     int ventaja[10];
 
 }jugador;
@@ -47,6 +48,9 @@ int comprobarEscaleraColor (carta mano[], char tipo, int comodines);
 int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines);
 int comprobarEscaleraReal (carta mano[], char tipo, int comodines);
 int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines);
-int checarManoPC (jugador hp);
+int checarManoPC (jugador travis);
+int sacarCambios(int a[]);
+int sacarArregloCambios(carta mano[], int jugadas[], int a[]);
+int sacarValorJugada(int jugadas[]);
 
 #endif
