@@ -48,10 +48,13 @@ int comprobarEscaleraColor (carta mano[], char tipo, int comodines);
 int probarEscaleraColor(carta mano[], int posiciones[], char palo, int comodines);
 int comprobarEscaleraReal (carta mano[], char tipo, int comodines);
 int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines);
-int checarManoPC (jugador travis);
+int checarMano (jugador *travis);
 int sacarCambios(int a[]);
 int sacarArregloCambios(carta mano[], int jugadas[], int a[]);
 int sacarValorJugada(int jugadas[]);
-int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int fase);
+int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int fase);
+int sacarValorNumJugada(int ventaja[]);
+void mensajeManoJugada (int jugada, int ventaja[]);
+int analizarGanador (jugador a, jugador b, jugador c, jugador d);
 
 #endif

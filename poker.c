@@ -50,7 +50,7 @@ void imprimirMano(carta mano[])
         printf(" %c %s\t", mano[i].tipo, mano[i].color);
     }
 
-    printf("\n\n");
+    printf("\n");
 
     return;
 }
@@ -279,14 +279,21 @@ void datos(jugador travis, int oculto)
         printf("\n");
         for (i = 0; i < 5; i++)
            printf("* * ****\t");
+        printf("\n");
 
-        printf("\n\nFondo: $%d\n", travis.fondo);
+        if (travis.numero == 1)
+            printf("\nFondo: $%d\n", travis.fondo);
+        else
+            printf("\nFondo: $****\n");
         printf("Apuesta: $%d\n\n", travis.apuesta);
     }
     else
     {
         imprimirMano(travis.mano);
-        printf("Fondo: $%d\n", travis.fondo);
+        if (travis.numero == 1)
+            printf("\nFondo: $%d\n", travis.fondo);
+        else
+            printf("\nFondo: $****\n");
         printf("Apuesta: $%d\n\n", travis.apuesta);
     }
 
@@ -1423,53 +1430,50 @@ int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines
     return falta;
 }
 
-//Checa la mano de la PC y toma la decision de cuanto apuesta y que cartas cambiar
-int checarManoPC (jugador travis)
+//Checa la mano de la PC y regresa la cantidad de apuesta
+//Obtiene ademas el arreglo ventaja, las cartas de cambio (arreglo) y el valor de la jugada
+int checarMano (jugador *travis)
 {
     int porcentaje = 0;
     int i;
     int id;
     char tipo;
+    srand(time(NULL));
 
     //Analiza que jugadas tiene el jugador (y llena el arreglo "ventaja")
     for (i = 0; i < 10; i++)
-        travis.ventaja[i] = 0;
+        travis->ventaja[i] = 0;
+
+    inicioDescarte(travis->cambio);
 
     //sacarJugadas(hp);
-    travis.pares[0] = 0;
-    travis.pares[1] = 0;
+    travis->pares[0] = 0;
+    travis->pares[1] = 0;
 
-    checarRepeticionTipo(travis.mano, &tipo);
+    checarRepeticionTipo(travis->mano, &tipo);
 
-    travis.ventaja[0] = comprobarEscaleraReal(travis.mano, tipo, contarComodines(travis.mano));
-    travis.ventaja[1] = comprobarEscaleraColor(travis.mano, tipo, contarComodines(travis.mano));
-    travis.ventaja[2] = comprobarPoker(travis.mano, travis.cambio, contarComodines(travis.mano));
-    travis.ventaja[3] = comprobarFullHouse(travis.mano, travis.cambio, contarComodines(travis.mano));
-    travis.ventaja[4] = comprobarColor(travis.mano, contarComodines(travis.mano));
-    travis.ventaja[5] = comprobarEscalera(travis.mano, contarComodines(travis.mano));
-    travis.ventaja[6] = comprobarTrio(travis.mano, travis.cambio, contarComodines(travis.mano));
-    comprobarPares(travis.mano, travis.pares, travis.cambio, contarComodines(travis.mano));
-    travis.ventaja[7] = travis.pares[1];
-    travis.ventaja[8] = travis.pares[0];
-    id = cartaMasAlta(travis.mano);
+    travis->ventaja[0] = comprobarEscaleraReal(travis->mano, tipo, contarComodines(travis->mano));
+    travis->ventaja[1] = comprobarEscaleraColor(travis->mano, tipo, contarComodines(travis->mano));
+    travis->ventaja[2] = comprobarPoker(travis->mano, travis->cambio, contarComodines(travis->mano));
+    travis->ventaja[3] = comprobarFullHouse(travis->mano, travis->cambio, contarComodines(travis->mano));
+    travis->ventaja[4] = comprobarColor(travis->mano, contarComodines(travis->mano));
+    travis->ventaja[5] = comprobarEscalera(travis->mano, contarComodines(travis->mano));
+    travis->ventaja[6] = comprobarTrio(travis->mano, travis->cambio, contarComodines(travis->mano));
+    comprobarPares(travis->mano, travis->pares, travis->cambio, contarComodines(travis->mano));
+    travis->ventaja[7] = travis->pares[1];
+    travis->ventaja[8] = travis->pares[0];
+    id = cartaMasAlta(travis->mano);
 
     for (i = 0; i < 5; i++)
-        if (travis.mano[i].id == id)
+        if (travis->mano[i].id == id)
         {
-            travis.ventaja[9] = travis.mano[i].valor;
+            travis->ventaja[9] = travis->mano[i].valor;
             break;
         }
 
-    //Saca el valor de la jugada y el arreglo de cambios
-    /*travis.jugada = sacarValorJugada(travis.ventaja);
-    sacarArregloCambios(travis.mano, travis.ventaja, travis.cambio);
-    printf("VENTAJA DE JUGADOR %d:\n", travis.numero);
-    for (i = 0; i < 10; i++)
-        printf("%d ", travis.ventaja[i]);
-    printf("\nCAMBIOS:\n");
-    for (i = 0; i < 5; i++)
-        printf("%d ", travis.cambio[i]);
-    printf("\nValor de la jugada: %d\n\n", travis.jugada);*/
+    sacarArregloCambios(travis->mano, travis->ventaja, travis->cambio);
+    travis->jugada = sacarValorJugada(travis->ventaja);
+    porcentaje = (sacarValorJugada(travis->ventaja) * 10) + (1 + rand() % 20);
 
     return porcentaje;
 }
@@ -1519,7 +1523,7 @@ int sacarArregloCambios(carta mano[], int jugadas[], int a[])
         //Cuando existe Poker
         case 2:
             for (i = 0; i < 5; i++)
-                if (mano[i].valor == jugadas[2])
+                if (mano[i].valor == jugadas[2] || mano[i].valor == -1)
                     a[i] = 0;
             cont = 1;
             break;
@@ -1541,20 +1545,20 @@ int sacarArregloCambios(carta mano[], int jugadas[], int a[])
         //Cuando existe un trio
         case 6:
             for (i = 0; i < 5; i++)
-                if (mano[i].valor == jugadas[6])
+                if (mano[i].valor == jugadas[6] || mano[i].valor == -1)
                     a[i] = 0;
             cont = 2;
             break;
         //Cuando existe un doble par o par
         case 7:
             for (i = 0; i < 5; i++)
-                if (mano[i].valor == jugadas[7] || mano[i].valor == jugadas[8])
+                if ((mano[i].valor == jugadas[7]) || (mano[i].valor == jugadas[8]) || (mano[i].valor == -1))
                     a[i] = 0;
             cont = 1;
             break;
         case 8:
              for (i = 0; i < 5; i++)
-                if (mano[i].valor == jugadas[8])
+                if (mano[i].valor == jugadas[8] || mano[i].valor == -1)
                     a[i] = 0;
             cont = 3;
             break;
@@ -1630,9 +1634,10 @@ int sacarValorJugada(int jugadas[])
 }
 
 //Saca el monto que apuestan los jugadores (si regresa -1 el juego se termina)
-int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int fase)
+int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int fase)
 {
     int monto;
+    int ap = 0;
     int total = 0;
     int aumento = 0;
 
@@ -1644,7 +1649,7 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int fase)
             {
                 if (aumento == 0)
                 {
-                    printf("El jugador 2 inicia la apuesta con %d\n", monto);
+                    printf("\nEl jugador 2 inicia la apuesta con $%d\n", monto);
                     if (a->fondo < monto)
                     {
                         printf("\nNO CUENTAS CON LOS SUFICIENTES FONDOS!\n");
@@ -1653,22 +1658,22 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int fase)
                     }
                     total += monto;
                     b->fondo -= monto;
-                    printf("El jugador 3 iguala la apuesta de %d\n", monto);
+                    printf("\nEl jugador 3 iguala la apuesta de $%d\n", monto);
                     total += monto;
                     c->fondo -= monto;
-                    printf("El jugador 4 iguala la apuesta de %d\n", monto);
+                    printf("\nEl jugador 4 iguala la apuesta de $%d\n", monto);
                     total += monto;
                     d->fondo -= monto;
                 }
                 else
                 {
-                    printf("El jugador 2 iguala la apuesta de %d\n", a->apuesta);
+                    printf("\nEl jugador 2 iguala la apuesta de $%d\n", a->apuesta);
                     total += a->apuesta - monto;
                     b->fondo -= a->apuesta - monto;
-                    printf("El jugador 3 iguala la apuesta de %d\n", a->apuesta);
+                    printf("\nEl jugador 3 iguala la apuesta de $%d\n", a->apuesta);
                     total += a->apuesta - monto;
                     c->fondo -= a->apuesta - monto;
-                    printf("El jugador 4 iguala la apuesta de %d\n", a->apuesta);
+                    printf("\nEl jugador 4 iguala la apuesta de $%d\n", a->apuesta);
                     total += a->apuesta - monto;
                     d->fondo -= a->apuesta - monto;
                     monto = a->apuesta;
@@ -1678,21 +1683,22 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int fase)
                 {
                     do
                     {
-                        printf("Quieres igualar o aumentar la apuesta? (0 = retirarse): ");
+                        printf("\nQuieres igualar o aumentar la apuesta? (0 = retirarse): ");
                         scanf("%d", &a->apuesta);
 
                         if (a->apuesta > a->fondo)
                             printf("No cuenta con esa cantidad\n");
 
-                    }while(a->apuesta > a->fondo);
-                    a->fondo -= a->apuesta;
-                }
+                        if (a->apuesta == 0)
+                        {
+                            printf("\nTE RETIRAS! QUE LASTIMA!\n");
+                            printf("GAME OVER!\n");
+                            return -1;
+                        }
 
-                if (a->apuesta == 0)
-                {
-                    printf("\nTE RETIRAS! QUE LASTIMA!\n");
-                    printf("GAME OVER!\n");
-                    return -1;
+                    }while(a->apuesta > a->fondo || a->apuesta < monto);
+                    a->fondo -= a->apuesta;
+                    total += a->apuesta;
                 }
 
                 if (aumento > 0)
@@ -1706,9 +1712,257 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int fase)
             c->apuesta = monto;
             d->apuesta = monto;
             break;
-        //default:
+        default:
+            monto = n;
+            do
+            {
+                if (aumento == 0)
+                {
+                    printf("El jugador 2 aumenta la apuesta en $%d\n", monto);
+                    if (a->fondo < monto)
+                    {
+                        printf("\nNO CUENTAS CON LOS SUFICIENTES FONDOS!\n");
+                        printf("GAME OVER!\n");
+                        return -1;
+                    }
+                    total += monto;
+                    b->fondo -= monto;
+                    printf("\nEl jugador 3 iguala la apuesta de $%d\n", monto);
+                    total += monto;
+                    c->fondo -= monto;
+                    printf("\nEl jugador 4 iguala la apuesta de $%d\n", monto);
+                    total += monto;
+                    d->fondo -= monto;
+                }
+                else
+                {
+                    printf("\nEl jugador 2 iguala la apuesta de $%d\n", ap);
+                    total += ap - monto;
+                    b->fondo -= ap - monto;
+                    printf("\nEl jugador 3 iguala la apuesta de $%d\n", ap);
+                    total += ap - monto;
+                    c->fondo -= ap - monto;
+                    printf("\nEl jugador 4 iguala la apuesta de $%d\n", ap);
+                    total += ap - monto;
+                    d->fondo -= ap - monto;
+                    monto = ap;
+                }
+
+                if (aumento == 0)
+                {
+                    do
+                    {
+                        printf("\nQuieres igualar o aumentar la apuesta? (0 = retirarse): ");
+                        scanf("%d", &ap);
+
+                        if (ap > a->fondo)
+                            printf("No cuenta con esa cantidad\n");
+
+                        if (ap == 0)
+                        {
+                            printf("\nTE RETIRAS! QUE LASTIMA!\n");
+                            printf("GAME OVER!\n");
+                            return -1;
+                        }
+
+                    }while(ap > a->fondo || ap < monto);
+                    a->fondo -= ap;
+                    total += ap;
+                }
+
+                if (aumento > 0)
+                    aumento = 0;
+
+                if (ap != monto)
+                    aumento = 1;
+
+            }while(aumento > 0);
+            a->apuesta += ap;
+            b->apuesta += monto;
+            c->apuesta += monto;
+            d->apuesta += monto;
     }
 
     return total;
+}
+
+//Analiza quien ganó en base a las jugadas (regresa el numero del jugador ganador)
+int analizarGanador (jugador a, jugador b, jugador c, jugador d)
+{
+    int posicion;
+    int ganador = a.numero;
+    int alto = a.jugada;
+
+    //Compara 2 con alto
+    if (b.jugada >= alto)
+    {
+        if (b.jugada > alto)
+        {
+            ganador = b.numero;
+            alto = b.jugada;
+        }
+        else
+        {
+            switch(ganador)
+            {
+                case 1:
+                    posicion = sacarValorNumJugada(a.ventaja);
+                    break;
+                case 2:
+                    posicion = sacarValorNumJugada(b.ventaja);
+                    break;
+                case 3:
+                    posicion = sacarValorNumJugada(c.ventaja);
+                break;
+                default:
+                    posicion = sacarValorNumJugada(d.ventaja);
+            }
+
+            if(sacarValorNumJugada(b.ventaja) > posicion)
+            {
+                ganador = b.numero;
+                alto = b.jugada;
+            }
+        }
+    }
+
+    //Compara 3 con alto
+    if (c.jugada >= alto)
+    {
+        if (c.jugada > alto)
+        {
+            ganador = c.numero;
+            alto = c.jugada;
+        }
+        else
+        {
+            switch(ganador)
+            {
+                case 1:
+                    posicion = sacarValorNumJugada(a.ventaja);
+                    break;
+                case 2:
+                    posicion = sacarValorNumJugada(b.ventaja);
+                    break;
+                case 3:
+                    posicion = sacarValorNumJugada(c.ventaja);
+                break;
+                default:
+                    posicion = sacarValorNumJugada(d.ventaja);
+            }
+
+            if(sacarValorNumJugada(c.ventaja) > posicion)
+            {
+                ganador = c.numero;
+                alto = c.jugada;
+            }
+        }
+    }
+
+    //Compara 4 con alto
+    if (d.jugada >= alto)
+    {
+        if (d.jugada > alto)
+        {
+            ganador = d.numero;
+            alto = d.jugada;
+        }
+        else
+        {
+            switch(ganador)
+            {
+                case 1:
+                    posicion = sacarValorNumJugada(a.ventaja);
+                    break;
+                case 2:
+                    posicion = sacarValorNumJugada(b.ventaja);
+                    break;
+                case 3:
+                    posicion = sacarValorNumJugada(c.ventaja);
+                break;
+                default:
+                    posicion = sacarValorNumJugada(d.ventaja);
+            }
+
+            if(sacarValorNumJugada(d.ventaja) > posicion)
+            {
+                ganador = d.numero;
+                alto = d.jugada;
+            }
+        }
+    }
+
+    return ganador;
+}
+
+//Regresa el valor de la jugada mas alta (el valor numerico)
+int sacarValorNumJugada(int ventaja[])
+{
+    int i;
+    int alta;
+
+    for (i = 0; i < 10; i++)
+        if (ventaja[i] > 0)
+        {
+            alta = ventaja[i];
+            break;
+        }
+
+    return alta;
+}
+
+//Muestra el mensaje de la jugada que se encuentra en la mano
+void mensajeManoJugada (int jugada, int ventaja[])
+{
+    int valor = sacarValorNumJugada(ventaja);
+
+    switch(jugada)
+    {
+        case 10:
+            printf("Obtuvo una ESCALERA REAL\n");
+            printf("Valor: MAXIMO\n");
+            return ;
+            break;
+        case 9:
+            printf("Obtuvo una ESCALERA DE COLOR\n");
+            break;
+        case 8:
+            printf("Obtuvo un POKER\n");
+            break;
+        case 7:
+            printf("Obtuvo un FULL HOUSE\n");
+            break;
+        case 6:
+            printf("Obtuvo un COLOR\n");
+            break;
+        case 5:
+            printf("Obtuvo una ESCALERA\n");
+            break;
+        case 4:
+            printf("Obtuvo una TERCIA\n");
+            break;
+        case 3:
+            printf("Obtuvo doble PAR\n");
+            break;
+        case 2:
+            printf("Obtuvo un PAR\n");
+            break;
+        default:
+            printf("Obtuvo una CARTA ALTA\n");
+    }
+
+    printf("Valor: ");
+    if (valor < 11)
+        printf("%d\n", valor);
+    else if (valor == 11)
+        printf("J\n");
+    else if (valor == 12)
+        printf("Q\n");
+    else if (valor == 13)
+        printf("K\n");
+    else
+        printf("A\n");
+
+    return;
 }
 
