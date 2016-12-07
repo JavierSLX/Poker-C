@@ -20,8 +20,9 @@ int main()
     pruebaComprobarColor();
     pruebaComprobarFullHouse();
     pruebaComprobarPoker();
-    pruebaComprobarEscaleraColor();*/
-    pruebaComprobarEscaleraReal();
+    pruebaComprobarEscaleraColor();
+    pruebaComprobarEscaleraReal();*/
+    pruebaRegistro();
 
     return 0;
 }

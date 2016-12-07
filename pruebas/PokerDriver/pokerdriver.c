@@ -1174,3 +1174,13 @@ void pruebaComprobarEscaleraReal(void)
     return;
 }
 
+void pruebaRegistro(void)
+{
+    int cantidad;
+
+    cantidad = 11000;
+    printf("Posicion: %d\n", checarRegistro(cantidad));
+
+    return;
+}
+

@@ -56,5 +56,9 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int f
 int sacarValorNumJugada(int ventaja[]);
 void mensajeManoJugada (int jugada, int ventaja[]);
 int analizarGanador (jugador a, jugador b, jugador c, jugador d);
+int menu(void);
+int checarRegistro (int cantidad);
+void nuevoRegistro(char nombre[], int cantidad, int posicion);
+void mostrarMarcadores(void);
 
 #endif

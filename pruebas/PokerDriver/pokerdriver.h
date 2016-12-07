@@ -27,5 +27,6 @@ void pruebaComprobarFullHouse(void);
 void pruebaComprobarPoker(void);
 void pruebaComprobarEscaleraColor(void);
 void pruebaComprobarEscaleraReal(void);
+void pruebaRegistro(void);
 
 #endif

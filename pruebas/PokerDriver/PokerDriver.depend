@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1480833535 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\poker.c
+1481085213 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\poker.c
 	"poker.h"
 
-1480820061 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\poker.h
+1481084718 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\poker.h
 	"baraja.h"
 
 1479754063 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\baraja.h
@@ -11,14 +11,14 @@
 	<time.h>
 	<string.h>
 
-1480835418 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\main.c
+1481085484 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\main.c
 	"pokerdriver.h"
 
-1480836236 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\pokerdriver.h
+1481085471 c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\pokerdriver.h
 	"../../poker.h"
 	<assert.h>
 
-1480836415 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\pokerdriver.c
+1481085508 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\pruebas\pokerdriver\pokerdriver.c
 	"pokerdriver.h"
 
 1479772582 source:c:\respaldo\fimee\plan semestral\semestre 2\ingenieria de software\baraja\baraja.c

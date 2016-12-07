@@ -1652,8 +1652,10 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int f
                     printf("\nEl jugador 2 inicia la apuesta con $%d\n", monto);
                     if (a->fondo < monto)
                     {
+                        //system("cls");
                         printf("\nNO CUENTAS CON LOS SUFICIENTES FONDOS!\n");
-                        printf("GAME OVER!\n");
+                        printf("GAME OVER!\n\n");
+                        system("pause");
                         return -1;
                     }
                     total += monto;
@@ -1691,8 +1693,10 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int f
 
                         if (a->apuesta == 0)
                         {
+                            system("cls");
                             printf("\nTE RETIRAS! QUE LASTIMA!\n");
-                            printf("GAME OVER!\n");
+                            printf("GAME OVER!\n\n");
+                            system("pause");
                             return -1;
                         }
 
@@ -1721,8 +1725,10 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int f
                     printf("El jugador 2 aumenta la apuesta en $%d\n", monto);
                     if (a->fondo < monto)
                     {
+                        //system("cls");
                         printf("\nNO CUENTAS CON LOS SUFICIENTES FONDOS!\n");
-                        printf("GAME OVER!\n");
+                        printf("GAME OVER!\n\n");
+                        system("pause");
                         return -1;
                     }
                     total += monto;
@@ -1760,8 +1766,10 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int f
 
                         if (ap == 0)
                         {
+                            system("cls");
                             printf("\nTE RETIRAS! QUE LASTIMA!\n");
-                            printf("GAME OVER!\n");
+                            printf("GAME OVER!\n\n");
+                            system("pause");
                             return -1;
                         }
 
@@ -1782,6 +1790,7 @@ int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int f
             c->apuesta += monto;
             d->apuesta += monto;
     }
+    printf("\n");
 
     return total;
 }
@@ -1963,6 +1972,179 @@ void mensajeManoJugada (int jugada, int ventaja[])
     else
         printf("A\n");
 
+    return;
+}
+
+//Muestra un menu de entrada (regresa la opcion elegida por el usuario
+int menu(void)
+{
+    int opcion;
+
+    do
+    {
+        system("cls");
+        borde(80);
+        printf("Serrano Lule Javier\n");
+        printf("\n***** JUEGO POKER CLASICO *****\n");
+        printf("Opciones:\n1.Juego\n2.Marcadores\n3.Salir\n\n\n");
+
+        borde(80);
+        printf("\nNum: ");
+        scanf("%d", &opcion);
+
+        if (opcion < 1 || opcion > 3)
+        {
+            printf("\nOpcion no valida!\n");
+            system("pause");
+        }
+
+    }while(opcion < 1 || opcion > 3);
+
+    return opcion;
+}
+
+//Checa si la cantidad del jugador es capaz de entrar en el registro (regresa la posición del remplazo si es así)
+int checarRegistro (int cantidad)
+{
+    int i;
+    int posicion = -1;
+    char texto[50];
+    int n;
+    FILE *score = NULL;
+
+    score = fopen("scores.pkr", "r");
+
+    if (score == NULL)
+        return -1;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (i % 2 == 0)
+            fgets(texto, 50, score);
+        else
+        {
+            fscanf(score, "%d", &n);
+            //printf("%d\n", n);
+            fgets(texto, 50, score);
+
+            if (cantidad > n)
+                posicion = i;
+            else
+                break;
+        }
+        //printf("%s\n", texto);
+    }
+
+    fclose(score);
+    return posicion;
+}
+
+//Escribe un nuevo registro en los marcadores
+void nuevoRegistro(char nombre[], int cantidad, int posicion)
+{
+    int i;
+    char renglon[50];
+    FILE *score = NULL;
+    FILE *temp = NULL;
+
+    score = fopen("scores.pkr", "r");
+    temp = fopen("temp.pkr", "w");
+
+    if (score == NULL)
+        return;
+
+    if (temp == NULL)
+        return;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (i != posicion && i != posicion-1)
+        {
+            fgets(renglon, 50, score);
+            fputs(renglon, temp);
+        }
+        else if(i == posicion-1)
+        {
+            fgets(renglon, 50, score);
+            fprintf(temp, "%s\n", nombre);
+        }
+        else
+        {
+            fgets(renglon, 50, score);
+            fprintf(temp, "%d\n", cantidad);
+        }
+    }
+
+    fclose(score);
+    fclose(temp);
+
+    score = NULL;
+    temp = NULL;
+
+    score = fopen("scores.pkr", "w");
+    temp = fopen("temp.pkr", "r");
+
+    if (score == NULL)
+        return;
+
+    if (temp == NULL)
+        return;
+
+    for (i = 0; i < 10; i++)
+    {
+        fgets(renglon, 50, temp);
+        fputs(renglon, score);
+    }
+
+    fclose(score);
+    fclose(temp);
+
+    return;
+}
+
+void mostrarMarcadores(void)
+{
+    int i;
+    int j;
+    char renglon[50];
+    FILE *score = NULL;
+
+    score = fopen("scores.pkr", "r");
+
+    if (score == NULL)
+        return;
+
+    system("cls");
+    borde(80);
+    printf("\n### MARCADORES ###\n\n");
+    printf("NOMBRE\t\tMARCADOR\n\n");
+
+    for (i = 0; i < 10; i++)
+    {
+        fgets(renglon, 50, score);
+        if (i % 2 == 0)
+        {
+            for (j = 0; j < 50; j++)
+                if (renglon[j] == '\n')
+                {
+                    renglon[j] = '\t';
+                    break;
+                }
+
+            if(strlen(renglon) < 8)
+                printf("%s\t", renglon);
+            else
+                printf("%s", renglon);
+        }
+        else
+            printf("%s", renglon);
+    }
+    printf("\n\n");
+    borde(80);
+    printf("\n\n");
+    system("pause");
+
+    fclose(score);
     return;
 }
 
