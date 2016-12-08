@@ -3,6 +3,10 @@
 Documento que recaba todas las descripciones básicas y anotaciones que se han desarrollado, observaciones que se tienen y un apoyo en documentación del mismo proyecto realizado en lenguaje C. Se registran con fechas y observaciones en cada parte del programa.
 
 ##Actualizaciones
+**07/Dic/16**. Se realizaron las pruebas de la función `int checarMano (jugador *travis)` los resultados pueden observarse en `/pruebas/poker/checarMano/`.
+
+![pCER](./pruebas/poker/checarMano/images/pruebaChecarMano.png)  
+
 **04/Dic/16**. Se realizaron las pruebas de la función `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` los resultados pueden observarse en `/pruebas/poker/comprobarEscaleraReal/`.    
 
 ![pCER](./pruebas/poker/comprobarEscaleraReal/images/pruebaComprobarEscaleraReal.png)  
@@ -59,7 +63,7 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 
 ![pOC](./pruebas/poker/ordenarCartas/images/pruebaOrdenarCartas.png)  
 
-**26/Nov/16**. Se realizó la primera revisión informal (se puede checar en `/revisiones/Informales/1ra Revisión.md`). Se realizaron las pruebas de la función `void asignarValor(carta baraja[], int length)` los resultados pueden observarse en `/pruebas/poker/asignarValor/`.  
+**26/Nov/16**. Se realizaron las pruebas de la función `void asignarValor(carta baraja[], int length)` los resultados pueden observarse en `/pruebas/poker/asignarValor/`.  
 
 ![pAV](./pruebas/poker/asignarValor/images/pruebaAsignarValor.png)  
 
@@ -169,7 +173,7 @@ Documento que recaba todas las descripciones básicas y anotaciones que se han d
 ##Baraja
 Librería que contiene las funciones básicas del manejo de los elementos de una baraja en C.
 
-###baraja.h (NO PROBADA ✘)
+###baraja.h (PROBADA ✔)
 - `typedef struct {...}carta` **(PROBADA ✔)**. Estructura creada para contener los elementos de id, número, valor, tipo y color de una carta. *ID*, que sirve para darle un valor único a la carta y pueda ser usado en alguna otra parte. *Numero* que da el valor que tiene "físico". *Valor* que es el valor que se le da dependiendo del juego. *Tipo* que es uno de los cuatro que existen (E: Espadas, T: Treboles, C: Corazones y R: Rombos). Y el elemento *color* es asignado con memoria dinámica que puede tener tres (rojo, negro y blanco|sinColor).
 - `void imprimirElementoCarta (carta nombre, int n)` **(PROBADA ✔)**. Imprime el elemento específico de una carta. 
 - `void imprimirCaractCarta(carta nombre)` **(PROBADA ✔)**. Imprime todas las características de una carta. 
@@ -210,7 +214,7 @@ Desordena el arreglo para que usando el azar pueda alterar el orden.
 ##Poker
 Librería de C que contiene todas las reglas y características de este juego. Se apoya en las funciones hechas en `baraja.h`.
 
-###poker.h (NO PROBADA ✘)
+###poker.h (PROBADA ✔)
 - `void quitarJokers(carta baraja[], carta nBaraja[])` **(PROBADA ✔)**. Quita dos elementos carta del arreglo y crea una nueva baraja sin ellos. 
 - `int repartirMano(carta baraja[], carta mano[], int n, int *carry, int max)` **(PROBADA ✔)**. Toma del arreglo baraja cinco cartas para darle a cada jugador.
 - `void imprimirMano(carta mano[])` **(PROBADA ✔)**. Imprime la mano que tiene el jugador.  
@@ -242,7 +246,18 @@ Librería de C que contiene todas las reglas y características de este juego. S
 - `int comprobarEscaleraColor (carta mano[], char tipo, int comodines)` **(PROBADA ✔)**. Checa si existe una escalera de color en la mano del jugador.  
 - `int probarEscaleraReal (carta mano[], int posiciones[], char palo, int comodines)` **(PROBADA ✔)**. Analiza cuantas cartas se necesitan cambiar para formar una escalera real y da las posiciones de dichas cartas.  
 - `int comprobarEscaleraReal (carta mano[], char tipo, int comodines)` **(PROBADA ✔)**. Checa si existe una escalera real en la mano del jugador.  
-- `int checarManoPC (jugador hp)` **(NO PROBADA ✘)**. Permite checar las posibles jugadas de la computadora.  
+- `int checarMano (jugador hp)` **(PROBADA ✔)**. Permite checar las posibles jugadas de la computadora.  
+- `int sacarCambios(int a[])` **(PROBADA ✔)**. Regresa la cantidad de cambios que debe hacerse en una mano.  
+- `int sacarArregloCambios(carta mano[], int jugadas[], int a[])` **(PROBADA ✔)**. Saca un arreglo que contiene las posiciones de cambio dependiendo de la jugada de la PC.  
+- `int sacarValorJugada(int jugadas[])` **(PROBADA ✔)**. Transforma la jugada de la mano, en un valor entero que la representa para comparar con otras jugadas.  
+- `int sacarMontoTotal(jugador *a, jugador *b, jugador *c, jugador *d, int n, int fase)` **(PROBADA ✔)**. Realiza las apuestas del juego y hace sus respectivos cálculos.  
+- `int sacarValorNumJugada(int ventaja[])` **(PROBADA ✔)**. Regresa del arreglo de jugadas, la más alta de ellas y la que representará al jugador.  
+- `void mensajeManoJugada (int jugada, int ventaja[])` **(PROBADA ✔)**. Muestra en un mensaje, la jugada que tiene cada jugador en la mano.  
+- `int analizarGanador (jugador a, jugador b, jugador c, jugador d)` **(PROBADA ✔)**. Analiza y compara las jugadas de cada jugador y regresa quien tiene la mejor de ellas.  
+- `int menu(void)` **(PROBADA ✔)**. Imprime el menú de entrada y regresa la opción elegida por el usuario.  
+- `int checarRegistro (int cantidad)` **(PROBADA ✔)**. Checa en el registro, si la cantidad del jugador es mayor a una de las que ya se encuentran.  
+- `void nuevoRegistro(char nombre[], int cantidad, int posicion)` **(PROBADA ✔)**. Crea un nuevo registro (actualiza) con el nombre y la cantidad a ingresas.  
+- `void mostrarMarcadores(void)` **(PROBADA ✔)**. Muestra los marcadores al usuario.  
 
 ###poker.c
 - `void quitarJokers(carta baraja[], carta nBaraja[])`.  
